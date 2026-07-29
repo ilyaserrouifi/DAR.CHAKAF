@@ -2535,23 +2535,44 @@
                         var slides = Array.isArray(d.slides) && d.slides.length ? d.slides : (d.mainImage ? [{ image: d.mainImage }] : []);
                         var heroBg = document.getElementById('heroBg');
                         if (heroBg && slides.length) {
-                            heroBg.innerHTML = slides.map(function(s, i) {
-                                return '<img src="' + s.image + '" alt="' + (s.title || 'Dar Chakaf') + '" ' +
-                                    'style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:' + (i === 0 ? '1' : '0') + ';transition:opacity 1.2s ease;" data-hero-slide="' + i + '" />';
-                            }).join('');
-
-                            if (slides.length > 1) {
-                                var current = 0;
-                                setInterval(function() {
-                                    var imgs = heroBg.querySelectorAll('[data-hero-slide]');
-                                    imgs[current].style.opacity = '0';
-                                    current = (current + 1) % imgs.length;
-                                    imgs[current].style.opacity = '1';
-                                }, 6000);
-                            }
+                            renderHeroSlides(heroBg, slides);
+                        } else {
+                            loadSimpleHeroBackground();
                         }
                     })
-                    .catch(function(e) { console.warn('Erreur chargement bannière hero:', e); });
+                    .catch(function(e) {
+                        console.warn('Erreur chargement bannière hero:', e);
+                        loadSimpleHeroBackground();
+                    });
+            }
+
+            function renderHeroSlides(heroBg, slides) {
+                heroBg.innerHTML = slides.map(function(s, i) {
+                    return '<img src="' + s.image + '" alt="' + (s.title || 'Dar Chakaf') + '" ' +
+                        'style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:' + (i === 0 ? '1' : '0') + ';transition:opacity 1.2s ease;" data-hero-slide="' + i + '" />';
+                }).join('');
+
+                if (slides.length > 1) {
+                    var current = 0;
+                    setInterval(function() {
+                        var imgs = heroBg.querySelectorAll('[data-hero-slide]');
+                        if (!imgs.length) return;
+                        imgs[current].style.opacity = '0';
+                        current = (current + 1) % imgs.length;
+                        imgs[current].style.opacity = '1';
+                    }, 6000);
+                }
+            }
+
+            function loadSimpleHeroBackground() {
+                fetch('/api/parametres')
+                    .then(function(r) { return r.json(); })
+                    .then(function(res) {
+                        if (!res.success || !res.data || !res.data.image_hero) return;
+                        var heroBg = document.getElementById('heroBg');
+                        if (heroBg) renderHeroSlides(heroBg, [{ image: res.data.image_hero, title: 'Fond Dar Chakaf' }]);
+                    })
+                    .catch(function(e) { console.warn('Erreur chargement fond simple:', e); });
             }
 
             loadHero();

@@ -596,7 +596,9 @@
                     <!-- Image de fond du site (Hero) -->
                     <div class="form-group">
                         <label for="imageHero">Image de fond du site <span class="help-text">(URL — s'affiche en arrière-plan de la page d'accueil)</span></label>
-                        <input type="text" id="imageHero" placeholder="https://..." />
+                        <input type="text" id="imageHero" placeholder="https://... ou image chargée depuis votre ordinateur" />
+                        <input type="file" id="imageHeroFile" accept="image/jpeg,image/png,image/webp" style="margin-top:0.8rem;" />
+                        <div class="help-text">Vous pouvez coller une URL ou charger une image locale (max 3MB). Elle sera utilisée comme fond de l'accueil si aucune bannière hero avancée n'est configurée.</div>
                         <div class="image-preview" id="heroPreview" style="display:none;">
                             <div class="thumb"><img src="" alt="Image de fond" id="heroPreviewImg" onerror="this.parentElement.parentElement.style.display='none'" /></div>
                             <button type="button" class="btn btn-ghost btn-sm" onclick="document.getElementById('imageHero').value='';document.getElementById('heroPreview').style.display='none';">Supprimer</button>
@@ -735,6 +737,7 @@
             // 3.1 IMAGE DE FOND (HERO) PREVIEW
             // ============================================================
             const heroInput = document.getElementById('imageHero');
+            const heroFileInput = document.getElementById('imageHeroFile');
             const heroPreview = document.getElementById('heroPreview');
             const heroPreviewImg = document.getElementById('heroPreviewImg');
 
@@ -749,6 +752,31 @@
                 } else {
                     heroPreview.style.display = 'none';
                 }
+            });
+
+            heroFileInput.addEventListener('change', function() {
+                const file = this.files && this.files[0];
+                if (!file) return;
+                if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+                    showToast('Format non supporté. Utilisez JPG, PNG ou WebP.', 'error');
+                    this.value = '';
+                    return;
+                }
+                if (file.size > 3 * 1024 * 1024) {
+                    showToast('Image trop grande. Maximum 3MB.', 'error');
+                    this.value = '';
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    heroInput.value = event.target.result;
+                    heroInput.dispatchEvent(new Event('input'));
+                    showToast('Image de fond prête. Cliquez sur Enregistrer.', 'success');
+                };
+                reader.onerror = function() {
+                    showToast('Impossible de lire cette image.', 'error');
+                };
+                reader.readAsDataURL(file);
             });
 
             // ============================================================

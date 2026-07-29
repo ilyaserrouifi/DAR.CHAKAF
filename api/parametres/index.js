@@ -30,7 +30,7 @@ async function getSiteInfo(req, res) {
 async function updateSiteInfo(req, res) {
     try {
         const user = requireAuth(req);
-        const { logo, image_hero, adresse, telephone, whatsapp, email, facebook, instagram, tiktok, horaires, description } = req.body;
+        const { logo, image_hero, adresse, telephone, whatsapp, email, facebook, instagram, tiktok, horaires, description } = req.body || {};
 
         const result = await db.query(`
             UPDATE site_settings
@@ -41,10 +41,14 @@ async function updateSiteInfo(req, res) {
             RETURNING *
         `, [logo, image_hero, adresse, telephone, whatsapp, email, facebook, instagram, tiktok, horaires, description]);
 
-        await db.query(
-            'INSERT INTO activity_logs (admin_id, action, date) VALUES ($1, $2, NOW())',
-            [user.id, 'Mise à jour des paramètres du site']
-        );
+        try {
+            await db.query(
+                'INSERT INTO activity_logs (admin_id, action, date) VALUES ($1, $2, NOW())',
+                [user.id, 'Mise à jour des paramètres du site']
+            );
+        } catch (logError) {
+            console.error('Erreur journalisation paramètres (mise à jour conservée):', logError.message);
+        }
 
         return res.status(200).json({ success: true, message: 'Paramètres mis à jour', data: result.rows[0] });
     } catch (error) {

@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS messages (
 CREATE TABLE IF NOT EXISTS site_settings (
     id SERIAL PRIMARY KEY,
     logo VARCHAR(500),
-    image_hero VARCHAR(500),
+    image_hero TEXT,
     adresse VARCHAR(255),
     telephone VARCHAR(50),
     whatsapp VARCHAR(50),

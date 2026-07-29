@@ -21,6 +21,7 @@ db/schema.sql                    -- tables + admin par défaut + catégories
 db/seed-produits.sql              -- 64 produits de démonstration réels
 db/fix-images-table.sql           -- ⚠️ CORRECTIF IMPORTANT (voir ci-dessous)
 db/fix-images-column-size.sql     -- ⚠️ CORRECTIF IMPORTANT (voir ci-dessous)
+db/fix-site-hero-image-size.sql  -- requis si vous chargez le fond depuis l'admin
 db/migration-hero-slides.sql      -- ⚠️ requis pour la bannière hero (admin + accueil)
 ```
 
@@ -70,6 +71,11 @@ plus probables sont côté serveur :
 La journalisation dans `activity_logs` n'empêche plus la connexion : si cette
 table manque, le login réussit quand même et l'erreur est seulement écrite dans
 les logs serveur.
+
+Depuis l'admin → Paramètres → Informations du site, vous pouvez aussi coller
+une URL ou charger une image locale comme **image de fond de l'accueil**. Sur
+une base existante, exécutez `db/fix-site-hero-image-size.sql` pour autoriser
+les images encodées en base64 dans `site_settings.image_hero`.
 
 ## 4. Déployer
 
