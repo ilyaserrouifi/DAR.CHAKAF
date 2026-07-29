@@ -63,9 +63,11 @@ valide localement les identifiants ci-dessous, crée une session locale dans
 - Mot de passe : `DarChakaf2026!`
 
 Les pages admin restent connectées aux APIs pour lire et modifier les données.
-Pour que les actions d'administration (produits, galerie, paramètres, etc.)
-fonctionnent en production, gardez `DATABASE_URL`, `JWT_SECRET` et les scripts
-SQL correctement configurés côté Vercel/Neon.
+Le token local `local-admin-session` est accepté par le middleware API comme
+admin, donc les actions protégées ne renvoient plus `Non autorisé` quand vous
+êtes connecté via la page locale. Pour que les actions d'administration
+(produits, galerie, paramètres, etc.) écrivent réellement en base, gardez
+`DATABASE_URL` et les scripts SQL correctement configurés côté Vercel/Neon.
 
 Depuis l'admin → Paramètres → Informations du site, vous pouvez aussi coller
 une URL ou charger une image locale comme **image de fond de l'accueil**. Sur

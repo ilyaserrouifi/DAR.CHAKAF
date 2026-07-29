@@ -1,5 +1,5 @@
 const db = require('../../lib/db');
-const { generateToken, verifyToken, isAuthConfigured } = require('../../lib/middleware-auth');
+const { generateToken, verifyToken, isAuthConfigured, LOCAL_ADMIN_TOKEN } = require('../../lib/middleware-auth');
 const { applyCors } = require('../../lib/cors');
 const bcrypt = require('bcryptjs');
 
@@ -64,13 +64,12 @@ async function logout(req, res) {
 
 async function verifySession(req, res) {
     try {
-        if (!isAuthConfigured()) {
-            return res.status(503).json({ success: false, message: 'Configuration serveur incomplète: JWT_SECRET est manquant' });
-        }
-
         const authHeader = req.headers.authorization;
         const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.substring(7) : null;
         if (!token) return res.status(401).json({ success: false, message: 'Token requis' });
+        if (token !== LOCAL_ADMIN_TOKEN && !isAuthConfigured()) {
+            return res.status(503).json({ success: false, message: 'Configuration serveur incomplète: JWT_SECRET est manquant' });
+        }
 
         const decoded = verifyToken(token);
         if (!decoded) return res.status(401).json({ success: false, message: 'Token invalide ou expiré' });
