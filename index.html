@@ -115,17 +115,13 @@
             animation: mistDrift 22s ease-in-out infinite alternate;
         }
         .mist-bg::before {
-            width: 46vw;
-            height: 46vw;
-            top: -12vw;
-            left: -10vw;
+            width: 46vw; height: 46vw;
+            top: -12vw; left: -10vw;
             background: radial-gradient(circle, rgba(201, 169, 97, 0.35), transparent 70%);
         }
         .mist-bg::after {
-            width: 40vw;
-            height: 40vw;
-            bottom: -14vw;
-            right: -8vw;
+            width: 40vw; height: 40vw;
+            bottom: -14vw; right: -8vw;
             background: radial-gradient(circle, rgba(140, 110, 60, 0.28), transparent 70%);
             animation-delay: -9s;
         }
@@ -245,7 +241,7 @@
         }
 
         /* ============================================================
-           HEADER — AVEC LOGO IMAGE
+           HEADER
            ============================================================ */
         #site-header {
             position: fixed;
@@ -318,9 +314,6 @@
         .logo:hover .logo-mark {
             transform: rotate(90deg);
             border-color: var(--gold-bright);
-        }
-        .logo:hover .logo-mark img {
-            transform: rotate(-90deg);
         }
         .logo-text strong {
             color: var(--gold-bright);
@@ -527,20 +520,6 @@
                 linear-gradient(180deg, rgba(10, 9, 8, 0.55) 0%, rgba(10, 9, 8, 0.35) 40%, rgba(10, 9, 8, 0.95) 100%),
                 linear-gradient(90deg, rgba(10, 9, 8, 0.85) 0%, rgba(10, 9, 8, 0.15) 45%, transparent 70%);
         }
-        .hero-bg .empty-frame {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-panel-2);
-            color: var(--ink-faint);
-            font-size: 0.8rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-        .hero-bg .empty-frame .icon { font-size: 4rem; opacity: 0.15; margin-bottom: 0.5rem; }
 
         .hero-inner {
             position: relative;
@@ -1288,18 +1267,6 @@
             object-fit: cover;
             filter: brightness(0.32) saturate(0.8);
         }
-        .cta-bg .empty-frame {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-panel-2);
-            color: var(--ink-faint);
-        }
-        .cta-bg .empty-frame .icon { font-size: 4rem; opacity: 0.15; }
-
         .cta-content {
             position: relative;
             z-index: 1;
@@ -1713,6 +1680,32 @@
             white-space: nowrap;
             border: 1px solid var(--border-soft);
         }
+
+        .loading-spinner {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--ink-mute);
+        }
+        .loading-spinner .spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--border-soft);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 0.5rem;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .api-error {
+            text-align: center;
+            padding: 2rem;
+            color: var(--danger);
+        }
+        .api-error i { font-size: 2rem; opacity: 0.3; margin-bottom: 0.5rem; display: block; }
     </style>
 </head>
 <body>
@@ -1725,7 +1718,7 @@
     </div>
 
     <!-- ============================================================
-    HEADER — AVEC LOGO IMAGE
+    HEADER
     ============================================================ -->
     <header id="site-header">
         <div class="container nav-wrap">
@@ -1751,9 +1744,7 @@
                 <a href="/" class="active">Accueil</a>
                 <div class="nav-dropdown">
                     <a href="#">Produits <i class="fa-solid fa-chevron-down" style="font-size:0.6rem;"></i></a>
-                    <div class="nav-dropdown-panel" id="navDropdownPanel">
-                        <!-- Rempli dynamiquement -->
-                    </div>
+                    <div class="nav-dropdown-panel" id="navDropdownPanel"></div>
                 </div>
                 <a href="/galerie.html">Galerie</a>
                 <a href="/a-propos.html">À propos</a>
@@ -1771,9 +1762,7 @@
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <nav class="mobile-drawer" id="mobileDrawer">
         <a href="/">Accueil</a>
-        <div id="mobileDrawerLinks">
-            <!-- Rempli dynamiquement -->
-        </div>
+        <div id="mobileDrawerLinks"></div>
         <a href="/galerie.html">Galerie</a>
         <a href="/a-propos.html">À propos</a>
         <a href="/contact.html">Contact</a>
@@ -1788,7 +1777,7 @@
             <div class="empty-frame" style="height:100vh;">
                 <span class="icon">🛋️</span>
                 <span>Image Hero</span>
-                <span class="label">Placeholder — Ajoutez votre image</span>
+                <span class="label">Ajoutez votre image dans /assets/images/hero.jpg</span>
             </div>
         </div>
 
@@ -1808,7 +1797,7 @@
             <div class="hero-stats" id="heroStats">
                 <div class="hero-stat"><b id="statYears">15+</b><span>Années d'expérience</span></div>
                 <div class="hero-stat"><b id="statProjects">2 400+</b><span>Projets réalisés</span></div>
-                <div class="hero-stat"><b id="statCollections">7</b><span>Collections</span></div>
+                <div class="hero-stat"><b id="statCollections">0</b><span>Collections</span></div>
                 <div class="hero-stat"><b>100%</b><span>Fabrication sur mesure</span></div>
             </div>
         </div>
@@ -1818,29 +1807,16 @@
     </section>
 
     <!-- ============================================================
-    MARQUEE
+    MARQUEE — Rempli dynamiquement depuis l'API
     ============================================================ -->
     <div class="marquee-strip">
         <div class="marquee-track" id="marqueeTrack">
-            <span><i class="fa-solid fa-star"></i> Salons Modernes</span>
-            <span><i class="fa-solid fa-star"></i> Salons Traditionnels</span>
-            <span><i class="fa-solid fa-star"></i> Tables Sur Mesure</span>
-            <span><i class="fa-solid fa-star"></i> Décorations</span>
-            <span><i class="fa-solid fa-star"></i> Meubles TV</span>
-            <span><i class="fa-solid fa-star"></i> Couloirs &amp; Entrées</span>
-            <span><i class="fa-solid fa-star"></i> Tissus &amp; Rideaux</span>
-            <span><i class="fa-solid fa-star"></i> Salons Modernes</span>
-            <span><i class="fa-solid fa-star"></i> Salons Traditionnels</span>
-            <span><i class="fa-solid fa-star"></i> Tables Sur Mesure</span>
-            <span><i class="fa-solid fa-star"></i> Décorations</span>
-            <span><i class="fa-solid fa-star"></i> Meubles TV</span>
-            <span><i class="fa-solid fa-star"></i> Couloirs &amp; Entrées</span>
-            <span><i class="fa-solid fa-star"></i> Tissus &amp; Rideaux</span>
+            <span><i class="fa-solid fa-star"></i> Chargement...</span>
         </div>
     </div>
 
     <!-- ============================================================
-    COLLECTIONS
+    COLLECTIONS — 100% API
     ============================================================ -->
     <section id="collections" class="section">
         <div class="container">
@@ -1853,13 +1829,7 @@
                 <aside class="cat-sidebar reveal">
                     <div class="cat-sidebar-head"><i class="fa-solid fa-layer-group"></i> Catégories</div>
                     <ul id="sidebarCategories">
-                        <li><a href="/produits/salons-modernes.html" class="active"><span class="cat-name"><i class="fa-solid fa-couch cat-ic"></i> Salons modernes</span><span class="count" id="count-modernes">0</span></a></li>
-                        <li><a href="/produits/salons-traditionnels.html"><span class="cat-name"><i class="fa-solid fa-mosque cat-ic"></i> Salons traditionnels</span><span class="count" id="count-traditionnels">0</span></a></li>
-                        <li><a href="/produits/tables.html"><span class="cat-name"><i class="fa-solid fa-table cat-ic"></i> Tables</span><span class="count" id="count-tables">0</span></a></li>
-                        <li><a href="/produits/decorations.html"><span class="cat-name"><i class="fa-solid fa-vector-square cat-ic"></i> Décorations</span><span class="count" id="count-decorations">0</span></a></li>
-                        <li><a href="/produits/meubles-tv.html"><span class="cat-name"><i class="fa-solid fa-tv cat-ic"></i> Meubles TV</span><span class="count" id="count-meubles-tv">0</span></a></li>
-                        <li><a href="/produits/couloirs.html"><span class="cat-name"><i class="fa-solid fa-door-open cat-ic"></i> Couloirs &amp; Entrées</span><span class="count" id="count-couloirs">0</span></a></li>
-                        <li><a href="/produits/tissus.html"><span class="cat-name"><i class="fa-solid fa-scroll cat-ic"></i> Tissus &amp; Rideaux</span><span class="count" id="count-tissus">0</span></a></li>
+                        <li><div class="loading-spinner" style="padding:0.5rem 0;"><div class="spinner" style="width:20px;height:20px;"></div> Chargement...</div></li>
                     </ul>
                     <div class="cat-sidebar-cta">
                         <p>Besoin d'aide pour choisir la collection idéale pour votre intérieur ?</p>
@@ -1868,77 +1838,10 @@
                 </aside>
 
                 <div class="collections-grid" id="collectionsGrid">
-                    <a href="/produits/salons-modernes.html" class="collection-card wide reveal">
-                        <div class="image-frame">
-                            <span class="icon">🛋️</span>
-                            <span class="placeholder-text">Image à venir</span>
-                        </div>
-                        <div class="collection-card-body">
-                            <span class="collection-card-tag" id="tag-modernes">0 modèles</span>
-                            <h3>Salons modernes</h3>
-                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-
-                    <a href="/produits/salons-traditionnels.html" class="collection-card reveal reveal-delay-1">
-                        <div class="image-frame">
-                            <span class="icon">🪑</span>
-                            <span class="placeholder-text">Image à venir</span>
-                        </div>
-                        <div class="collection-card-body">
-                            <span class="collection-card-tag" id="tag-traditionnels">0 modèles</span>
-                            <h3>Salons traditionnels</h3>
-                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-
-                    <a href="/produits/tables.html" class="collection-card reveal reveal-delay-2">
-                        <div class="image-frame">
-                            <span class="icon">🍽️</span>
-                            <span class="placeholder-text">Image à venir</span>
-                        </div>
-                        <div class="collection-card-body">
-                            <span class="collection-card-tag" id="tag-tables">0 modèles</span>
-                            <h3>Tables</h3>
-                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-
-                    <a href="/produits/decorations.html" class="collection-card reveal">
-                        <div class="image-frame">
-                            <span class="icon">🖼️</span>
-                            <span class="placeholder-text">Image à venir</span>
-                        </div>
-                        <div class="collection-card-body">
-                            <span class="collection-card-tag" id="tag-decorations">0 modèles</span>
-                            <h3>Décorations</h3>
-                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-
-                    <a href="/produits/meubles-tv.html" class="collection-card reveal reveal-delay-1">
-                        <div class="image-frame">
-                            <span class="icon">📺</span>
-                            <span class="placeholder-text">Image à venir</span>
-                        </div>
-                        <div class="collection-card-body">
-                            <span class="collection-card-tag" id="tag-meubles-tv">0 modèles</span>
-                            <h3>Meubles TV</h3>
-                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-
-                    <a href="/produits/couloirs.html" class="collection-card wide reveal reveal-delay-2">
-                        <div class="image-frame">
-                            <span class="icon">🚪</span>
-                            <span class="placeholder-text">Image à venir</span>
-                        </div>
-                        <div class="collection-card-body">
-                            <span class="collection-card-tag" id="tag-couloirs">0 modèles</span>
-                            <h3>Couloirs &amp; Entrées</h3>
-                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
-                        </div>
-                    </a>
+                    <div class="loading-spinner" style="grid-column:1/-1;">
+                        <div class="spinner"></div>
+                        <p>Chargement des collections...</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1966,7 +1869,7 @@
                     <div class="eyebrow">Notre histoire</div>
                     <h2 style="font-size: var(--fs-h1);">Chaque pièce raconte<br>un savoir-faire transmis</h2>
                     <p class="lede">« Chakaf » désigne la structure, l'ossature d'un meuble bien construit — c'est le nom que nous avons choisi pour notre maison.</p>
-                    <p>Depuis notre atelier, nous fabriquons des meubles qui allient la précision des lignes contemporaines à la richesse du geste artisanal marocain.</p>
+                    <p id="signatureDescription">Depuis notre atelier, nous fabriquons des meubles qui allient la précision des lignes contemporaines à la richesse du geste artisanal marocain.</p>
                     <ul class="signature-list">
                         <li><i class="fa-solid fa-check"></i> Bois massif sélectionné</li>
                         <li><i class="fa-solid fa-check"></i> Finitions faites main</li>
@@ -2010,64 +1913,24 @@
     </section>
 
     <!-- ============================================================
-    GALLERY
+    GALLERY — 100% API
     ============================================================ -->
     <section id="galerie" class="section">
         <div class="container">
             <div class="section-head center reveal">
                 <div class="eyebrow centered">Galerie</div>
                 <h2 style="font-size: var(--fs-h1);">Aperçu de nos réalisations</h2>
-                <p>Une sélection de projets livrés chez nos clients — salons, espaces de réception et intérieurs complets.</p>
+                <p id="gallerySub">Une sélection de projets livrés chez nos clients.</p>
             </div>
 
             <div class="gallery-filters reveal" style="justify-content:center;" id="galleryFilters">
                 <button class="gfilter active" data-filter="all">Tout</button>
-                <button class="gfilter" data-filter="modernes">Salons modernes</button>
-                <button class="gfilter" data-filter="traditionnels">Salons traditionnels</button>
-                <button class="gfilter" data-filter="tables">Tables</button>
-                <button class="gfilter" data-filter="decorations">Décorations</button>
             </div>
 
             <div class="masonry reveal" id="masonryGrid">
-                <div class="masonry-item" data-cat="modernes">
-                    <span class="icon">🛋️</span>
-                    <span class="placeholder-text">Photo 1</span>
-                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
-                </div>
-                <div class="masonry-item" data-cat="traditionnels">
-                    <span class="icon">🪑</span>
-                    <span class="placeholder-text">Photo 2</span>
-                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
-                </div>
-                <div class="masonry-item" data-cat="tables">
-                    <span class="icon">🍽️</span>
-                    <span class="placeholder-text">Photo 3</span>
-                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
-                </div>
-                <div class="masonry-item" data-cat="decorations">
-                    <span class="icon">🖼️</span>
-                    <span class="placeholder-text">Photo 4</span>
-                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
-                </div>
-                <div class="masonry-item" data-cat="modernes">
-                    <span class="icon">🛋️</span>
-                    <span class="placeholder-text">Photo 5</span>
-                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
-                </div>
-                <div class="masonry-item" data-cat="traditionnels">
-                    <span class="icon">🪑</span>
-                    <span class="placeholder-text">Photo 6</span>
-                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
-                </div>
-                <div class="masonry-item" data-cat="decorations">
-                    <span class="icon">🖼️</span>
-                    <span class="placeholder-text">Photo 7</span>
-                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
-                </div>
-                <div class="masonry-item" data-cat="modernes">
-                    <span class="icon">🛋️</span>
-                    <span class="placeholder-text">Photo 8</span>
-                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <div class="loading-spinner" style="grid-column:1/-1;">
+                    <div class="spinner"></div>
+                    <p>Chargement des images...</p>
                 </div>
             </div>
 
@@ -2183,23 +2046,23 @@
                 <div class="contact-info-card reveal" id="contactInfo">
                     <div class="contact-row">
                         <div class="ic"><i class="fa-solid fa-location-dot"></i></div>
-                        <div><h4>Showroom</h4><p>Zone Industrielle Sidi Maârouf, Casablanca, Maroc</p></div>
+                        <div><h4>Showroom</h4><p id="contactAddress">Zone Industrielle Sidi Maârouf, Casablanca, Maroc</p></div>
                     </div>
                     <div class="contact-row">
                         <div class="ic"><i class="fa-solid fa-phone"></i></div>
-                        <div><h4>Téléphone</h4><p><a href="tel:+212600000000">+212 6 00 00 00 00</a></p></div>
+                        <div><h4>Téléphone</h4><p id="contactPhone"><a href="tel:+212600000000">+212 6 00 00 00 00</a></p></div>
                     </div>
                     <div class="contact-row">
                         <div class="ic"><i class="fa-brands fa-whatsapp"></i></div>
-                        <div><h4>WhatsApp</h4><p><a href="https://wa.me/212600000000">+212 6 00 00 00 00</a></p></div>
+                        <div><h4>WhatsApp</h4><p id="contactWhatsapp"><a href="https://wa.me/212600000000">+212 6 00 00 00 00</a></p></div>
                     </div>
                     <div class="contact-row">
                         <div class="ic"><i class="fa-solid fa-envelope"></i></div>
-                        <div><h4>Email</h4><p><a href="mailto:contact@darchakaf.ma">contact@darchakaf.ma</a></p></div>
+                        <div><h4>Email</h4><p id="contactEmail"><a href="mailto:contact@darchakaf.ma">contact@darchakaf.ma</a></p></div>
                     </div>
                     <div class="contact-row">
                         <div class="ic"><i class="fa-solid fa-clock"></i></div>
-                        <div><h4>Horaires</h4><p>Lun – Sam : 9h00 – 19h00</p></div>
+                        <div><h4>Horaires</h4><p id="contactHours">Lun – Sam : 9h00 – 19h00</p></div>
                     </div>
 
                     <div class="contact-socials">
@@ -2265,15 +2128,7 @@
                 <div class="footer-brand">
                     <a href="/" class="logo">
                         <span class="logo-mark">
-                            <img 
-                                src="/assets/logo/dar-chakaf-logo.svg" 
-                                alt="Dar Chakaf Logo"
-                                width="34" 
-                                height="34"
-                                style="width:34px;height:34px;object-fit:contain;"
-                                onerror="this.classList.add('error'); this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';"
-                            />
-                            <span class="fallback-text">D</span>
+                            <img src="/assets/logo/dar-chakaf-logo.svg" alt="Dar Chakaf" width="34" height="34" style="width:34px;height:34px;object-fit:contain;" onerror="this.style.display='none'; this.parentElement.textContent='D';"/>
                         </span>
                         <span class="logo-text"><strong>Dar Chakaf</strong><span>Ameublement &amp; Décoration</span></span>
                     </a>
@@ -2348,12 +2203,14 @@
     </div>
 
     <!-- ============================================================
-    SCRIPTS
+    SCRIPTS — 100% API
     ============================================================ -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
             'use strict';
+
+            var token = localStorage.getItem('adminToken');
 
             // ============================================================
             // 1. PRELOADER
@@ -2364,18 +2221,16 @@
             });
 
             // ============================================================
-            // 2. HEADER SCROLL
+            // 2. HEADER SCROLL + BACK TO TOP
             // ============================================================
             var header = document.getElementById('site-header');
             var backToTop = document.getElementById('backToTop');
 
-            function onScroll() {
+            window.addEventListener('scroll', function() {
                 var y = window.scrollY;
                 header.classList.toggle('scrolled', y > 60);
                 backToTop.classList.toggle('show', y > 700);
-            }
-            document.addEventListener('scroll', onScroll, { passive: true });
-            onScroll();
+            }, { passive: true });
 
             backToTop.addEventListener('click', function() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2388,28 +2243,25 @@
             var heroBg = document.querySelector('.hero-bg');
             var ticking = false;
 
-            function onScrollCinematic() {
-                var scrollY = window.scrollY || window.pageYOffset;
-                var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                if (progressBar && docHeight > 0) {
-                    progressBar.style.width = Math.min(100, (scrollY / docHeight) * 100) + '%';
-                }
-                if (heroBg) {
-                    var heroH = heroBg.closest('#hero') ? heroBg.closest('#hero').offsetHeight : window.innerHeight;
-                    if (scrollY < heroH) {
-                        heroBg.style.transform = 'translateY(' + (scrollY * 0.35) + 'px)';
-                    }
-                }
-                ticking = false;
-            }
-
             window.addEventListener('scroll', function() {
                 if (!ticking) {
-                    window.requestAnimationFrame(onScrollCinematic);
+                    window.requestAnimationFrame(function() {
+                        var scrollY = window.scrollY || window.pageYOffset;
+                        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                        if (progressBar && docHeight > 0) {
+                            progressBar.style.width = Math.min(100, (scrollY / docHeight) * 100) + '%';
+                        }
+                        if (heroBg) {
+                            var heroH = heroBg.closest('#hero') ? heroBg.closest('#hero').offsetHeight : window.innerHeight;
+                            if (scrollY < heroH) {
+                                heroBg.style.transform = 'translateY(' + (scrollY * 0.35) + 'px)';
+                            }
+                        }
+                        ticking = false;
+                    });
                     ticking = true;
                 }
             }, { passive: true });
-            onScrollCinematic();
 
             // ============================================================
             // 4. MOBILE DRAWER
@@ -2459,136 +2311,312 @@
                 'tissus': 'fa-scroll'
             };
 
+            var categorySlugs = [];
+
             // ============================================================
-            // 7. LOAD CATEGORIES FROM API — AVEC "Toute la collection"
+            // 7. LOAD ALL DATA — 100% API
             // ============================================================
-            function loadCategories() {
+            function loadAllData() {
+                // Charger les catégories
                 fetch('/api/categories')
                     .then(function(r) { return r.json(); })
                     .then(function(res) {
-                        if (!res.success || !Array.isArray(res.data)) return;
-                        var cats = res.data;
+                        if (res && res.success && Array.isArray(res.data)) {
+                            var cats = res.data;
+                            categorySlugs = cats.map(function(c) { return c.slug; });
 
-                        // Mettre à jour les compteurs et tags
-                        var countMap = {
-                            'salons-modernes': 'count-modernes',
-                            'salons-traditionnels': 'count-traditionnels',
-                            'tables': 'count-tables',
-                            'decorations': 'count-decorations',
-                            'meubles-tv': 'count-meubles-tv',
-                            'couloirs': 'count-couloirs',
-                            'tissus': 'count-tissus'
-                        };
-                        var tagMap = {
-                            'salons-modernes': 'tag-modernes',
-                            'salons-traditionnels': 'tag-traditionnels',
-                            'tables': 'tag-tables',
-                            'decorations': 'tag-decorations',
-                            'meubles-tv': 'tag-meubles-tv',
-                            'couloirs': 'tag-couloirs',
-                            'tissus': 'tag-tissus'
-                        };
+                            // Mettre à jour le nombre de collections dans le hero
+                            document.getElementById('statCollections').textContent = cats.length;
 
-                        cats.forEach(function(cat) {
-                            var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-                            var count = cat.product_count || 0;
+                            // Remplir la marquee
+                            var marqueeTrack = document.getElementById('marqueeTrack');
+                            if (marqueeTrack) {
+                                var marqueeHtml = '';
+                                cats.forEach(function(cat) {
+                                    marqueeHtml += '<span><i class="fa-solid fa-star"></i> ' + cat.nom + '</span>';
+                                });
+                                // Dupliquer pour l'effet infini
+                                marqueeHtml += marqueeHtml;
+                                marqueeTrack.innerHTML = marqueeHtml;
+                            }
 
-                            var countEl = document.getElementById(countMap[slug]);
-                            if (countEl) countEl.textContent = count;
+                            // Remplir la sidebar des catégories
+                            var sidebarUl = document.getElementById('sidebarCategories');
+                            if (sidebarUl) {
+                                sidebarUl.innerHTML = '';
+                                cats.forEach(function(cat) {
+                                    var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                    var icon = iconMap[slug] || 'fa-cube';
+                                    var li = document.createElement('li');
+                                    li.innerHTML = `
+                                        <a href="/produits/${slug}.html">
+                                            <span class="cat-name">
+                                                <i class="fa-solid ${icon} cat-ic"></i> ${cat.nom}
+                                            </span>
+                                            <span class="count">${cat.product_count || 0}</span>
+                                        </a>
+                                    `;
+                                    sidebarUl.appendChild(li);
+                                });
+                            }
 
-                            var tagEl = document.getElementById(tagMap[slug]);
-                            if (tagEl) tagEl.textContent = count + ' modèles';
-                        });
+                            // Remplir les collections grid
+                            var grid = document.getElementById('collectionsGrid');
+                            if (grid) {
+                                grid.innerHTML = '';
+                                var icons = ['🛋️', '🪑', '🍽️', '🖼️', '📺', '🚪', '🧵'];
+                                cats.forEach(function(cat, index) {
+                                    var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                    var icon = icons[index % icons.length];
+                                    var isWide = (index === 0 || index === 5) ? 'wide' : '';
+                                    var delay = (index % 3) + 1;
 
-                        // ============================================================
-                        // NAV DROPDOWN — Categories + "Toute la collection"
-                        // ============================================================
-                        var navDropdown = document.getElementById('navDropdownPanel');
-                        if (navDropdown) {
-                            navDropdown.innerHTML = '';
-                            cats.slice(0, 7).forEach(function(cat) {
-                                var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-                                var icon = iconMap[slug] || 'fa-cube';
-                                var a = document.createElement('a');
-                                a.href = '/produits/' + slug + '.html';
-                                a.innerHTML = '<i class="fa-solid ' + icon + '"></i> ' + cat.nom;
-                                navDropdown.appendChild(a);
-                            });
-                            // === AJOUT: Toute la collection ===
-                            var allLink = document.createElement('a');
-                            allLink.href = '/galerie.html';
-                            allLink.innerHTML = '<i class="fa-solid fa-images"></i> Toute la collection';
-                            navDropdown.appendChild(allLink);
-                        }
+                                    var card = document.createElement('a');
+                                    card.href = '/produits/' + slug + '.html';
+                                    card.className = 'collection-card ' + isWide + ' reveal reveal-delay-' + delay;
+                                    card.innerHTML = `
+                                        <div class="image-frame">
+                                            <span class="icon">${icon}</span>
+                                            <span class="placeholder-text">Image à venir</span>
+                                        </div>
+                                        <div class="collection-card-body">
+                                            <span class="collection-card-tag">${cat.product_count || 0} modèles</span>
+                                            <h3>${cat.nom}</h3>
+                                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
+                                        </div>
+                                    `;
+                                    grid.appendChild(card);
+                                });
 
-                        // Mobile drawer
-                        var mobileLinks = document.getElementById('mobileDrawerLinks');
-                        if (mobileLinks) {
-                            mobileLinks.innerHTML = '';
-                            cats.slice(0, 7).forEach(function(cat) {
-                                var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-                                var a = document.createElement('a');
-                                a.className = 'sub-link';
-                                a.href = '/produits/' + slug + '.html';
-                                a.textContent = '— ' + cat.nom;
-                                mobileLinks.appendChild(a);
-                            });
-                            // Mobile: Toute la collection
-                            var allLinkMobile = document.createElement('a');
-                            allLinkMobile.className = 'sub-link';
-                            allLinkMobile.href = '/galerie.html';
-                            allLinkMobile.textContent = '— Toute la collection';
-                            mobileLinks.appendChild(allLinkMobile);
-                        }
+                                // Réactiver scroll reveal pour les nouveaux éléments
+                                var newRevealEls = grid.querySelectorAll('.reveal');
+                                newRevealEls.forEach(function(el) {
+                                    io.observe(el);
+                                });
+                            }
 
-                        // Gallery filters
-                        var filtersContainer = document.getElementById('galleryFilters');
-                        if (filtersContainer) {
-                            var html = '<button class="gfilter active" data-filter="all">Tout</button>';
-                            cats.slice(0, 7).forEach(function(cat) {
-                                var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-                                html += '<button class="gfilter" data-filter="' + slug + '">' + cat.nom + '</button>';
-                            });
-                            filtersContainer.innerHTML = html;
+                            // Remplir le dropdown nav
+                            var navDropdown = document.getElementById('navDropdownPanel');
+                            if (navDropdown) {
+                                navDropdown.innerHTML = '';
+                                cats.forEach(function(cat) {
+                                    var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                    var icon = iconMap[slug] || 'fa-cube';
+                                    var a = document.createElement('a');
+                                    a.href = '/produits/' + slug + '.html';
+                                    a.innerHTML = '<i class="fa-solid ' + icon + '"></i> ' + cat.nom;
+                                    navDropdown.appendChild(a);
+                                });
+                                var allLink = document.createElement('a');
+                                allLink.href = '/galerie.html';
+                                allLink.innerHTML = '<i class="fa-solid fa-images"></i> Toute la collection';
+                                navDropdown.appendChild(allLink);
+                            }
 
-                            filtersContainer.querySelectorAll('.gfilter').forEach(function(btn) {
-                                btn.addEventListener('click', function() {
-                                    filtersContainer.querySelectorAll('.gfilter').forEach(function(b) {
-                                        b.classList.remove('active');
-                                    });
-                                    btn.classList.add('active');
-                                    var f = btn.getAttribute('data-filter');
-                                    document.querySelectorAll('.masonry-item').forEach(function(item) {
-                                        var show = (f === 'all' || item.getAttribute('data-cat') === f);
-                                        item.style.display = show ? '' : 'none';
+                            // Remplir mobile drawer
+                            var mobileLinks = document.getElementById('mobileDrawerLinks');
+                            if (mobileLinks) {
+                                mobileLinks.innerHTML = '';
+                                cats.forEach(function(cat) {
+                                    var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                    var a = document.createElement('a');
+                                    a.className = 'sub-link';
+                                    a.href = '/produits/' + slug + '.html';
+                                    a.textContent = '— ' + cat.nom;
+                                    mobileLinks.appendChild(a);
+                                });
+                                var allLinkMobile = document.createElement('a');
+                                allLinkMobile.className = 'sub-link';
+                                allLinkMobile.href = '/galerie.html';
+                                allLinkMobile.textContent = '— Toute la collection';
+                                mobileLinks.appendChild(allLinkMobile);
+                            }
+
+                            // Remplir les filtres de la galerie
+                            var filtersContainer = document.getElementById('galleryFilters');
+                            if (filtersContainer) {
+                                var filterHtml = '<button class="gfilter active" data-filter="all">Tout</button>';
+                                cats.forEach(function(cat) {
+                                    var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                    filterHtml += '<button class="gfilter" data-filter="' + slug + '">' + cat.nom + '</button>';
+                                });
+                                filtersContainer.innerHTML = filterHtml;
+
+                                // Filter logic
+                                filtersContainer.querySelectorAll('.gfilter').forEach(function(btn) {
+                                    btn.addEventListener('click', function() {
+                                        filtersContainer.querySelectorAll('.gfilter').forEach(function(b) {
+                                            b.classList.remove('active');
+                                        });
+                                        btn.classList.add('active');
+                                        var f = btn.getAttribute('data-filter');
+                                        filterGallery(f);
                                     });
                                 });
-                            });
-                        }
+                            }
 
+                            // Remplir footer produits
+                            var footerProducts = document.getElementById('footerProducts');
+                            if (footerProducts) {
+                                footerProducts.innerHTML = '';
+                                cats.forEach(function(cat) {
+                                    var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                    var li = document.createElement('li');
+                                    li.innerHTML = '<a href="/produits/' + slug + '.html">' + cat.nom + '</a>';
+                                    footerProducts.appendChild(li);
+                                });
+                            }
+
+                            // Charger la galerie après avoir les catégories
+                            loadGallery('all');
+                        }
                     })
-                    .catch(function(e) { console.warn('Erreur chargement catégories:', e); });
+                    .catch(function(err) {
+                        console.error('Erreur chargement catégories:', err);
+                        document.getElementById('collectionsGrid').innerHTML = `
+                            <div class="api-error" style="grid-column:1/-1;">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <p>Erreur de chargement des collections</p>
+                                <p style="font-size:0.8rem;color:var(--ink-faint);">Vérifiez que le serveur est en marche</p>
+                            </div>
+                        `;
+                    });
+
+                // Charger les paramètres du site
+                fetch('/api/parametres')
+                    .then(function(r) { return r.json(); })
+                    .then(function(res) {
+                        if (res && res.success && res.data) {
+                            var info = res.data;
+                            if (info.description) {
+                                document.getElementById('footerDescription').textContent = info.description;
+                                document.getElementById('signatureDescription').textContent = info.description;
+                            }
+                            if (info.adresse) document.getElementById('contactAddress').textContent = info.adresse;
+                            if (info.telephone) {
+                                document.getElementById('contactPhone').innerHTML = '<a href="tel:' + info.telephone + '">' + info.telephone + '</a>';
+                            }
+                            if (info.whatsapp) {
+                                document.getElementById('contactWhatsapp').innerHTML = '<a href="https://wa.me/' + info.whatsapp.replace(/[^0-9]/g, '') + '">' + info.whatsapp + '</a>';
+                            }
+                            if (info.email) {
+                                document.getElementById('contactEmail').innerHTML = '<a href="mailto:' + info.email + '">' + info.email + '</a>';
+                            }
+                            if (info.horaires) {
+                                document.getElementById('contactHours').textContent = info.horaires;
+                            }
+                            if (info.facebook || info.instagram || info.tiktok) {
+                                var socialsContainer = document.getElementById('footerSocials');
+                                if (socialsContainer) {
+                                    var socialHtml = '';
+                                    if (info.facebook) socialHtml += '<a href="' + info.facebook + '" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>';
+                                    if (info.instagram) socialHtml += '<a href="' + info.instagram + '" title="Instagram"><i class="fa-brands fa-instagram"></i></a>';
+                                    if (info.tiktok) socialHtml += '<a href="' + info.tiktok + '" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>';
+                                    socialHtml += '<a href="https://wa.me/212600000000" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>';
+                                    socialsContainer.innerHTML = socialHtml;
+                                }
+                            }
+                        }
+                    })
+                    .catch(function() {});
             }
 
-            loadCategories();
-
             // ============================================================
-            // 8. GALLERY FILTER (fallback)
+            // 8. LOAD GALLERY IMAGES — 100% API
             // ============================================================
-            var filters = document.querySelectorAll('.gfilter');
-            var items = document.querySelectorAll('.masonry-item');
+            var allImages = [];
+            var currentImageIndex = 0;
 
-            filters.forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    filters.forEach(function(b) { b.classList.remove('active'); });
-                    btn.classList.add('active');
-                    var f = btn.getAttribute('data-filter');
-                    items.forEach(function(item) {
-                        var show = (f === 'all' || item.getAttribute('data-cat') === f);
-                        item.style.display = show ? '' : 'none';
+            function loadGallery(filter) {
+                var grid = document.getElementById('masonryGrid');
+                grid.innerHTML = '<div class="loading-spinner" style="grid-column:1/-1;"><div class="spinner"></div><p>Chargement des images...</p></div>';
+
+                var url = '/api/galerie?limit=20';
+                if (filter && filter !== 'all') {
+                    url += '&category=' + filter;
+                }
+
+                fetch(url, {
+                    headers: token ? { 'Authorization': 'Bearer ' + token } : {}
+                })
+                .then(function(r) { return r.json(); })
+                .then(function(res) {
+                    if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
+                        allImages = res.data;
+                        renderGallery(allImages);
+                        document.getElementById('gallerySub').textContent = 
+                            'Une sélection de ' + allImages.length + ' réalisations — salons, espaces de réception et intérieurs complets.';
+                    } else {
+                        grid.innerHTML = `
+                            <div class="api-error" style="grid-column:1/-1;">
+                                <i class="fa-regular fa-image"></i>
+                                <p>Aucune image trouvée</p>
+                                <p style="font-size:0.8rem;color:var(--ink-faint);">Ajoutez des images via l'administration</p>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(function(err) {
+                    console.error('Erreur chargement galerie:', err);
+                    grid.innerHTML = `
+                        <div class="api-error" style="grid-column:1/-1;">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <p>Erreur de chargement des images</p>
+                            <p style="font-size:0.8rem;color:var(--ink-faint);">Vérifiez que le serveur est en marche</p>
+                        </div>
+                    `;
+                });
+            }
+
+            function renderGallery(images) {
+                var grid = document.getElementById('masonryGrid');
+                if (!images || images.length === 0) {
+                    grid.innerHTML = '<div class="api-error" style="grid-column:1/-1;"><i class="fa-regular fa-image"></i><p>Aucune image trouvée</p></div>';
+                    return;
+                }
+
+                var html = '';
+                var displayImages = images.slice(0, 8);
+                displayImages.forEach(function(img, index) {
+                    var sizeClass = '';
+                    if (index % 5 === 0) sizeClass = 'tall';
+                    if (index % 7 === 0) sizeClass = 'wide';
+
+                    var imgHtml = '';
+                    if (img.url) {
+                        imgHtml = '<img src="' + img.url + '" alt="' + (img.titre || 'Image') + '" loading="lazy" onload="this.classList.add(\'loaded\')" />';
+                    } else {
+                        var icons = ['🛋️', '🪑', '🍽️', '🖼️', '📺', '🚪', '🧵'];
+                        var icon = icons[index % icons.length];
+                        imgHtml = `
+                            <div class="empty-frame">
+                                <span class="icon">${icon}</span>
+                                <span>${img.titre || 'Image'}</span>
+                                <span class="label">${img.categorie_nom || 'Collection'}</span>
+                            </div>
+                        `;
+                    }
+
+                    html += `
+                        <div class="masonry-item ${sizeClass}" data-cat="${img.categorie_slug || ''}" data-index="${index}">
+                            ${imgHtml}
+                            <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        </div>
+                    `;
+                });
+
+                grid.innerHTML = html;
+
+                // Lightbox click
+                grid.querySelectorAll('.masonry-item').forEach(function(item) {
+                    item.addEventListener('click', function() {
+                        var index = parseInt(this.dataset.index);
+                        if (!isNaN(index) && allImages[index]) {
+                            openLightbox(index);
+                        }
                     });
                 });
-            });
+            }
 
             // ============================================================
             // 9. LIGHTBOX
@@ -2596,33 +2624,58 @@
             var lightbox = document.getElementById('lightbox');
             var lightboxImg = document.getElementById('lightboxImg');
 
-            function openLightbox(src) {
-                if (!lightbox || !lightboxImg) return;
-                lightboxImg.src = src;
+            function openLightbox(index) {
+                currentImageIndex = index;
+                var img = allImages[index];
+                if (!img) return;
+
+                lightboxImg.src = img.url || '/assets/images/placeholder.jpg';
+                lightboxImg.alt = img.titre || 'Image';
                 lightbox.classList.add('open');
                 document.body.style.overflow = 'hidden';
             }
 
             function closeLightbox() {
-                if (!lightbox) return;
                 lightbox.classList.remove('open');
                 document.body.style.overflow = '';
             }
 
-            var closeBtn = document.getElementById('lightboxClose');
-            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-            if (lightbox) {
-                lightbox.addEventListener('click', function(e) {
-                    if (e.target === lightbox) closeLightbox();
-                });
+            function navigateLightbox(direction) {
+                var newIndex = currentImageIndex + direction;
+                if (newIndex < 0) newIndex = allImages.length - 1;
+                if (newIndex >= allImages.length) newIndex = 0;
+                openLightbox(newIndex);
             }
+
+            document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+            document.getElementById('lightboxPrev').addEventListener('click', function(e) {
+                e.stopPropagation();
+                navigateLightbox(-1);
+            });
+            document.getElementById('lightboxNext').addEventListener('click', function(e) {
+                e.stopPropagation();
+                navigateLightbox(1);
+            });
+
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) closeLightbox();
+            });
 
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') navigateLightbox(-1);
+                if (e.key === 'ArrowRight') navigateLightbox(1);
             });
 
             // ============================================================
-            // 10. TESTIMONIALS CAROUSEL
+            // 10. FILTER GALLERY
+            // ============================================================
+            function filterGallery(filter) {
+                loadGallery(filter);
+            }
+
+            // ============================================================
+            // 11. TESTIMONIALS CAROUSEL
             // ============================================================
             var track = document.getElementById('testiTrack');
             var cards = track ? track.children : [];
@@ -2671,7 +2724,7 @@
             });
 
             // ============================================================
-            // 11. CONTACT FORM
+            // 12. CONTACT FORM
             // ============================================================
             var contactForm = document.getElementById('contactForm');
             var formSuccess = document.getElementById('formSuccess');
@@ -2718,7 +2771,7 @@
             }
 
             // ============================================================
-            // 12. NEWSLETTER
+            // 13. NEWSLETTER
             // ============================================================
             var newsletterForm = document.getElementById('newsletterForm');
             if (newsletterForm) {
@@ -2734,9 +2787,12 @@
                 });
             }
 
-            console.log('🚀 Dar Chakaf — Index chargé !');
-            console.log('📸 Logo: /assets/logo/dar-chakaf-logo.svg');
-            console.log('📂 Dropdown "Produits" contient les catégories + "Toute la collection"');
+            // ============================================================
+            // 14. INIT — LOAD ALL DATA
+            // ============================================================
+            loadAllData();
+
+            console.log('🚀 Dar Chakaf — Index (100% API, zéro fake)');
 
         });
     </script>
