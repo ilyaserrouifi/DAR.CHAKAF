@@ -6,6 +6,9 @@
     <title>Dar Chakaf — L'Art de l'Ameublement Marocain</title>
     <meta name="description" content="Dar Chakaf — Fabricant et distributeur de mobilier haut de gamme : salons modernes, salons traditionnels, tables, décorations et plus. Savoir-faire marocain, finition sur mesure." />
 
+    <link rel="icon" href="/assets/logo/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/logo/favicon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -241,6 +244,9 @@
             100% { width: 0; opacity: 0; }
         }
 
+        /* ============================================================
+           HEADER — AVEC LOGO IMAGE
+           ============================================================ */
         #site-header {
             position: fixed;
             top: 0;
@@ -264,6 +270,7 @@
             justify-content: space-between;
             gap: var(--gap-md);
         }
+
         .logo {
             display: flex;
             align-items: center;
@@ -272,21 +279,53 @@
             font-size: 1.5rem;
             letter-spacing: 0.04em;
             color: var(--ink);
+            flex-shrink: 0;
         }
         .logo-mark {
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             border: 1px solid var(--gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            transition: transform 0.4s ease;
+            overflow: hidden;
+            background: var(--bg-panel);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.5s ease;
+            position: relative;
         }
-        .logo-mark svg { width: 22px; height: 22px; }
-        .logo:hover .logo-mark { transform: rotate(90deg); }
-        .logo-text strong { color: var(--gold-bright); font-weight: 600; }
+        .logo-mark img {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .logo-mark .fallback-text {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--gold);
+            display: none;
+        }
+        .logo-mark img.error ~ .fallback-text {
+            display: block;
+        }
+        .logo-mark img.error {
+            display: none;
+        }
+        .logo:hover .logo-mark {
+            transform: rotate(90deg);
+            border-color: var(--gold-bright);
+        }
+        .logo:hover .logo-mark img {
+            transform: rotate(-90deg);
+        }
+        .logo-text strong {
+            color: var(--gold-bright);
+            font-weight: 600;
+        }
         .logo-text span {
             display: block;
             font-family: var(--font-body);
@@ -452,6 +491,9 @@
             .burger { display: flex !important; }
         }
 
+        /* ============================================================
+           HERO
+           ============================================================ */
         #hero {
             position: relative;
             min-height: 100vh;
@@ -485,6 +527,20 @@
                 linear-gradient(180deg, rgba(10, 9, 8, 0.55) 0%, rgba(10, 9, 8, 0.35) 40%, rgba(10, 9, 8, 0.95) 100%),
                 linear-gradient(90deg, rgba(10, 9, 8, 0.85) 0%, rgba(10, 9, 8, 0.15) 45%, transparent 70%);
         }
+        .hero-bg .empty-frame {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-panel-2);
+            color: var(--ink-faint);
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .hero-bg .empty-frame .icon { font-size: 4rem; opacity: 0.15; margin-bottom: 0.5rem; }
 
         .hero-inner {
             position: relative;
@@ -623,6 +679,9 @@
             background: var(--border-strong);
         }
 
+        /* ============================================================
+           MARQUEE
+           ============================================================ */
         .marquee-strip {
             background: var(--gold);
             color: #14110b;
@@ -652,7 +711,7 @@
         }
 
         /* ============================================================
-           COLLECTIONS — DESIGN AVEC CADRES VIDES
+           COLLECTIONS
            ============================================================ */
         #collections { padding-top: var(--gap-xl); }
         .collections-layout {
@@ -729,9 +788,6 @@
             gap: 1.4rem;
         }
 
-        /* ============================================================
-           COLLECTION CARD — CADRE VIDE POUR IMAGES
-           ============================================================ */
         .collection-card {
             position: relative;
             border-radius: var(--radius-md);
@@ -758,7 +814,6 @@
             aspect-ratio: 16/10;
         }
 
-        /* Cadre d'image vide — élégant */
         .collection-card .image-frame {
             width: 100%;
             height: 100%;
@@ -770,18 +825,9 @@
             position: relative;
             transition: background 0.5s ease;
         }
-        .collection-card:hover .image-frame {
-            background: var(--bg-panel-raised);
-        }
-        .collection-card .image-frame .icon {
-            font-size: 4rem;
-            opacity: 0.15;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .collection-card:hover .image-frame .icon {
-            opacity: 0.25;
-            transform: scale(1.05);
-        }
+        .collection-card:hover .image-frame { background: var(--bg-panel-raised); }
+        .collection-card .image-frame .icon { font-size: 4rem; opacity: 0.15; transition: opacity 0.5s ease, transform 0.5s ease; }
+        .collection-card:hover .image-frame .icon { opacity: 0.25; transform: scale(1.05); }
         .collection-card .image-frame .placeholder-text {
             position: absolute;
             bottom: 1.5rem;
@@ -799,7 +845,6 @@
         }
         .collection-card.wide .image-frame .icon { font-size: 5rem; }
 
-        /* Image réelle (quand elle sera ajoutée) */
         .collection-card .image-frame img {
             position: absolute;
             inset: 0;
@@ -808,15 +853,11 @@
             object-fit: cover;
             transition: transform 0.7s var(--ease), filter 0.7s var(--ease);
             filter: saturate(0.85) brightness(0.7);
-            display: none; /* caché par défaut, affiché quand l'image est chargée */
-        }
-        .collection-card .image-frame img.loaded {
-            display: block;
-        }
-        .collection-card .image-frame img.loaded ~ .icon,
-        .collection-card .image-frame img.loaded ~ .placeholder-text {
             display: none;
         }
+        .collection-card .image-frame img.loaded { display: block; }
+        .collection-card .image-frame img.loaded ~ .icon,
+        .collection-card .image-frame img.loaded ~ .placeholder-text { display: none; }
         .collection-card:hover .image-frame img.loaded {
             transform: scale(1.08);
             filter: saturate(1) brightness(0.55);
@@ -1247,6 +1288,18 @@
             object-fit: cover;
             filter: brightness(0.32) saturate(0.8);
         }
+        .cta-bg .empty-frame {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-panel-2);
+            color: var(--ink-faint);
+        }
+        .cta-bg .empty-frame .icon { font-size: 4rem; opacity: 0.15; }
+
         .cta-content {
             position: relative;
             z-index: 1;
@@ -1589,6 +1642,7 @@
             .form-row { grid-template-columns: 1fr; }
             .masonry { columns: 2 160px; }
             .hero-stats { gap: 2rem; }
+            .logo-text span { display: none; }
         }
 
         @media (max-width: 600px) {
@@ -1603,6 +1657,9 @@
             h1.hero-title { max-width: 100%; }
             .masonry { columns: 1 1fr; }
             .contact-info-card, .contact-form-card { padding: 1.5rem; }
+            .logo-mark { width: 36px; height: 36px; }
+            .logo-mark img { width: 28px; height: 28px; }
+            .logo { font-size: 1.2rem; }
         }
 
         @media (max-width: 400px) {
@@ -1621,9 +1678,6 @@
             .container { max-width: 2100px; }
         }
 
-        /* ============================================================
-           UTILITY — Pour les cadres vides
-           ============================================================ */
         .empty-frame {
             display: flex;
             flex-direction: column;
@@ -1671,18 +1725,26 @@
     </div>
 
     <!-- ============================================================
-    HEADER
+    HEADER — AVEC LOGO IMAGE
     ============================================================ -->
     <header id="site-header">
         <div class="container nav-wrap">
             <a href="/" class="logo">
                 <span class="logo-mark">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#c9a961" stroke-width="1.2">
-                        <path d="M4 20 V10 L12 4 L20 10 V20" />
-                        <path d="M9 20 V13 H15 V20" />
-                    </svg>
+                    <img 
+                        src="/assets/logo/dar-chakaf-logo.svg" 
+                        alt="Dar Chakaf Logo"
+                        width="34" 
+                        height="34"
+                        style="width:34px;height:34px;object-fit:contain;"
+                        onerror="this.classList.add('error'); this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';"
+                    />
+                    <span class="fallback-text">D</span>
                 </span>
-                <span class="logo-text"><strong>Dar Chakaf</strong><span>Ameublement &amp; Décoration</span></span>
+                <span class="logo-text">
+                    <strong>Dar Chakaf</strong>
+                    <span>Ameublement &amp; Décoration</span>
+                </span>
             </a>
 
             <nav class="main-nav">
@@ -1778,7 +1840,7 @@
     </div>
 
     <!-- ============================================================
-    COLLECTIONS — FIXES AVEC CADRES VIDES
+    COLLECTIONS
     ============================================================ -->
     <section id="collections" class="section">
         <div class="container">
@@ -1788,7 +1850,6 @@
             </div>
 
             <div class="collections-layout">
-                <!-- Sidebar — FIXE -->
                 <aside class="cat-sidebar reveal">
                     <div class="cat-sidebar-head"><i class="fa-solid fa-layer-group"></i> Catégories</div>
                     <ul id="sidebarCategories">
@@ -1806,16 +1867,11 @@
                     </div>
                 </aside>
 
-                <!-- Grid — CADRES VIDES -->
                 <div class="collections-grid" id="collectionsGrid">
-                    <!-- Salons modernes -->
                     <a href="/produits/salons-modernes.html" class="collection-card wide reveal">
                         <div class="image-frame">
                             <span class="icon">🛋️</span>
                             <span class="placeholder-text">Image à venir</span>
-                            <!-- Quand vous ajouterez l'image :
-                            <img src="/assets/images/collections/salons-modernes.jpg" alt="Salons modernes" class="loaded" onload="this.classList.add('loaded')">
-                            -->
                         </div>
                         <div class="collection-card-body">
                             <span class="collection-card-tag" id="tag-modernes">0 modèles</span>
@@ -1824,7 +1880,6 @@
                         </div>
                     </a>
 
-                    <!-- Salons traditionnels -->
                     <a href="/produits/salons-traditionnels.html" class="collection-card reveal reveal-delay-1">
                         <div class="image-frame">
                             <span class="icon">🪑</span>
@@ -1837,7 +1892,6 @@
                         </div>
                     </a>
 
-                    <!-- Tables -->
                     <a href="/produits/tables.html" class="collection-card reveal reveal-delay-2">
                         <div class="image-frame">
                             <span class="icon">🍽️</span>
@@ -1850,7 +1904,6 @@
                         </div>
                     </a>
 
-                    <!-- Décorations -->
                     <a href="/produits/decorations.html" class="collection-card reveal">
                         <div class="image-frame">
                             <span class="icon">🖼️</span>
@@ -1863,7 +1916,6 @@
                         </div>
                     </a>
 
-                    <!-- Meubles TV -->
                     <a href="/produits/meubles-tv.html" class="collection-card reveal reveal-delay-1">
                         <div class="image-frame">
                             <span class="icon">📺</span>
@@ -1876,7 +1928,6 @@
                         </div>
                     </a>
 
-                    <!-- Couloirs & Entrées (wide) -->
                     <a href="/produits/couloirs.html" class="collection-card wide reveal reveal-delay-2">
                         <div class="image-frame">
                             <span class="icon">🚪</span>
@@ -1959,7 +2010,7 @@
     </section>
 
     <!-- ============================================================
-    GALLERY — CADRES VIDES
+    GALLERY
     ============================================================ -->
     <section id="galerie" class="section">
         <div class="container">
@@ -1978,7 +2029,6 @@
             </div>
 
             <div class="masonry reveal" id="masonryGrid">
-                <!-- 8 placeholders -->
                 <div class="masonry-item" data-cat="modernes">
                     <span class="icon">🛋️</span>
                     <span class="placeholder-text">Photo 1</span>
@@ -2215,10 +2265,15 @@
                 <div class="footer-brand">
                     <a href="/" class="logo">
                         <span class="logo-mark">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#c9a961" stroke-width="1.2">
-                                <path d="M4 20 V10 L12 4 L20 10 V20" />
-                                <path d="M9 20 V13 H15 V20" />
-                            </svg>
+                            <img 
+                                src="/assets/logo/dar-chakaf-logo.svg" 
+                                alt="Dar Chakaf Logo"
+                                width="34" 
+                                height="34"
+                                style="width:34px;height:34px;object-fit:contain;"
+                                onerror="this.classList.add('error'); this.style.display='none'; this.parentElement.querySelector('.fallback-text').style.display='block';"
+                            />
+                            <span class="fallback-text">D</span>
                         </span>
                         <span class="logo-text"><strong>Dar Chakaf</strong><span>Ameublement &amp; Décoration</span></span>
                     </a>
@@ -2327,10 +2382,10 @@
             });
 
             // ============================================================
-            // 3. PARALLAX + PROGRESS
+            // 3. SCROLL PROGRESS + PARALLAX
             // ============================================================
-            var heroBg = document.querySelector('.hero-bg');
             var progressBar = document.getElementById('scrollProgress');
+            var heroBg = document.querySelector('.hero-bg');
             var ticking = false;
 
             function onScrollCinematic() {
@@ -2405,7 +2460,7 @@
             };
 
             // ============================================================
-            // 7. LOAD CATEGORIES FROM API (pour les compteurs)
+            // 7. LOAD CATEGORIES FROM API — AVEC "Toute la collection"
             // ============================================================
             function loadCategories() {
                 fetch('/api/categories')
@@ -2414,7 +2469,7 @@
                         if (!res.success || !Array.isArray(res.data)) return;
                         var cats = res.data;
 
-                        // Mapper les slugs vers les IDs des compteurs
+                        // Mettre à jour les compteurs et tags
                         var countMap = {
                             'salons-modernes': 'count-modernes',
                             'salons-traditionnels': 'count-traditionnels',
@@ -2438,16 +2493,16 @@
                             var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
                             var count = cat.product_count || 0;
 
-                            // Mettre à jour les compteurs dans la sidebar
                             var countEl = document.getElementById(countMap[slug]);
                             if (countEl) countEl.textContent = count;
 
-                            // Mettre à jour les tags dans les cartes
                             var tagEl = document.getElementById(tagMap[slug]);
                             if (tagEl) tagEl.textContent = count + ' modèles';
                         });
 
-                        // Nav dropdown
+                        // ============================================================
+                        // NAV DROPDOWN — Categories + "Toute la collection"
+                        // ============================================================
                         var navDropdown = document.getElementById('navDropdownPanel');
                         if (navDropdown) {
                             navDropdown.innerHTML = '';
@@ -2459,6 +2514,7 @@
                                 a.innerHTML = '<i class="fa-solid ' + icon + '"></i> ' + cat.nom;
                                 navDropdown.appendChild(a);
                             });
+                            // === AJOUT: Toute la collection ===
                             var allLink = document.createElement('a');
                             allLink.href = '/galerie.html';
                             allLink.innerHTML = '<i class="fa-solid fa-images"></i> Toute la collection';
@@ -2477,6 +2533,12 @@
                                 a.textContent = '— ' + cat.nom;
                                 mobileLinks.appendChild(a);
                             });
+                            // Mobile: Toute la collection
+                            var allLinkMobile = document.createElement('a');
+                            allLinkMobile.className = 'sub-link';
+                            allLinkMobile.href = '/galerie.html';
+                            allLinkMobile.textContent = '— Toute la collection';
+                            mobileLinks.appendChild(allLinkMobile);
                         }
 
                         // Gallery filters
@@ -2489,7 +2551,6 @@
                             });
                             filtersContainer.innerHTML = html;
 
-                            // Filter logic
                             filtersContainer.querySelectorAll('.gfilter').forEach(function(btn) {
                                 btn.addEventListener('click', function() {
                                     filtersContainer.querySelectorAll('.gfilter').forEach(function(b) {
@@ -2512,51 +2573,6 @@
             loadCategories();
 
             // ============================================================
-            // 7bis. LOAD HERO BANNER FROM API (titre, sous-titre, slides)
-            // ============================================================
-            function loadHero() {
-                fetch('/api/parametres/hero')
-                    .then(function(r) { return r.json(); })
-                    .then(function(res) {
-                        if (!res.success || !res.data) return;
-                        var d = res.data;
-
-                        if (d.subtitle) {
-                            var descEl = document.getElementById('heroDescription');
-                            if (descEl) descEl.textContent = d.subtitle;
-                        }
-
-                        var ctaLink = document.querySelector('.hero-actions a.btn-gold');
-                        if (ctaLink) {
-                            if (d.cta) ctaLink.childNodes[0].nodeValue = d.cta + ' ';
-                            if (d.ctaLink) ctaLink.setAttribute('href', d.ctaLink);
-                        }
-
-                        var slides = Array.isArray(d.slides) && d.slides.length ? d.slides : (d.mainImage ? [{ image: d.mainImage }] : []);
-                        var heroBg = document.getElementById('heroBg');
-                        if (heroBg && slides.length) {
-                            heroBg.innerHTML = slides.map(function(s, i) {
-                                return '<img src="' + s.image + '" alt="' + (s.title || 'Dar Chakaf') + '" ' +
-                                    'style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:' + (i === 0 ? '1' : '0') + ';transition:opacity 1.2s ease;" data-hero-slide="' + i + '" />';
-                            }).join('');
-
-                            if (slides.length > 1) {
-                                var current = 0;
-                                setInterval(function() {
-                                    var imgs = heroBg.querySelectorAll('[data-hero-slide]');
-                                    imgs[current].style.opacity = '0';
-                                    current = (current + 1) % imgs.length;
-                                    imgs[current].style.opacity = '1';
-                                }, 6000);
-                            }
-                        }
-                    })
-                    .catch(function(e) { console.warn('Erreur chargement bannière hero:', e); });
-            }
-
-            loadHero();
-
-            // ============================================================
             // 8. GALLERY FILTER (fallback)
             // ============================================================
             var filters = document.querySelectorAll('.gfilter');
@@ -2575,37 +2591,34 @@
             });
 
             // ============================================================
-            // 9. LIGHTBOX (simplifié)
+            // 9. LIGHTBOX
             // ============================================================
             var lightbox = document.getElementById('lightbox');
             var lightboxImg = document.getElementById('lightboxImg');
-            var galleryItems = document.querySelectorAll('.masonry-item');
-            var galleryImgs = [];
-
-            galleryItems.forEach(function(item) {
-                var img = item.querySelector('img');
-                if (img && img.src) {
-                    galleryImgs.push(img.src);
-                    item.addEventListener('click', function() {
-                        openLightbox(img.src);
-                    });
-                }
-            });
 
             function openLightbox(src) {
+                if (!lightbox || !lightboxImg) return;
                 lightboxImg.src = src;
                 lightbox.classList.add('open');
                 document.body.style.overflow = 'hidden';
             }
 
             function closeLightbox() {
+                if (!lightbox) return;
                 lightbox.classList.remove('open');
                 document.body.style.overflow = '';
             }
 
-            document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) closeLightbox();
+            var closeBtn = document.getElementById('lightboxClose');
+            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+            if (lightbox) {
+                lightbox.addEventListener('click', function(e) {
+                    if (e.target === lightbox) closeLightbox();
+                });
+            }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeLightbox();
             });
 
             // ============================================================
@@ -2652,6 +2665,8 @@
 
             window.addEventListener('resize', function() {
                 perView = window.innerWidth <= 900 ? 1 : 3;
+                totalSlides = Math.max(1, cards.length - perView + 1);
+                buildDots();
                 goToSlide(0);
             });
 
@@ -2720,7 +2735,8 @@
             }
 
             console.log('🚀 Dar Chakaf — Index chargé !');
-            console.log('📸 Les cadres d\'images sont vides — ajoutez vos photos dans /assets/images/');
+            console.log('📸 Logo: /assets/logo/dar-chakaf-logo.svg');
+            console.log('📂 Dropdown "Produits" contient les catégories + "Toute la collection"');
 
         });
     </script>
