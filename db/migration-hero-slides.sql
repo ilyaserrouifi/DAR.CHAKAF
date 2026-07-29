@@ -23,7 +23,7 @@ WHERE id = (SELECT id FROM site_settings LIMIT 1);
 -- Table des slides du carrousel hero (page d'accueil)
 CREATE TABLE IF NOT EXISTS hero_slides (
     id SERIAL PRIMARY KEY,
-    image VARCHAR(500) NOT NULL,
+    image TEXT NOT NULL,
     titre VARCHAR(200),
     soustitre VARCHAR(300),
     ordre INTEGER DEFAULT 0,

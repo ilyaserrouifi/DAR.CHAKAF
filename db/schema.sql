@@ -67,7 +67,11 @@ CREATE TABLE IF NOT EXISTS messages (
 CREATE TABLE IF NOT EXISTS site_settings (
     id SERIAL PRIMARY KEY,
     logo VARCHAR(500),
-    image_hero VARCHAR(500),
+    image_hero TEXT,
+    hero_titre VARCHAR(200),
+    hero_soustitre VARCHAR(300),
+    hero_cta_texte VARCHAR(100),
+    hero_cta_lien VARCHAR(300),
     adresse VARCHAR(255),
     telephone VARCHAR(50),
     whatsapp VARCHAR(50),
@@ -79,6 +83,17 @@ CREATE TABLE IF NOT EXISTS site_settings (
     description TEXT,
     updated_at TIMESTAMP DEFAULT NOW()
 );
+
+CREATE TABLE IF NOT EXISTS hero_slides (
+    id SERIAL PRIMARY KEY,
+    image TEXT NOT NULL,
+    titre VARCHAR(200),
+    soustitre VARCHAR(300),
+    ordre INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_hero_slides_ordre ON hero_slides(ordre);
 
 CREATE TABLE IF NOT EXISTS activity_logs (
     id SERIAL PRIMARY KEY,
@@ -119,10 +134,17 @@ INSERT INTO categories (nom, slug, icone) VALUES
 ON CONFLICT (slug) DO NOTHING;
 
 -- Paramètres du site
-INSERT INTO site_settings (logo, image_hero, adresse, telephone, whatsapp, email, facebook, instagram, tiktok, horaires)
+INSERT INTO site_settings (
+    logo, image_hero, hero_titre, hero_soustitre, hero_cta_texte, hero_cta_lien,
+    adresse, telephone, whatsapp, email, facebook, instagram, tiktok, horaires
+)
 SELECT
     '/assets/logo/dar-chakaf-logo.svg',
     'https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1800&auto=format&fit=crop',
+    'L''élégance à la marocaine',
+    'Découvrez notre collection de mobilier haut de gamme',
+    'Découvrir',
+    '/produits/salons-modernes.html',
     '123, Avenue des Arts, Casablanca',
     '+212 5 22 12 34 56',
     '+212 6 12 34 56 78',
@@ -132,6 +154,14 @@ SELECT
     'https://tiktok.com/@darchakaf',
     'Lun – Sam : 9h00 – 19h00'
 WHERE NOT EXISTS (SELECT 1 FROM site_settings);
+
+INSERT INTO hero_slides (image, titre, soustitre, ordre)
+SELECT * FROM (VALUES
+    ('https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1800&auto=format&fit=crop', 'Salon Majestueux', 'Élégance contemporaine', 0),
+    ('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1800&auto=format&fit=crop', 'Salon Fès', 'Artisanat traditionnel', 1),
+    ('https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=1800&auto=format&fit=crop', 'Table Royale', 'Design intemporel', 2)
+) AS v(image, titre, soustitre, ordre)
+WHERE NOT EXISTS (SELECT 1 FROM hero_slides);
 
 -- ================================================================
 -- Les produits de démonstration sont dans db/seed-produits.sql

@@ -656,9 +656,15 @@
                     </div>
                 </div>
 
+                <div class="form-group" style="margin-top:1rem;">
+                    <label for="heroBgFile">Image de fond locale</label>
+                    <input type="file" id="heroBgFile" accept="image/*" />
+                    <p style="color:var(--ink-mute); font-size:0.85rem; margin-top:0.35rem;">Choisissez une image depuis votre ordinateur. Elle sera prévisualisée immédiatement.</p>
+                </div>
+
                 <!-- Slider images -->
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:1rem;">
-                    <h4 style="font-family:var(--font-body); font-size:0.85rem; color:var(--ink-mute);">Images du slider (3)</h4>
+                    <h4 style="font-family:var(--font-body); font-size:0.85rem; color:var(--ink-mute);" id="sliderCountLabel">Images du slider (0)</h4>
                     <button class="btn btn-gold btn-sm" id="addSlideBtn"><i class="fa-solid fa-plus"></i> Ajouter une image</button>
                 </div>
 
@@ -670,6 +676,11 @@
                     <div class="form-group">
                         <label for="slideImage">URL de l'image <span style="color:var(--danger);">*</span></label>
                         <input type="text" id="slideImage" placeholder="https://images.unsplash.com/photo-..." />
+                    </div>
+                    <div class="form-group">
+                        <label for="slideFile">Ou téléversez une image</label>
+                        <input type="file" id="slideFile" accept="image/*" />
+                        <p style="color:var(--ink-mute); font-size:0.85rem; margin-top:0.35rem;">Si vous choisissez un fichier local, il sera converti automatiquement et enregistré.</p>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
@@ -781,6 +792,7 @@
                     slides = (json.data.slides || []).map(s => ({
                         id: s.id, image: s.image, title: s.title, subtitle: s.subtitle
                     }));
+                    updateSlideCount();
                     nextId = slides.length ? Math.max(...slides.map(s => s.id)) + 1 : 1;
                     renderSlides();
                 } catch (error) {
@@ -794,6 +806,13 @@
             // ============================================================
             const sliderPreview = document.getElementById('sliderPreview');
 
+            function updateSlideCount() {
+                const label = document.getElementById('sliderCountLabel');
+                if (label) {
+                    label.textContent = `Images du slider (${slides.length})`;
+                }
+            }
+
             function renderSlides() {
                 if (slides.length === 0) {
                     sliderPreview.innerHTML = `
@@ -802,6 +821,7 @@
                             Aucune image dans le slider. Ajoutez-en une !
                         </div>
                     `;
+                    updateSlideCount();
                     return;
                 }
 
@@ -824,6 +844,7 @@
                 `;
 
                 sliderPreview.innerHTML = html;
+                updateSlideCount();
 
                 document.getElementById('addSlideBtn2').addEventListener('click', function() {
                     document.getElementById('slideForm').classList.toggle('show');
@@ -858,6 +879,28 @@
                 }
             });
 
+            document.getElementById('heroBgFile').addEventListener('change', function() {
+                const file = this.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function() {
+                    document.getElementById('heroPreviewImg').src = reader.result;
+                    showToast('Image de fond locale chargée.', 'success');
+                };
+                reader.readAsDataURL(file);
+            });
+
+            document.getElementById('slideFile').addEventListener('change', function() {
+                const file = this.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function() {
+                    document.getElementById('slideImage').value = reader.result;
+                    showToast('Image locale chargée dans le champ URL.', 'success');
+                };
+                reader.readAsDataURL(file);
+            });
+
             document.getElementById('cancelSlideBtn').addEventListener('click', function() {
                 document.getElementById('slideForm').classList.remove('show');
                 document.getElementById('slideImage').value = '';
@@ -871,7 +914,7 @@
                 const subtitle = document.getElementById('slideSubtitle').value.trim();
 
                 if (!image) {
-                    showToast('Veuillez entrer une URL d\'image.', 'error');
+                    showToast('Veuillez entrer une URL d\'image ou téléverser un fichier.', 'error');
                     return;
                 }
 
