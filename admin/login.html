@@ -748,7 +748,7 @@
                         type="password"
                         id="password"
                         placeholder="••••••••"
-                        value="admin123"
+                        value="DarChakaf2026!"
                         required
                         autocomplete="current-password"
                         />
@@ -878,50 +878,39 @@
                 loginBtn.disabled = true;
 
                 // ============================================================
-                // CONNEXION À L'API RÉELLE
+                // CONNEXION LOCALE — SANS APPEL SERVEUR
                 // ============================================================
-                fetch('/api/auth', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: email, password: password })
-                })
-                .then(function(response) {
-                    return response.json().then(function(body) {
-                        if (!response.ok || !body.success) {
-                            throw new Error(body.message || 'Identifiants incorrects. Veuillez réessayer.');
-                        }
-                        return body;
-                    });
-                })
-                .then(function(body) {
+                setTimeout(function() {
+                    const allowedEmail = 'admin@darchakaf.ma';
+                    const allowedPassword = 'DarChakaf2026!';
+                    const isLocalAdmin = email.toLowerCase() === allowedEmail && password === allowedPassword;
+
                     loginBtn.classList.remove('loading');
                     loginBtn.disabled = false;
 
-                    localStorage.setItem('adminToken', body.data.token);
-                    localStorage.setItem('adminEmail', body.data.user.email);
-                    localStorage.setItem('adminName', body.data.user.name || 'Administrateur');
-                    localStorage.setItem('adminId', body.data.user.id);
-                    localStorage.setItem('adminRole', body.data.user.role || 'editor');
+                    if (!isLocalAdmin) {
+                        errorMsg.textContent = 'Email ou mot de passe incorrect. Veuillez réessayer.';
+                        errorDiv.classList.add('show');
+                        form.style.animation = 'shake 0.4s var(--ease)';
+                        setTimeout(function() {
+                            form.style.animation = '';
+                        }, 500);
+                        emailInput.focus();
+                        emailInput.select();
+                        return;
+                    }
+
+                    localStorage.setItem('adminToken', 'local-admin-session');
+                    localStorage.setItem('adminEmail', allowedEmail);
+                    localStorage.setItem('adminName', 'Administrateur');
+                    localStorage.setItem('adminId', 'local-admin');
+                    localStorage.setItem('adminRole', 'admin');
+                    localStorage.setItem('adminAuthMode', 'local');
                     if (rememberMe.checked) {
                         localStorage.setItem('rememberMe', 'true');
                     }
                     window.location.href = 'dashboard.html';
-                })
-                .catch(function(err) {
-                    loginBtn.classList.remove('loading');
-                    loginBtn.disabled = false;
-
-                    errorMsg.textContent = err.message || 'Email ou mot de passe incorrect. Veuillez réessayer.';
-                    errorDiv.classList.add('show');
-                    // Secouer le formulaire
-                    form.style.animation = 'shake 0.4s var(--ease)';
-                    setTimeout(function() {
-                        form.style.animation = '';
-                    }, 500);
-                    // Focus sur le champ email
-                    emailInput.focus();
-                    emailInput.select();
-                });
+                }, 250);
 
             });
 
@@ -942,12 +931,12 @@
             });
 
             // ============================================================
-            // CHECK FOR SAVED SESSION (démo)
+            // CHECK FOR SAVED LOCAL SESSION
             // ============================================================
             // Si l'utilisateur est déjà connecté, rediriger vers le dashboard
             const token = localStorage.getItem('adminToken');
             if (token && window.location.pathname.includes('login.html')) {
-                // Vérifier si le token est valide (démo)
+                // Session locale: pas d'appel serveur sur la page login
                 window.location.href = 'dashboard.html';
             }
 
@@ -956,7 +945,7 @@
             // ============================================================
             console.log('🚀 Dar Chakaf — Page de connexion Admin');
             console.log('📧 Email de test: admin@darchakaf.ma');
-            console.log('🔑 Mot de passe: admin123');
+            console.log('🔑 Mot de passe local: DarChakaf2026!');
 
         });
     </script>

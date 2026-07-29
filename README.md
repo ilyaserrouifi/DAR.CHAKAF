@@ -53,24 +53,19 @@ Sur Vercel : Project → Settings → Environment Variables → `DATABASE_URL`
 et `JWT_SECRET`.
 
 
-### Dépannage login admin
+### Login admin local
 
-Si `admin/login.html` affiche **Erreur interne du serveur**, les causes les
-plus probables sont côté serveur :
+`admin/login.html` ne dépend plus du serveur ni de la base de données : la page
+valide localement les identifiants ci-dessous, crée une session locale dans
+`localStorage`, puis ouvre le dashboard.
 
-1. `DATABASE_URL` manquant ou incorrect sur Vercel : l'API ne peut pas lire la
-   table `admins`.
-2. `JWT_SECRET` manquant sur Vercel : l'API renvoie maintenant une erreur claire
-   `Configuration serveur incomplète: JWT_SECRET est manquant` au lieu d'un 500
-   générique.
-3. Scripts SQL non exécutés ou incomplets : exécutez au minimum
-   `db/schema.sql`, puis les migrations listées ci-dessus.
-4. Compte admin désactivé ou mot de passe modifié : vérifiez la ligne
-   `admin@darchakaf.ma` dans `admins` avec `statut = 'active'`.
+- Email : `admin@darchakaf.ma`
+- Mot de passe : `DarChakaf2026!`
 
-La journalisation dans `activity_logs` n'empêche plus la connexion : si cette
-table manque, le login réussit quand même et l'erreur est seulement écrite dans
-les logs serveur.
+Les pages admin restent connectées aux APIs pour lire et modifier les données.
+Pour que les actions d'administration (produits, galerie, paramètres, etc.)
+fonctionnent en production, gardez `DATABASE_URL`, `JWT_SECRET` et les scripts
+SQL correctement configurés côté Vercel/Neon.
 
 Depuis l'admin → Paramètres → Informations du site, vous pouvez aussi coller
 une URL ou charger une image locale comme **image de fond de l'accueil**. Sur
@@ -95,10 +90,9 @@ factice ou tout comportement simulé :
 - **Plus aucun repli silencieux vers de fausses données** : si l'API échoue
   ou ne renvoie rien, la page affiche un état vide clair ("Aucun produit
   trouvé", etc.) plutôt que du contenu fictif.
-- **Faille de sécurité corrigée** : `admin/login.html` contenait un mot de
-  passe de secours codé en dur (`admin123`) qui fonctionnait même si l'API
-  échouait. Entièrement supprimé — seule l'API `/api/auth/login` fait
-  autorité maintenant.
+- **Login admin local** : `admin/login.html` ouvre l'espace admin sans appel
+  serveur avec les identifiants locaux documentés plus haut. Les opérations de
+  gestion restent, elles, connectées aux APIs et à PostgreSQL.
 - **Dashboard admin** : les 4 cartes sans donnée réelle possible (ventes,
   revenus, vues, favoris — aucune table ne les suit) ont été retirées. Les
   pourcentages de croissance fictifs ("+12%", "+22%"...) ont aussi été
