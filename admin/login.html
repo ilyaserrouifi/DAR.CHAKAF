@@ -936,7 +936,12 @@
             // Si l'utilisateur est déjà connecté, rediriger vers le dashboard
             const token = localStorage.getItem('adminToken');
             if (token && window.location.pathname.includes('login.html')) {
-                // Session locale: pas d'appel serveur sur la page login
+                // Toujours normaliser l'ancienne session vers le token local accepté par les APIs.
+                localStorage.setItem('adminToken', 'local-admin-session');
+                localStorage.setItem('adminEmail', localStorage.getItem('adminEmail') || 'admin@darchakaf.ma');
+                localStorage.setItem('adminName', localStorage.getItem('adminName') || 'Administrateur');
+                localStorage.setItem('adminRole', 'admin');
+                localStorage.setItem('adminAuthMode', 'local');
                 window.location.href = 'dashboard.html';
             }
 

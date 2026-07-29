@@ -1,6 +1,7 @@
 const db = require('../../lib/db');
 const { requireAuth } = require('../../lib/middleware-auth');
 const { applyCors } = require('../../lib/cors');
+const { logActivity } = require('../../lib/activity-log');
 
 async function get(req, res) {
     try {
@@ -47,10 +48,7 @@ async function create(req, res) {
             RETURNING *
         `, [categoryId, titre, description, prix, ancien_prix || null, statut || 'active', ordre || 0, dimensions, materiau, type, coloris, image, badge]);
 
-        await db.query(
-            'INSERT INTO activity_logs (admin_id, action, date) VALUES ($1, $2, NOW())',
-            [user.id, `Ajout du produit "${titre}"`]
-        );
+        await logActivity(user.id, `Ajout du produit "${titre}"`);
 
         return res.status(201).json({ success: true, message: 'Produit créé avec succès', data: result.rows[0] });
     } catch (error) {
@@ -79,10 +77,7 @@ async function update(req, res) {
 
         if (result.rows.length === 0) return res.status(404).json({ success: false, message: 'Produit non trouvé' });
 
-        await db.query(
-            'INSERT INTO activity_logs (admin_id, action, date) VALUES ($1, $2, NOW())',
-            [user.id, `Modification du produit "${titre}"`]
-        );
+        await logActivity(user.id, `Modification du produit "${titre}"`);
 
         return res.status(200).json({ success: true, message: 'Produit mis à jour', data: result.rows[0] });
     } catch (error) {
@@ -105,10 +100,7 @@ async function remove(req, res) {
         const result = await db.query('DELETE FROM produits WHERE id = $1 RETURNING *', [id]);
         if (result.rows.length === 0) return res.status(404).json({ success: false, message: 'Produit non trouvé' });
 
-        await db.query(
-            'INSERT INTO activity_logs (admin_id, action, date) VALUES ($1, $2, NOW())',
-            [user.id, `Suppression du produit "${productName}"`]
-        );
+        await logActivity(user.id, `Suppression du produit "${productName}"`);
 
         return res.status(200).json({ success: true, message: 'Produit supprimé' });
     } catch (error) {
