@@ -1180,10 +1180,12 @@
             }
 
             // ============================================================
-            // 5. NOTIFICATION (démo)
+            // 5. NOTIFICATION (dynamique depuis le badge mis à jour par l'API)
             // ============================================================
             document.querySelector('.notification-btn').addEventListener('click', function() {
-                alert('🔔 Vous avez 8 notifications non lues.\n\n(Démo — Fonctionnalité à connecter à l\'API)');
+                const badge = document.querySelector('.notification-btn .badge');
+                const count = badge && badge.style.display !== 'none' ? badge.textContent : '0';
+                alert('🔔 Vous avez ' + count + ' message(s) non lu(s).');
             });
 
             // ============================================================
@@ -1272,5 +1274,6 @@
         });
     </script>
 
+    <script src="/admin/shared-admin.js"></script>
 </body>
 </html>
