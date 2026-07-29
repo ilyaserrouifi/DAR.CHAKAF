@@ -1,0 +1,2729 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dar Chakaf — L'Art de l'Ameublement Marocain</title>
+    <meta name="description" content="Dar Chakaf — Fabricant et distributeur de mobilier haut de gamme : salons modernes, salons traditionnels, tables, décorations et plus. Savoir-faire marocain, finition sur mesure." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ================================================================
+           DESIGN SYSTEM — DAR CHAKAF PREMIUM
+           ================================================================ */
+        :root {
+            --bg-void: #0a0908;
+            --bg-base: #0e0c0a;
+            --bg-panel: #15120e;
+            --bg-panel-2: #1c1712;
+            --bg-panel-raised: #221b14;
+            --border-soft: rgba(201, 169, 97, 0.14);
+            --border-strong: rgba(201, 169, 97, 0.32);
+            --gold: #c9a961;
+            --gold-bright: #e6c988;
+            --gold-dim: #8f7440;
+            --bronze: #8b6f47;
+            --copper: #a8703f;
+            --ink: #f2ead9;
+            --ink-soft: #cdc3ae;
+            --ink-mute: #8e8471;
+            --ink-faint: #5c5546;
+            --success: #7a9b6e;
+            --danger: #b9634a;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Jost', sans-serif;
+            --fs-hero: clamp(3rem, 7vw, 6.4rem);
+            --fs-h1: clamp(2.4rem, 4.6vw, 3.8rem);
+            --fs-h2: clamp(1.9rem, 3.2vw, 2.6rem);
+            --gap-xs: 0.5rem;
+            --gap-sm: 1rem;
+            --gap-md: 2rem;
+            --gap-lg: 4rem;
+            --gap-xl: 7rem;
+            --radius-sm: 4px;
+            --radius-md: 10px;
+            --radius-lg: 18px;
+            --shadow-soft: 0 20px 60px -20px rgba(0, 0, 0, 0.65);
+            --shadow-gold: 0 10px 40px -12px rgba(201, 169, 97, 0.35);
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --transition: 0.45s var(--ease);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg-base);
+            color: var(--ink);
+            font-family: var(--font-body);
+            font-weight: 300;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        img { max-width: 100%; display: block; }
+        a { color: inherit; text-decoration: none; }
+        ul { list-style: none; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+        input, textarea, select { font-family: inherit; }
+        h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; letter-spacing: 0.01em; }
+
+        :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-void); }
+        ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 10px; border: 2px solid var(--bg-void); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--gold-dim), var(--gold-bright));
+            z-index: 9999;
+            box-shadow: 0 0 12px rgba(230, 201, 136, 0.6);
+            transition: width 0.1s linear;
+        }
+
+        .mist-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+            background: var(--bg-void);
+        }
+        .mist-bg::before, .mist-bg::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.35;
+            animation: mistDrift 22s ease-in-out infinite alternate;
+        }
+        .mist-bg::before {
+            width: 46vw;
+            height: 46vw;
+            top: -12vw;
+            left: -10vw;
+            background: radial-gradient(circle, rgba(201, 169, 97, 0.35), transparent 70%);
+        }
+        .mist-bg::after {
+            width: 40vw;
+            height: 40vw;
+            bottom: -14vw;
+            right: -8vw;
+            background: radial-gradient(circle, rgba(140, 110, 60, 0.28), transparent 70%);
+            animation-delay: -9s;
+        }
+        @keyframes mistDrift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(3vw, 2vw) scale(1.12); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 clamp(1.25rem, 4vw, 3rem);
+        }
+
+        .eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.78rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.1rem;
+        }
+        .eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+        .eyebrow.centered { justify-content: center; }
+        .eyebrow.centered::before, .eyebrow.centered::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--border-soft);
+            flex-shrink: 0;
+        }
+        .eyebrow.centered::after { content: ''; display: block; }
+
+        .section { padding: var(--gap-xl) 0; position: relative; }
+        .section-head { max-width: 640px; margin-bottom: var(--gap-lg); }
+        .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+        .section-head p { color: var(--ink-mute); margin-top: 1rem; font-size: 1.02rem; line-height: 1.75; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.95rem 2.1rem;
+            font-size: 0.86rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: var(--transition);
+            white-space: nowrap;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold-bright), var(--gold) 60%, var(--gold-dim));
+            color: #14110b;
+            box-shadow: var(--shadow-gold);
+        }
+        .btn-gold:hover { filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 14px 44px -12px rgba(201, 169, 97, 0.5); }
+        .btn-ghost { border: 1px solid var(--border-strong); color: var(--ink); background: transparent; }
+        .btn-ghost:hover { background: rgba(201, 169, 97, 0.08); border-color: var(--gold); color: var(--gold-bright); }
+        .btn-sm { padding: 0.6rem 1.3rem; font-size: 0.72rem; }
+
+        .reveal {
+            opacity: 0;
+            transform: perspective(1200px) translateY(48px) translateZ(-60px) rotateX(8deg);
+            transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: 50% 100%;
+            will-change: opacity, transform;
+        }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: perspective(1200px) translateY(0) translateZ(0) rotateX(0deg);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-void);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.7s var(--ease), visibility 0.7s var(--ease);
+        }
+        #preloader.hidden { opacity: 0; visibility: hidden; }
+        .preloader-mark {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            position: relative;
+        }
+        .preloader-mark::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -14px;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transform: translateX(-50%);
+            animation: preloadLine 1.4s var(--ease) infinite;
+        }
+        @keyframes preloadLine {
+            0% { width: 0; opacity: 0; }
+            50% { width: 120px; opacity: 1; }
+            100% { width: 0; opacity: 0; }
+        }
+
+        #site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 900;
+            padding: 1.5rem 0;
+            transition: var(--transition);
+            background: linear-gradient(to bottom, rgba(10, 9, 8, 0.85), transparent);
+        }
+        #site-header.scrolled {
+            padding: 0.9rem 0;
+            background: rgba(10, 9, 8, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border-soft);
+        }
+        .nav-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--gap-md);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: 0.04em;
+            color: var(--ink);
+        }
+        .logo-mark {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.4s ease;
+        }
+        .logo-mark svg { width: 22px; height: 22px; }
+        .logo:hover .logo-mark { transform: rotate(90deg); }
+        .logo-text strong { color: var(--gold-bright); font-weight: 600; }
+        .logo-text span {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            letter-spacing: 0.32em;
+            color: var(--ink-mute);
+            text-transform: uppercase;
+            margin-top: -2px;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 2.4rem;
+        }
+        .main-nav a {
+            font-size: 0.82rem;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            position: relative;
+            padding: 0.4rem 0;
+            transition: color 0.3s;
+        }
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 1px;
+            width: 0;
+            background: var(--gold);
+            transition: width 0.35s var(--ease);
+        }
+        .main-nav a:hover, .main-nav a.active { color: var(--gold-bright); }
+        .main-nav a:hover::after, .main-nav a.active::after { width: 100%; }
+
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-panel {
+            position: absolute;
+            top: calc(100% + 1.4rem);
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            width: 620px;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            padding: 1.6rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-soft);
+            pointer-events: none;
+        }
+        .nav-dropdown:hover .nav-dropdown-panel {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+        .nav-dropdown-panel a {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.65rem 0.8rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            text-transform: none;
+            letter-spacing: 0.01em;
+            color: var(--ink-soft);
+        }
+        .nav-dropdown-panel a i { color: var(--gold); width: 16px; font-size: 0.85rem; }
+        .nav-dropdown-panel a:hover { background: rgba(201, 169, 97, 0.08); color: var(--gold-bright); }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+        }
+        .nav-icon-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-soft);
+            transition: var(--transition);
+        }
+        .nav-icon-btn:hover { border-color: var(--gold); color: var(--gold-bright); }
+
+        .burger {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-soft);
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 4px;
+            background: transparent;
+            transition: border-color var(--transition);
+        }
+        .burger:hover { border-color: var(--gold); }
+        .burger span {
+            width: 16px;
+            height: 1px;
+            background: var(--ink);
+            transition: var(--transition);
+        }
+        .burger.open span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+        .burger.open span:nth-child(2) { opacity: 0; }
+        .burger.open span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: min(360px, 86vw);
+            height: 100vh;
+            background: var(--bg-panel);
+            border-left: 1px solid var(--border-soft);
+            z-index: 950;
+            padding: 6.5rem 2rem 2rem;
+            transition: right 0.5s var(--ease);
+            overflow-y: auto;
+        }
+        .mobile-drawer.open { right: 0; }
+        .mobile-drawer a {
+            display: block;
+            padding: 0.95rem 0;
+            border-bottom: 1px solid var(--border-soft);
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+        }
+        .mobile-drawer .sub-link {
+            padding-left: 1rem;
+            font-size: 0.8rem;
+            color: var(--ink-mute);
+            border-bottom: none;
+            text-transform: none;
+        }
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 940;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        .drawer-overlay.open { opacity: 1; visibility: visible; }
+
+        @media (max-width: 900px) {
+            .main-nav, .nav-actions .btn-ghost { display: none; }
+            .burger { display: flex !important; }
+        }
+
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            will-change: transform;
+        }
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(0.9) brightness(0.55);
+            transform: scale(1.08);
+            animation: heroZoom 18s ease-in-out infinite alternate;
+        }
+        @keyframes heroZoom {
+            from { transform: scale(1.08); }
+            to { transform: scale(1); }
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(10, 9, 8, 0.55) 0%, rgba(10, 9, 8, 0.35) 40%, rgba(10, 9, 8, 0.95) 100%),
+                linear-gradient(90deg, rgba(10, 9, 8, 0.85) 0%, rgba(10, 9, 8, 0.15) 45%, transparent 70%);
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            padding-top: 5rem;
+        }
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            margin-bottom: 1.6rem;
+            color: var(--gold-bright);
+            font-size: 0.82rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+        }
+        .hero-eyebrow .line { width: 50px; height: 1px; background: var(--gold); }
+        h1.hero-title {
+            font-size: var(--fs-hero);
+            line-height: 1.02;
+            font-weight: 600;
+            max-width: 15ch;
+            color: var(--ink);
+        }
+        h1.hero-title em { font-style: italic; color: var(--gold-bright); font-weight: 500; }
+        .hero-sub {
+            margin-top: 1.8rem;
+            max-width: 46ch;
+            color: var(--ink-soft);
+            font-size: 1.08rem;
+            line-height: 1.8;
+        }
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.4rem;
+            margin-top: 2.6rem;
+            flex-wrap: wrap;
+        }
+        .hero-play {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            color: var(--ink-soft);
+        }
+        .hero-play .circle {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 1px solid var(--border-strong);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .hero-play:hover .circle { background: var(--gold); color: #14110b; }
+
+        .hero-stats {
+            display: flex;
+            gap: var(--gap-lg);
+            margin-top: 4.5rem;
+            padding-top: 2.2rem;
+            border-top: 1px solid var(--border-soft);
+            max-width: 620px;
+        }
+        .hero-stat b {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--gold-bright);
+            font-weight: 600;
+        }
+        .hero-stat span {
+            font-size: 0.76rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-mute);
+        }
+
+        .hero-scroll-cue {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--ink-mute);
+            font-size: 0.68rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+        }
+        .hero-scroll-cue .stick {
+            width: 1px;
+            height: 46px;
+            background: linear-gradient(var(--gold), transparent);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-scroll-cue .stick::after {
+            content: '';
+            position: absolute;
+            top: -46px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gold-bright);
+            animation: scrollCue 2.2s infinite;
+        }
+        @keyframes scrollCue {
+            to { top: 46px; }
+        }
+
+        .hero-side-badge {
+            position: absolute;
+            right: clamp(1rem, 4vw, 4rem);
+            bottom: 12%;
+            z-index: 2;
+            writing-mode: vertical-rl;
+            color: var(--ink-mute);
+            font-size: 0.72rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .hero-side-badge::after {
+            content: '';
+            width: 1px;
+            height: 70px;
+            background: var(--border-strong);
+        }
+
+        .marquee-strip {
+            background: var(--gold);
+            color: #14110b;
+            padding: 0.9rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            z-index: 3;
+        }
+        .marquee-track {
+            display: inline-flex;
+            animation: marquee 26s linear infinite;
+        }
+        .marquee-track span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.9rem;
+            padding: 0 2.2rem;
+            font-size: 0.82rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ============================================================
+           COLLECTIONS — DESIGN AVEC CADRES VIDES
+           ============================================================ */
+        #collections { padding-top: var(--gap-xl); }
+        .collections-layout {
+            display: grid;
+            grid-template-columns: 270px 1fr;
+            gap: var(--gap-lg);
+            align-items: flex-start;
+        }
+
+        .cat-sidebar {
+            position: sticky;
+            top: 110px;
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            background: var(--bg-panel);
+            overflow: hidden;
+        }
+        .cat-sidebar-head {
+            padding: 1.4rem 1.5rem;
+            border-bottom: 1px solid var(--border-soft);
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            color: var(--gold-bright);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .cat-sidebar ul { padding: 0.6rem 0; }
+        .cat-sidebar li a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+            padding: 0.85rem 1.5rem;
+            font-size: 0.86rem;
+            color: var(--ink-soft);
+            border-left: 2px solid transparent;
+            transition: var(--transition);
+        }
+        .cat-sidebar li a .cat-name { display: flex; align-items: center; gap: 0.8rem; }
+        .cat-sidebar li a i.cat-ic {
+            color: var(--gold-dim);
+            width: 16px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .cat-sidebar li a .count {
+            font-size: 0.68rem;
+            color: var(--ink-faint);
+            border: 1px solid var(--border-soft);
+            border-radius: 10px;
+            padding: 0.1rem 0.5rem;
+        }
+        .cat-sidebar li a:hover, .cat-sidebar li a.active {
+            background: rgba(201, 169, 97, 0.07);
+            border-left-color: var(--gold);
+            color: var(--gold-bright);
+        }
+        .cat-sidebar li a:hover i.cat-ic, .cat-sidebar li a.active i.cat-ic { color: var(--gold); }
+        .cat-sidebar-cta {
+            padding: 1.4rem 1.5rem;
+            border-top: 1px solid var(--border-soft);
+        }
+        .cat-sidebar-cta p {
+            font-size: 0.78rem;
+            color: var(--ink-mute);
+            margin-bottom: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.4rem;
+        }
+
+        /* ============================================================
+           COLLECTION CARD — CADRE VIDE POUR IMAGES
+           ============================================================ */
+        .collection-card {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            border: 1px solid var(--border-soft);
+            background: var(--bg-panel-2);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.5s ease,
+                        border-color 0.5s ease;
+            transform-style: preserve-3d;
+            will-change: transform;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .collection-card:hover {
+            transform: perspective(1000px) rotateX(3deg) rotateY(-3deg) translateY(-6px) scale(1.015);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            border-color: var(--gold-dim);
+        }
+        .collection-card.wide {
+            grid-column: span 2;
+            aspect-ratio: 16/10;
+        }
+
+        /* Cadre d'image vide — élégant */
+        .collection-card .image-frame {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-panel-2);
+            position: relative;
+            transition: background 0.5s ease;
+        }
+        .collection-card:hover .image-frame {
+            background: var(--bg-panel-raised);
+        }
+        .collection-card .image-frame .icon {
+            font-size: 4rem;
+            opacity: 0.15;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .collection-card:hover .image-frame .icon {
+            opacity: 0.25;
+            transform: scale(1.05);
+        }
+        .collection-card .image-frame .placeholder-text {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            background: rgba(10, 9, 8, 0.6);
+            padding: 0.3rem 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-soft);
+            white-space: nowrap;
+        }
+        .collection-card.wide .image-frame .icon { font-size: 5rem; }
+
+        /* Image réelle (quand elle sera ajoutée) */
+        .collection-card .image-frame img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s var(--ease), filter 0.7s var(--ease);
+            filter: saturate(0.85) brightness(0.7);
+            display: none; /* caché par défaut, affiché quand l'image est chargée */
+        }
+        .collection-card .image-frame img.loaded {
+            display: block;
+        }
+        .collection-card .image-frame img.loaded ~ .icon,
+        .collection-card .image-frame img.loaded ~ .placeholder-text {
+            display: none;
+        }
+        .collection-card:hover .image-frame img.loaded {
+            transform: scale(1.08);
+            filter: saturate(1) brightness(0.55);
+        }
+
+        .collection-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(10, 9, 8, 0.92) 0%, rgba(10, 9, 8, 0.15) 55%, transparent 75%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .collection-card-body {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 1.4rem 1.5rem;
+            z-index: 2;
+        }
+        .collection-card-tag {
+            font-size: 0.66rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .collection-card-body h3 {
+            font-size: 1.35rem;
+            color: var(--ink);
+        }
+        .collection-card-body .go {
+            margin-top: 0.7rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.74rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-mute);
+            opacity: 0;
+            transform: translateY(6px);
+            transition: var(--transition);
+        }
+        .collection-card:hover .collection-card-body .go {
+            opacity: 1;
+            transform: translateY(0);
+            color: var(--gold-bright);
+        }
+
+        /* ============================================================
+           SIGNATURE
+           ============================================================ */
+        #signature {
+            background: var(--bg-panel);
+            border-top: 1px solid var(--border-soft);
+            border-bottom: 1px solid var(--border-soft);
+        }
+        .signature-layout {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: var(--gap-lg);
+            align-items: center;
+        }
+        .signature-visual { position: relative; }
+        .signature-frame {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            background: var(--bg-panel-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .signature-frame .icon { font-size: 4rem; opacity: 0.15; }
+        .signature-frame .placeholder-text {
+            position: absolute;
+            bottom: 1rem;
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            background: rgba(10, 9, 8, 0.6);
+            padding: 0.3rem 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-soft);
+        }
+        .signature-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        .signature-frame img.loaded { display: block; }
+        .signature-frame img.loaded ~ .icon,
+        .signature-frame img.loaded ~ .placeholder-text { display: none; }
+
+        .signature-badge {
+            position: absolute;
+            bottom: -1.6rem;
+            left: -1.6rem;
+            background: var(--bg-void);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-md);
+            padding: 1.4rem 1.7rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: var(--shadow-soft);
+            z-index: 3;
+        }
+        .signature-badge .num {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            color: var(--gold-bright);
+            line-height: 1;
+        }
+        .signature-badge .txt {
+            font-size: 0.74rem;
+            color: var(--ink-mute);
+            line-height: 1.5;
+            max-width: 12ch;
+        }
+        .signature-motif {
+            position: absolute;
+            top: -1.4rem;
+            right: -1.4rem;
+            width: 96px;
+            height: 96px;
+            opacity: 0.5;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23c9a961' stroke-width='1'%3E%3Crect x='10' y='10' width='80' height='80' transform='rotate(45 50 50)'/%3E%3Crect x='25' y='25' width='50' height='50' transform='rotate(45 50 50)'/%3E%3Ccircle cx='50' cy='50' r='34'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .signature-content .lede {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--ink-soft);
+            line-height: 1.55;
+            margin: 1.4rem 0 1.8rem;
+        }
+        .signature-content p {
+            color: var(--ink-mute);
+            font-size: 0.98rem;
+            line-height: 1.85;
+            margin-bottom: 1.2rem;
+        }
+        .signature-list {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+        .signature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.9rem;
+            font-size: 0.86rem;
+            color: var(--ink-soft);
+        }
+        .signature-list li i { color: var(--gold); margin-top: 0.2rem; }
+
+        /* ============================================================
+           FEATURES
+           ============================================================ */
+        .features-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+        .feature-item {
+            padding: 2.2rem 1.8rem;
+            border-right: 1px solid var(--border-soft);
+            transition: var(--transition);
+        }
+        .feature-item:last-child { border-right: none; }
+        .feature-item:hover { background: rgba(201, 169, 97, 0.05); }
+        .feature-item i {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 1.1rem;
+            display: block;
+        }
+        .feature-item h4 {
+            font-size: 1rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.01em;
+        }
+        .feature-item p {
+            font-size: 0.82rem;
+            color: var(--ink-mute);
+            line-height: 1.65;
+        }
+
+        /* ============================================================
+           GALLERY
+           ============================================================ */
+        .gallery-filters {
+            display: flex;
+            gap: 0.7rem;
+            flex-wrap: wrap;
+            margin-bottom: var(--gap-md);
+        }
+        .gfilter {
+            padding: 0.55rem 1.3rem;
+            border: 1px solid var(--border-soft);
+            border-radius: 30px;
+            font-size: 0.76rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--ink-mute);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .gfilter:hover { border-color: var(--gold); color: var(--gold-bright); }
+        .gfilter.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #14110b;
+            font-weight: 500;
+        }
+
+        .masonry {
+            columns: 4 220px;
+            column-gap: 1rem;
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-soft);
+            background: var(--bg-panel-2);
+            cursor: zoom-in;
+            transition: transform 0.3s var(--ease);
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+        }
+        .masonry-item:hover { transform: scale(1.01); z-index: 2; border-color: var(--gold-dim); }
+        .masonry-item .icon { font-size: 3rem; opacity: 0.15; }
+        .masonry-item .placeholder-text {
+            position: absolute;
+            bottom: 0.8rem;
+            font-size: 0.55rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            background: rgba(10, 9, 8, 0.6);
+            padding: 0.2rem 0.8rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-soft);
+        }
+        .masonry-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+            transition: transform 0.7s var(--ease);
+        }
+        .masonry-item img.loaded { display: block; }
+        .masonry-item img.loaded ~ .icon,
+        .masonry-item img.loaded ~ .placeholder-text { display: none; }
+        .masonry-item:hover img.loaded { transform: scale(1.06); }
+        .masonry-item .zoom-ic {
+            position: absolute;
+            top: 0.9rem;
+            right: 0.9rem;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(10, 9, 8, 0.6);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-bright);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 3;
+        }
+        .masonry-item:hover .zoom-ic { opacity: 1; }
+
+        /* ============================================================
+           PROCESS
+           ============================================================ */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+        }
+        .process-grid::before {
+            content: '';
+            position: absolute;
+            top: 34px;
+            left: 8%;
+            right: 8%;
+            height: 1px;
+            background: repeating-linear-gradient(90deg, var(--border-strong) 0 8px, transparent 8px 16px);
+        }
+        .process-step {
+            position: relative;
+            padding: 0 1.4rem;
+            text-align: center;
+        }
+        .process-step .pnum {
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 1.6rem;
+            border-radius: 50%;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-strong);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            color: var(--gold-bright);
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .process-step h4 {
+            font-family: var(--font-body);
+            font-size: 0.98rem;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 0.6rem;
+        }
+        .process-step p {
+            font-size: 0.82rem;
+            color: var(--ink-mute);
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+           TESTIMONIALS
+           ============================================================ */
+        #testimonials {
+            background: var(--bg-panel);
+            border-top: 1px solid var(--border-soft);
+            border-bottom: 1px solid var(--border-soft);
+        }
+        .testi-track-wrap { overflow: hidden; }
+        .testi-track {
+            display: flex;
+            gap: 1.5rem;
+            transition: transform 0.6s var(--ease);
+        }
+        .testi-card {
+            flex: 0 0 calc(33.333% - 1rem);
+            background: var(--bg-panel-2);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+        .testi-card:hover { border-color: var(--gold-dim); }
+        .testi-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 1.2rem; letter-spacing: 0.2em; }
+        .testi-card p {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.12rem;
+            color: var(--ink-soft);
+            line-height: 1.7;
+            margin-bottom: 1.6rem;
+        }
+        .testi-author {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+        }
+        .testi-author img {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--border-strong);
+        }
+        .testi-author b { display: block; font-size: 0.88rem; color: var(--ink); font-weight: 500; }
+        .testi-author span { font-size: 0.74rem; color: var(--ink-mute); }
+        .testi-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+        .testi-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-strong);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        .testi-dot.active { background: var(--gold); width: 22px; border-radius: 6px; }
+
+        /* ============================================================
+           CTA BANNER
+           ============================================================ */
+        #cta-banner {
+            position: relative;
+            padding: var(--gap-xl) 0;
+            text-align: center;
+            overflow: hidden;
+        }
+        .cta-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .cta-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.32) saturate(0.8);
+        }
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .cta-content h2 {
+            font-size: var(--fs-h1);
+            color: var(--ink);
+            margin-bottom: 1.4rem;
+        }
+        .cta-content p {
+            color: var(--ink-soft);
+            font-size: 1.05rem;
+            margin-bottom: 2.4rem;
+        }
+        .cta-actions {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ============================================================
+           CONTACT
+           ============================================================ */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--gap-lg);
+        }
+        .contact-info-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-lg);
+            padding: 2.6rem;
+        }
+        .contact-row {
+            display: flex;
+            gap: 1.2rem;
+            padding: 1.3rem 0;
+            border-bottom: 1px solid var(--border-soft);
+        }
+        .contact-row:last-of-type { border-bottom: none; }
+        .contact-row .ic {
+            width: 46px;
+            height: 46px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 1px solid var(--border-strong);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+        }
+        .contact-row h4 {
+            font-family: var(--font-body);
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 0.35rem;
+        }
+        .contact-row p { font-size: 0.85rem; color: var(--ink-mute); line-height: 1.6; }
+        .contact-row a { color: var(--ink-mute); transition: var(--transition); }
+        .contact-row a:hover { color: var(--gold-bright); }
+
+        .contact-socials {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.8rem;
+        }
+        .contact-socials a {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .contact-socials a:hover { border-color: var(--gold); color: var(--gold-bright); transform: translateY(-3px); }
+        .map-embed {
+            margin-top: 1.8rem;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-soft);
+            filter: grayscale(0.4) invert(0.9) contrast(0.85);
+            height: 200px;
+        }
+        .map-embed iframe { width: 100%; height: 100%; border: 0; }
+
+        .contact-form-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-lg);
+            padding: 2.6rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+        .field { margin-bottom: 1.3rem; }
+        .field label {
+            display: block;
+            font-size: 0.74rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-mute);
+            margin-bottom: 0.6rem;
+        }
+        .field input, .field textarea, .field select {
+            width: 100%;
+            background: var(--bg-panel-2);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-sm);
+            padding: 0.85rem 1rem;
+            color: var(--ink);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .field input:focus, .field textarea:focus, .field select:focus {
+            border-color: var(--gold);
+            outline: none;
+            background: var(--bg-panel-raised);
+        }
+        .field textarea { resize: vertical; min-height: 120px; }
+        .form-note {
+            font-size: 0.76rem;
+            color: var(--ink-faint);
+            margin-top: 1rem;
+        }
+        .form-success {
+            display: none;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 1.2rem;
+            border: 1px solid var(--success);
+            border-radius: var(--radius-sm);
+            color: var(--success);
+            font-size: 0.85rem;
+            margin-top: 1.2rem;
+        }
+        .form-success.show { display: flex; }
+
+        /* ============================================================
+           NEWSLETTER
+           ============================================================ */
+        #newsletter {
+            border-top: 1px solid var(--border-soft);
+            padding: var(--gap-lg) 0;
+        }
+        .newsletter-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--gap-md);
+            flex-wrap: wrap;
+        }
+        .newsletter-inner h3 { font-size: 1.5rem; color: var(--ink); max-width: 24ch; }
+        .newsletter-inner p { color: var(--ink-mute); font-size: 0.88rem; margin-top: 0.5rem; }
+        .newsletter-form {
+            display: flex;
+            gap: 0.8rem;
+            min-width: 340px;
+        }
+        .newsletter-form input {
+            flex: 1;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: 2px;
+            padding: 0.9rem 1.1rem;
+            color: var(--ink);
+            font-size: 0.88rem;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        footer {
+            background: var(--bg-void);
+            border-top: 1px solid var(--border-soft);
+            padding-top: var(--gap-xl);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+            gap: var(--gap-lg);
+            padding-bottom: var(--gap-lg);
+        }
+        .footer-brand p {
+            color: var(--ink-mute);
+            font-size: 0.88rem;
+            line-height: 1.8;
+            margin: 1.4rem 0 1.6rem;
+            max-width: 32ch;
+        }
+        .footer-col h5 {
+            font-size: 0.76rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            margin-bottom: 1.4rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+        .footer-col ul li { margin-bottom: 0.85rem; }
+        .footer-col ul li a {
+            font-size: 0.86rem;
+            color: var(--ink-mute);
+            transition: var(--transition);
+        }
+        .footer-col ul li a:hover { color: var(--gold-bright); padding-left: 4px; }
+        .footer-hours li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.84rem;
+            color: var(--ink-mute);
+            margin-bottom: 0.7rem;
+        }
+        .footer-hours li span:last-child { color: var(--ink-soft); }
+        .footer-bottom {
+            border-top: 1px solid var(--border-soft);
+            padding: 1.6rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .footer-bottom p { font-size: 0.78rem; color: var(--ink-faint); }
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.6rem;
+        }
+        .footer-bottom-links a {
+            font-size: 0.78rem;
+            color: var(--ink-faint);
+            transition: color var(--transition);
+        }
+        .footer-bottom-links a:hover { color: var(--gold-bright); }
+
+        .contact-socials-footer {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.8rem;
+        }
+        .contact-socials-footer a {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--ink-mute);
+        }
+        .contact-socials-footer a:hover { border-color: var(--gold); color: var(--gold-bright); transform: translateY(-3px); }
+
+        /* ============================================================
+           FLOATING ACTIONS
+           ============================================================ */
+        .floating-actions {
+            position: fixed;
+            right: 1.6rem;
+            bottom: 1.6rem;
+            z-index: 500;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .fab {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+        .fab-whatsapp {
+            background: #25d366;
+            color: #0c2b17;
+            position: relative;
+        }
+        .fab-whatsapp::before {
+            content: "";
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: rgba(37, 211, 102, 0.35);
+            filter: blur(6px);
+            animation: callPulse 2.2s ease-out infinite;
+            z-index: -1;
+        }
+        @keyframes callPulse {
+            0% { transform: scale(0.85); opacity: 0.7; }
+            70% { transform: scale(1.6); opacity: 0; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+        .fab-whatsapp:hover { transform: scale(1.08); }
+        .fab-top {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-strong);
+            color: var(--gold);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+        .fab-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+        .fab-top:hover { background: var(--gold); color: #14110b; border-color: var(--gold); }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1100px) {
+            .signature-layout { grid-template-columns: 1fr; }
+            .signature-visual { max-width: 480px; margin: 0 auto; }
+            .collections-layout { grid-template-columns: 1fr; }
+            .cat-sidebar { position: static; }
+            .contact-layout { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 900px) {
+            .main-nav, .nav-actions .btn-ghost { display: none; }
+            .burger { display: flex !important; }
+            .collections-grid { grid-template-columns: repeat(2, 1fr); }
+            .collection-card.wide { grid-column: span 2; }
+            .features-strip { grid-template-columns: repeat(2, 1fr); }
+            .feature-item { border-bottom: 1px solid var(--border-soft); }
+            .process-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 0; }
+            .process-grid::before { display: none; }
+            .testi-card { flex: 0 0 100%; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .masonry { columns: 2 160px; }
+            .hero-stats { gap: 2rem; }
+        }
+
+        @media (max-width: 600px) {
+            .collections-grid { grid-template-columns: 1fr; }
+            .collection-card.wide { grid-column: span 1; }
+            .features-strip { grid-template-columns: 1fr; }
+            .process-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.4rem; }
+            .newsletter-inner { flex-direction: column; align-items: flex-start; }
+            .newsletter-form { width: 100%; min-width: 0; }
+            .hero-side-badge { display: none; }
+            h1.hero-title { max-width: 100%; }
+            .masonry { columns: 1 1fr; }
+            .contact-info-card, .contact-form-card { padding: 1.5rem; }
+        }
+
+        @media (max-width: 400px) {
+            .hero-stats { flex-wrap: wrap; gap: 1rem; }
+            .hero-stat { flex: 1 1 40%; }
+            .floating-actions { right: 1rem; bottom: 1rem; }
+            .fab { width: 48px; height: 48px; font-size: 1.1rem; }
+        }
+
+        @media (min-width: 1600px) {
+            html { font-size: 19px; }
+            .container { max-width: 1680px; }
+        }
+        @media (min-width: 2200px) {
+            html { font-size: 23px; }
+            .container { max-width: 2100px; }
+        }
+
+        /* ============================================================
+           UTILITY — Pour les cadres vides
+           ============================================================ */
+        .empty-frame {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-panel-2);
+            color: var(--ink-faint);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            min-height: 100%;
+        }
+        .empty-frame .icon {
+            font-size: 3rem;
+            opacity: 0.12;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .empty-frame .label {
+            position: absolute;
+            bottom: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 9, 8, 0.7);
+            padding: 0.2rem 0.8rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.55rem;
+            color: var(--ink-mute);
+            white-space: nowrap;
+            border: 1px solid var(--border-soft);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mist-bg" aria-hidden="true"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div id="preloader">
+        <div class="preloader-mark">DAR CHAKAF</div>
+    </div>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header id="site-header">
+        <div class="container nav-wrap">
+            <a href="/" class="logo">
+                <span class="logo-mark">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#c9a961" stroke-width="1.2">
+                        <path d="M4 20 V10 L12 4 L20 10 V20" />
+                        <path d="M9 20 V13 H15 V20" />
+                    </svg>
+                </span>
+                <span class="logo-text"><strong>Dar Chakaf</strong><span>Ameublement &amp; Décoration</span></span>
+            </a>
+
+            <nav class="main-nav">
+                <a href="/" class="active">Accueil</a>
+                <div class="nav-dropdown">
+                    <a href="#">Produits <i class="fa-solid fa-chevron-down" style="font-size:0.6rem;"></i></a>
+                    <div class="nav-dropdown-panel" id="navDropdownPanel">
+                        <!-- Rempli dynamiquement -->
+                    </div>
+                </div>
+                <a href="/galerie.html">Galerie</a>
+                <a href="/a-propos.html">À propos</a>
+                <a href="/contact.html">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="/admin/login.html" class="nav-icon-btn" title="Espace administration"><i class="fa-solid fa-user"></i></a>
+                <a href="/contact.html" class="btn btn-ghost btn-sm">Demander un devis</a>
+                <button class="burger" id="burgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <nav class="mobile-drawer" id="mobileDrawer">
+        <a href="/">Accueil</a>
+        <div id="mobileDrawerLinks">
+            <!-- Rempli dynamiquement -->
+        </div>
+        <a href="/galerie.html">Galerie</a>
+        <a href="/a-propos.html">À propos</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/admin/login.html">Espace Admin</a>
+    </nav>
+
+    <!-- ============================================================
+    HERO
+    ============================================================ -->
+    <section id="hero">
+        <div class="hero-bg" id="heroBg">
+            <div class="empty-frame" style="height:100vh;">
+                <span class="icon">🛋️</span>
+                <span>Image Hero</span>
+                <span class="label">Placeholder — Ajoutez votre image</span>
+            </div>
+        </div>
+
+        <div class="container hero-inner">
+            <div class="hero-eyebrow"><span class="line"></span> Fabricant &amp; Distributeur — Depuis 2009</div>
+            <h1 class="hero-title">L'art de vivre <em>marocain</em>,<br>façonnée pour votre demeure</h1>
+            <p class="hero-sub" id="heroDescription">Dar Chakaf conçoit et fabrique des salons, tables et pièces décoratives sur mesure, où le savoir-faire artisanal rencontre les lignes contemporaines.</p>
+
+            <div class="hero-actions">
+                <a href="#collections" class="btn btn-gold">Découvrir la collection <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#signature" class="hero-play">
+                    <span class="circle"><i class="fa-solid fa-play"></i></span>
+                    Notre atelier
+                </a>
+            </div>
+
+            <div class="hero-stats" id="heroStats">
+                <div class="hero-stat"><b id="statYears">15+</b><span>Années d'expérience</span></div>
+                <div class="hero-stat"><b id="statProjects">2 400+</b><span>Projets réalisés</span></div>
+                <div class="hero-stat"><b id="statCollections">7</b><span>Collections</span></div>
+                <div class="hero-stat"><b>100%</b><span>Fabrication sur mesure</span></div>
+            </div>
+        </div>
+
+        <div class="hero-side-badge">Fabrication artisanale marocaine</div>
+        <a href="#collections" class="hero-scroll-cue"><span>Défiler</span><span class="stick"></span></a>
+    </section>
+
+    <!-- ============================================================
+    MARQUEE
+    ============================================================ -->
+    <div class="marquee-strip">
+        <div class="marquee-track" id="marqueeTrack">
+            <span><i class="fa-solid fa-star"></i> Salons Modernes</span>
+            <span><i class="fa-solid fa-star"></i> Salons Traditionnels</span>
+            <span><i class="fa-solid fa-star"></i> Tables Sur Mesure</span>
+            <span><i class="fa-solid fa-star"></i> Décorations</span>
+            <span><i class="fa-solid fa-star"></i> Meubles TV</span>
+            <span><i class="fa-solid fa-star"></i> Couloirs &amp; Entrées</span>
+            <span><i class="fa-solid fa-star"></i> Tissus &amp; Rideaux</span>
+            <span><i class="fa-solid fa-star"></i> Salons Modernes</span>
+            <span><i class="fa-solid fa-star"></i> Salons Traditionnels</span>
+            <span><i class="fa-solid fa-star"></i> Tables Sur Mesure</span>
+            <span><i class="fa-solid fa-star"></i> Décorations</span>
+            <span><i class="fa-solid fa-star"></i> Meubles TV</span>
+            <span><i class="fa-solid fa-star"></i> Couloirs &amp; Entrées</span>
+            <span><i class="fa-solid fa-star"></i> Tissus &amp; Rideaux</span>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    COLLECTIONS — FIXES AVEC CADRES VIDES
+    ============================================================ -->
+    <section id="collections" class="section">
+        <div class="container">
+            <div class="section-head reveal">
+                <div class="eyebrow">Nos collections</div>
+                <h2 style="font-size: var(--fs-h1);">Sept univers, un seul savoir-faire</h2>
+            </div>
+
+            <div class="collections-layout">
+                <!-- Sidebar — FIXE -->
+                <aside class="cat-sidebar reveal">
+                    <div class="cat-sidebar-head"><i class="fa-solid fa-layer-group"></i> Catégories</div>
+                    <ul id="sidebarCategories">
+                        <li><a href="/produits/salons-modernes.html" class="active"><span class="cat-name"><i class="fa-solid fa-couch cat-ic"></i> Salons modernes</span><span class="count" id="count-modernes">0</span></a></li>
+                        <li><a href="/produits/salons-traditionnels.html"><span class="cat-name"><i class="fa-solid fa-mosque cat-ic"></i> Salons traditionnels</span><span class="count" id="count-traditionnels">0</span></a></li>
+                        <li><a href="/produits/tables.html"><span class="cat-name"><i class="fa-solid fa-table cat-ic"></i> Tables</span><span class="count" id="count-tables">0</span></a></li>
+                        <li><a href="/produits/decorations.html"><span class="cat-name"><i class="fa-solid fa-vector-square cat-ic"></i> Décorations</span><span class="count" id="count-decorations">0</span></a></li>
+                        <li><a href="/produits/meubles-tv.html"><span class="cat-name"><i class="fa-solid fa-tv cat-ic"></i> Meubles TV</span><span class="count" id="count-meubles-tv">0</span></a></li>
+                        <li><a href="/produits/couloirs.html"><span class="cat-name"><i class="fa-solid fa-door-open cat-ic"></i> Couloirs &amp; Entrées</span><span class="count" id="count-couloirs">0</span></a></li>
+                        <li><a href="/produits/tissus.html"><span class="cat-name"><i class="fa-solid fa-scroll cat-ic"></i> Tissus &amp; Rideaux</span><span class="count" id="count-tissus">0</span></a></li>
+                    </ul>
+                    <div class="cat-sidebar-cta">
+                        <p>Besoin d'aide pour choisir la collection idéale pour votre intérieur ?</p>
+                        <a href="/contact.html" class="btn btn-gold btn-sm" style="width:100%; justify-content:center;">Parler à un conseiller</a>
+                    </div>
+                </aside>
+
+                <!-- Grid — CADRES VIDES -->
+                <div class="collections-grid" id="collectionsGrid">
+                    <!-- Salons modernes -->
+                    <a href="/produits/salons-modernes.html" class="collection-card wide reveal">
+                        <div class="image-frame">
+                            <span class="icon">🛋️</span>
+                            <span class="placeholder-text">Image à venir</span>
+                            <!-- Quand vous ajouterez l'image :
+                            <img src="/assets/images/collections/salons-modernes.jpg" alt="Salons modernes" class="loaded" onload="this.classList.add('loaded')">
+                            -->
+                        </div>
+                        <div class="collection-card-body">
+                            <span class="collection-card-tag" id="tag-modernes">0 modèles</span>
+                            <h3>Salons modernes</h3>
+                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+
+                    <!-- Salons traditionnels -->
+                    <a href="/produits/salons-traditionnels.html" class="collection-card reveal reveal-delay-1">
+                        <div class="image-frame">
+                            <span class="icon">🪑</span>
+                            <span class="placeholder-text">Image à venir</span>
+                        </div>
+                        <div class="collection-card-body">
+                            <span class="collection-card-tag" id="tag-traditionnels">0 modèles</span>
+                            <h3>Salons traditionnels</h3>
+                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+
+                    <!-- Tables -->
+                    <a href="/produits/tables.html" class="collection-card reveal reveal-delay-2">
+                        <div class="image-frame">
+                            <span class="icon">🍽️</span>
+                            <span class="placeholder-text">Image à venir</span>
+                        </div>
+                        <div class="collection-card-body">
+                            <span class="collection-card-tag" id="tag-tables">0 modèles</span>
+                            <h3>Tables</h3>
+                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+
+                    <!-- Décorations -->
+                    <a href="/produits/decorations.html" class="collection-card reveal">
+                        <div class="image-frame">
+                            <span class="icon">🖼️</span>
+                            <span class="placeholder-text">Image à venir</span>
+                        </div>
+                        <div class="collection-card-body">
+                            <span class="collection-card-tag" id="tag-decorations">0 modèles</span>
+                            <h3>Décorations</h3>
+                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+
+                    <!-- Meubles TV -->
+                    <a href="/produits/meubles-tv.html" class="collection-card reveal reveal-delay-1">
+                        <div class="image-frame">
+                            <span class="icon">📺</span>
+                            <span class="placeholder-text">Image à venir</span>
+                        </div>
+                        <div class="collection-card-body">
+                            <span class="collection-card-tag" id="tag-meubles-tv">0 modèles</span>
+                            <h3>Meubles TV</h3>
+                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+
+                    <!-- Couloirs & Entrées (wide) -->
+                    <a href="/produits/couloirs.html" class="collection-card wide reveal reveal-delay-2">
+                        <div class="image-frame">
+                            <span class="icon">🚪</span>
+                            <span class="placeholder-text">Image à venir</span>
+                        </div>
+                        <div class="collection-card-body">
+                            <span class="collection-card-tag" id="tag-couloirs">0 modèles</span>
+                            <h3>Couloirs &amp; Entrées</h3>
+                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SIGNATURE
+    ============================================================ -->
+    <section id="signature" class="section">
+        <div class="container">
+            <div class="signature-layout">
+                <div class="signature-visual reveal">
+                    <div class="signature-frame">
+                        <span class="icon">🔨</span>
+                        <span class="placeholder-text">Image à venir</span>
+                    </div>
+                    <div class="signature-motif"></div>
+                    <div class="signature-badge">
+                        <span class="num" id="signatureYears">15</span>
+                        <span class="txt">Ans de savoir-faire artisanal</span>
+                    </div>
+                </div>
+
+                <div class="signature-content reveal reveal-delay-1">
+                    <div class="eyebrow">Notre histoire</div>
+                    <h2 style="font-size: var(--fs-h1);">Chaque pièce raconte<br>un savoir-faire transmis</h2>
+                    <p class="lede">« Chakaf » désigne la structure, l'ossature d'un meuble bien construit — c'est le nom que nous avons choisi pour notre maison.</p>
+                    <p>Depuis notre atelier, nous fabriquons des meubles qui allient la précision des lignes contemporaines à la richesse du geste artisanal marocain.</p>
+                    <ul class="signature-list">
+                        <li><i class="fa-solid fa-check"></i> Bois massif sélectionné</li>
+                        <li><i class="fa-solid fa-check"></i> Finitions faites main</li>
+                        <li><i class="fa-solid fa-check"></i> Mesures sur devis</li>
+                        <li><i class="fa-solid fa-check"></i> Livraison &amp; installation</li>
+                    </ul>
+                    <a href="/a-propos.html" class="btn btn-ghost" style="margin-top:2.2rem;">En savoir plus sur l'atelier</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FEATURES
+    ============================================================ -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="features-strip reveal">
+                <div class="feature-item">
+                    <i class="fa-solid fa-hammer"></i>
+                    <h4>Fabrication artisanale</h4>
+                    <p>Chaque meuble est façonné à la main dans notre atelier par des maîtres artisans.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-ruler-combined"></i>
+                    <h4>Sur mesure</h4>
+                    <p>Dimensions, tissus et finitions adaptés à votre intérieur et à vos envies.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <h4>Livraison &amp; installation</h4>
+                    <p>Livraison soignée et montage assuré par notre équipe, partout au Maroc.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h4>Garantie qualité</h4>
+                    <p>Structures et sellerie garanties, pour un mobilier fait pour durer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    GALLERY — CADRES VIDES
+    ============================================================ -->
+    <section id="galerie" class="section">
+        <div class="container">
+            <div class="section-head center reveal">
+                <div class="eyebrow centered">Galerie</div>
+                <h2 style="font-size: var(--fs-h1);">Aperçu de nos réalisations</h2>
+                <p>Une sélection de projets livrés chez nos clients — salons, espaces de réception et intérieurs complets.</p>
+            </div>
+
+            <div class="gallery-filters reveal" style="justify-content:center;" id="galleryFilters">
+                <button class="gfilter active" data-filter="all">Tout</button>
+                <button class="gfilter" data-filter="modernes">Salons modernes</button>
+                <button class="gfilter" data-filter="traditionnels">Salons traditionnels</button>
+                <button class="gfilter" data-filter="tables">Tables</button>
+                <button class="gfilter" data-filter="decorations">Décorations</button>
+            </div>
+
+            <div class="masonry reveal" id="masonryGrid">
+                <!-- 8 placeholders -->
+                <div class="masonry-item" data-cat="modernes">
+                    <span class="icon">🛋️</span>
+                    <span class="placeholder-text">Photo 1</span>
+                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="masonry-item" data-cat="traditionnels">
+                    <span class="icon">🪑</span>
+                    <span class="placeholder-text">Photo 2</span>
+                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="masonry-item" data-cat="tables">
+                    <span class="icon">🍽️</span>
+                    <span class="placeholder-text">Photo 3</span>
+                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="masonry-item" data-cat="decorations">
+                    <span class="icon">🖼️</span>
+                    <span class="placeholder-text">Photo 4</span>
+                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="masonry-item" data-cat="modernes">
+                    <span class="icon">🛋️</span>
+                    <span class="placeholder-text">Photo 5</span>
+                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="masonry-item" data-cat="traditionnels">
+                    <span class="icon">🪑</span>
+                    <span class="placeholder-text">Photo 6</span>
+                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="masonry-item" data-cat="decorations">
+                    <span class="icon">🖼️</span>
+                    <span class="placeholder-text">Photo 7</span>
+                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="masonry-item" data-cat="modernes">
+                    <span class="icon">🛋️</span>
+                    <span class="placeholder-text">Photo 8</span>
+                    <span class="zoom-ic"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+            </div>
+
+            <div style="text-align:center; margin-top: var(--gap-md);">
+                <a href="/galerie.html" class="btn btn-ghost">Voir toute la galerie <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PROCESS
+    ============================================================ -->
+    <section class="section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-head center reveal">
+                <div class="eyebrow centered">Comment ça marche</div>
+                <h2 style="font-size: var(--fs-h1);">De l'idée à votre salon</h2>
+            </div>
+
+            <div class="process-grid reveal">
+                <div class="process-step"><div class="pnum">01</div><h4>Consultation</h4><p>Échange avec notre conseiller pour définir style, budget et dimensions.</p></div>
+                <div class="process-step"><div class="pnum">02</div><h4>Conception</h4><p>Choix des bois, tissus et finitions, avec visuels avant fabrication.</p></div>
+                <div class="process-step"><div class="pnum">03</div><h4>Fabrication</h4><p>Réalisation en atelier par nos artisans, sous contrôle qualité.</p></div>
+                <div class="process-step"><div class="pnum">04</div><h4>Livraison</h4><p>Livraison et installation soignée directement chez vous.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    TESTIMONIALS
+    ============================================================ -->
+    <section id="testimonials" class="section">
+        <div class="container">
+            <div class="section-head center reveal">
+                <div class="eyebrow centered">Témoignages</div>
+                <h2 style="font-size: var(--fs-h1);">La confiance de nos clients</h2>
+            </div>
+
+            <div class="testi-track-wrap">
+                <div class="testi-track" id="testiTrack">
+                    <div class="testi-card">
+                        <div class="testi-stars">★★★★★</div>
+                        <p>Un travail d'orfèvre. Le salon traditionnel livré dépasse largement ce que nous avions imaginé.</p>
+                        <div class="testi-author">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&auto=format&fit=crop" alt="Client">
+                            <div><b>Nawal B.</b><span>Casablanca</span></div>
+                        </div>
+                    </div>
+                    <div class="testi-card">
+                        <div class="testi-stars">★★★★★</div>
+                        <p>Équipe très professionnelle du premier rendez-vous jusqu'à l'installation. Délais respectés.</p>
+                        <div class="testi-author">
+                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=150&auto=format&fit=crop" alt="Client">
+                            <div><b>Youssef A.</b><span>Rabat</span></div>
+                        </div>
+                    </div>
+                    <div class="testi-card">
+                        <div class="testi-stars">★★★★★</div>
+                        <p>Le sur-mesure a fait toute la différence : notre table s'intègre parfaitement dans l'espace.</p>
+                        <div class="testi-author">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=150&auto=format&fit=crop" alt="Client">
+                            <div><b>Salma K.</b><span>Marrakech</span></div>
+                        </div>
+                    </div>
+                    <div class="testi-card">
+                        <div class="testi-stars">★★★★★</div>
+                        <p>Rapport qualité-prix excellent pour du mobilier fabriqué main. Je recommande vivement.</p>
+                        <div class="testi-author">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" alt="Client">
+                            <div><b>Hicham T.</b><span>Tanger</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-controls" id="testiDots"></div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CTA BANNER
+    ============================================================ -->
+    <section id="cta-banner">
+        <div class="cta-bg">
+            <div class="empty-frame" style="height:100%;">
+                <span class="icon">🏠</span>
+                <span>Image CTA</span>
+                <span class="label">Placeholder</span>
+            </div>
+        </div>
+        <div class="container cta-content">
+            <div class="eyebrow centered">Prêt à commencer</div>
+            <h2>Donnons vie à votre intérieur idéal</h2>
+            <p>Un conseiller vous accompagne gratuitement pour transformer votre espace, du croquis à la livraison.</p>
+            <div class="cta-actions">
+                <a href="/contact.html" class="btn btn-gold">Demander un devis gratuit</a>
+                <a href="https://wa.me/212600000000" class="btn btn-ghost"><i class="fa-brands fa-whatsapp"></i> WhatsApp direct</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CONTACT
+    ============================================================ -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-head reveal">
+                <div class="eyebrow">Contact</div>
+                <h2 style="font-size: var(--fs-h1);">Parlons de votre projet</h2>
+                <p id="contactSub">Notre showroom vous accueille du lundi au samedi. Sur rendez-vous ou en visite libre.</p>
+            </div>
+
+            <div class="contact-layout">
+                <div class="contact-info-card reveal" id="contactInfo">
+                    <div class="contact-row">
+                        <div class="ic"><i class="fa-solid fa-location-dot"></i></div>
+                        <div><h4>Showroom</h4><p>Zone Industrielle Sidi Maârouf, Casablanca, Maroc</p></div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="ic"><i class="fa-solid fa-phone"></i></div>
+                        <div><h4>Téléphone</h4><p><a href="tel:+212600000000">+212 6 00 00 00 00</a></p></div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="ic"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div><h4>WhatsApp</h4><p><a href="https://wa.me/212600000000">+212 6 00 00 00 00</a></p></div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="ic"><i class="fa-solid fa-envelope"></i></div>
+                        <div><h4>Email</h4><p><a href="mailto:contact@darchakaf.ma">contact@darchakaf.ma</a></p></div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="ic"><i class="fa-solid fa-clock"></i></div>
+                        <div><h4>Horaires</h4><p>Lun – Sam : 9h00 – 19h00</p></div>
+                    </div>
+
+                    <div class="contact-socials">
+                        <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://wa.me/212600000000" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+
+                    <div class="map-embed">
+                        <iframe src="https://www.google.com/maps?q=Casablanca&output=embed" loading="lazy" title="Localisation Dar Chakaf"></iframe>
+                    </div>
+                </div>
+
+                <div class="contact-form-card reveal reveal-delay-1">
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="field"><label for="fname">Nom complet</label><input id="fname" type="text" required placeholder="Votre nom"></div>
+                            <div class="field"><label for="fphone">Téléphone</label><input id="fphone" type="tel" required placeholder="+212 6 00 00 00 00"></div>
+                        </div>
+                        <div class="field"><label for="femail">Email</label><input id="femail" type="email" placeholder="vous@exemple.com"></div>
+                        <div class="field">
+                            <label for="fsubject">Sujet</label>
+                            <select id="fsubject">
+                                <option>Devis salon moderne</option>
+                                <option>Devis salon traditionnel</option>
+                                <option>Commande sur mesure</option>
+                                <option>Autre demande</option>
+                            </select>
+                        </div>
+                        <div class="field"><label for="fmessage">Message</label><textarea id="fmessage" required placeholder="Décrivez votre projet..."></textarea></div>
+                        <button type="submit" class="btn btn-gold" style="width:100%; justify-content:center;">Envoyer le message <i class="fa-solid fa-paper-plane"></i></button>
+                        <p class="form-note">En envoyant ce formulaire, vous acceptez d'être recontacté par notre équipe.</p>
+                        <div class="form-success" id="formSuccess"><i class="fa-solid fa-circle-check"></i> Message envoyé !</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    NEWSLETTER
+    ============================================================ -->
+    <section id="newsletter">
+        <div class="container newsletter-inner">
+            <div>
+                <h3>Restez inspiré</h3>
+                <p>Nouvelles collections et offres exclusives, directement dans votre boîte mail.</p>
+            </div>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Votre adresse email" required>
+                <button type="submit" class="btn btn-gold">S'inscrire</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <span class="logo-mark">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#c9a961" stroke-width="1.2">
+                                <path d="M4 20 V10 L12 4 L20 10 V20" />
+                                <path d="M9 20 V13 H15 V20" />
+                            </svg>
+                        </span>
+                        <span class="logo-text"><strong>Dar Chakaf</strong><span>Ameublement &amp; Décoration</span></span>
+                    </a>
+                    <p id="footerDescription">Fabricant marocain de mobilier haut de gamme, sur mesure, alliant tradition et modernité depuis 2009.</p>
+                    <div class="contact-socials-footer" id="footerSocials">
+                        <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://wa.me/212600000000" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Produits</h5>
+                    <ul id="footerProducts">
+                        <li><a href="/produits/salons-modernes.html">Salons modernes</a></li>
+                        <li><a href="/produits/salons-traditionnels.html">Salons traditionnels</a></li>
+                        <li><a href="/produits/tables.html">Tables</a></li>
+                        <li><a href="/produits/decorations.html">Décorations</a></li>
+                        <li><a href="/produits/meubles-tv.html">Meubles TV</a></li>
+                        <li><a href="/produits/couloirs.html">Couloirs &amp; Entrées</a></li>
+                        <li><a href="/produits/tissus.html">Tissus &amp; Rideaux</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Entreprise</h5>
+                    <ul>
+                        <li><a href="/a-propos.html">À propos</a></li>
+                        <li><a href="/galerie.html">Galerie</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                        <li><a href="/admin/login.html">Espace admin</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Horaires du showroom</h5>
+                    <ul class="footer-hours" id="footerHours">
+                        <li><span>Lun – Ven</span><span>9h00 – 19h00</span></li>
+                        <li><span>Samedi</span><span>10h00 – 18h00</span></li>
+                        <li><span>Dimanche</span><span>Fermé</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 Dar Chakaf. Tous droits réservés.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Mentions légales</a>
+                    <a href="#">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    LIGHTBOX
+    ============================================================ -->
+    <div id="lightbox">
+        <button class="lightbox-close" id="lightboxClose"><i class="fa-solid fa-xmark"></i></button>
+        <button class="lightbox-nav prev" id="lightboxPrev"><i class="fa-solid fa-chevron-left"></i></button>
+        <img id="lightboxImg" src="" alt="Aperçu galerie">
+        <button class="lightbox-nav next" id="lightboxNext"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <!-- ============================================================
+    FLOATING ACTIONS
+    ============================================================ -->
+    <div class="floating-actions">
+        <a href="https://wa.me/212600000000" class="fab fab-whatsapp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <button class="fab fab-top" id="backToTop" title="Retour en haut"><i class="fa-solid fa-arrow-up"></i></button>
+    </div>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            'use strict';
+
+            // ============================================================
+            // 1. PRELOADER
+            // ============================================================
+            window.addEventListener('load', function() {
+                var pre = document.getElementById('preloader');
+                setTimeout(function() { pre.classList.add('hidden'); }, 500);
+            });
+
+            // ============================================================
+            // 2. HEADER SCROLL
+            // ============================================================
+            var header = document.getElementById('site-header');
+            var backToTop = document.getElementById('backToTop');
+
+            function onScroll() {
+                var y = window.scrollY;
+                header.classList.toggle('scrolled', y > 60);
+                backToTop.classList.toggle('show', y > 700);
+            }
+            document.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ============================================================
+            // 3. PARALLAX + PROGRESS
+            // ============================================================
+            var heroBg = document.querySelector('.hero-bg');
+            var progressBar = document.getElementById('scrollProgress');
+            var ticking = false;
+
+            function onScrollCinematic() {
+                var scrollY = window.scrollY || window.pageYOffset;
+                var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                if (progressBar && docHeight > 0) {
+                    progressBar.style.width = Math.min(100, (scrollY / docHeight) * 100) + '%';
+                }
+                if (heroBg) {
+                    var heroH = heroBg.closest('#hero') ? heroBg.closest('#hero').offsetHeight : window.innerHeight;
+                    if (scrollY < heroH) {
+                        heroBg.style.transform = 'translateY(' + (scrollY * 0.35) + 'px)';
+                    }
+                }
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(onScrollCinematic);
+                    ticking = true;
+                }
+            }, { passive: true });
+            onScrollCinematic();
+
+            // ============================================================
+            // 4. MOBILE DRAWER
+            // ============================================================
+            var burger = document.getElementById('burgerBtn');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+
+            function toggleDrawer(force) {
+                var open = typeof force === 'boolean' ? force : !drawer.classList.contains('open');
+                drawer.classList.toggle('open', open);
+                overlay.classList.toggle('open', open);
+                burger.classList.toggle('open', open);
+                document.body.style.overflow = open ? 'hidden' : '';
+            }
+
+            burger.addEventListener('click', function() { toggleDrawer(); });
+            overlay.addEventListener('click', function() { toggleDrawer(false); });
+            drawer.querySelectorAll('a').forEach(function(a) {
+                a.addEventListener('click', function() { toggleDrawer(false); });
+            });
+
+            // ============================================================
+            // 5. SCROLL REVEAL
+            // ============================================================
+            var revealEls = document.querySelectorAll('.reveal');
+            var io = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            revealEls.forEach(function(el) { io.observe(el); });
+
+            // ============================================================
+            // 6. ICON MAP
+            // ============================================================
+            var iconMap = {
+                'salons-modernes': 'fa-couch',
+                'salons-traditionnels': 'fa-mosque',
+                'tables': 'fa-table',
+                'decorations': 'fa-vector-square',
+                'meubles-tv': 'fa-tv',
+                'couloirs': 'fa-door-open',
+                'tissus': 'fa-scroll'
+            };
+
+            // ============================================================
+            // 7. LOAD CATEGORIES FROM API (pour les compteurs)
+            // ============================================================
+            function loadCategories() {
+                fetch('/api/categories')
+                    .then(function(r) { return r.json(); })
+                    .then(function(res) {
+                        if (!res.success || !Array.isArray(res.data)) return;
+                        var cats = res.data;
+
+                        // Mapper les slugs vers les IDs des compteurs
+                        var countMap = {
+                            'salons-modernes': 'count-modernes',
+                            'salons-traditionnels': 'count-traditionnels',
+                            'tables': 'count-tables',
+                            'decorations': 'count-decorations',
+                            'meubles-tv': 'count-meubles-tv',
+                            'couloirs': 'count-couloirs',
+                            'tissus': 'count-tissus'
+                        };
+                        var tagMap = {
+                            'salons-modernes': 'tag-modernes',
+                            'salons-traditionnels': 'tag-traditionnels',
+                            'tables': 'tag-tables',
+                            'decorations': 'tag-decorations',
+                            'meubles-tv': 'tag-meubles-tv',
+                            'couloirs': 'tag-couloirs',
+                            'tissus': 'tag-tissus'
+                        };
+
+                        cats.forEach(function(cat) {
+                            var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                            var count = cat.product_count || 0;
+
+                            // Mettre à jour les compteurs dans la sidebar
+                            var countEl = document.getElementById(countMap[slug]);
+                            if (countEl) countEl.textContent = count;
+
+                            // Mettre à jour les tags dans les cartes
+                            var tagEl = document.getElementById(tagMap[slug]);
+                            if (tagEl) tagEl.textContent = count + ' modèles';
+                        });
+
+                        // Nav dropdown
+                        var navDropdown = document.getElementById('navDropdownPanel');
+                        if (navDropdown) {
+                            navDropdown.innerHTML = '';
+                            cats.slice(0, 7).forEach(function(cat) {
+                                var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                var icon = iconMap[slug] || 'fa-cube';
+                                var a = document.createElement('a');
+                                a.href = '/produits/' + slug + '.html';
+                                a.innerHTML = '<i class="fa-solid ' + icon + '"></i> ' + cat.nom;
+                                navDropdown.appendChild(a);
+                            });
+                            var allLink = document.createElement('a');
+                            allLink.href = '/galerie.html';
+                            allLink.innerHTML = '<i class="fa-solid fa-images"></i> Toute la collection';
+                            navDropdown.appendChild(allLink);
+                        }
+
+                        // Mobile drawer
+                        var mobileLinks = document.getElementById('mobileDrawerLinks');
+                        if (mobileLinks) {
+                            mobileLinks.innerHTML = '';
+                            cats.slice(0, 7).forEach(function(cat) {
+                                var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                var a = document.createElement('a');
+                                a.className = 'sub-link';
+                                a.href = '/produits/' + slug + '.html';
+                                a.textContent = '— ' + cat.nom;
+                                mobileLinks.appendChild(a);
+                            });
+                        }
+
+                        // Gallery filters
+                        var filtersContainer = document.getElementById('galleryFilters');
+                        if (filtersContainer) {
+                            var html = '<button class="gfilter active" data-filter="all">Tout</button>';
+                            cats.slice(0, 7).forEach(function(cat) {
+                                var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                html += '<button class="gfilter" data-filter="' + slug + '">' + cat.nom + '</button>';
+                            });
+                            filtersContainer.innerHTML = html;
+
+                            // Filter logic
+                            filtersContainer.querySelectorAll('.gfilter').forEach(function(btn) {
+                                btn.addEventListener('click', function() {
+                                    filtersContainer.querySelectorAll('.gfilter').forEach(function(b) {
+                                        b.classList.remove('active');
+                                    });
+                                    btn.classList.add('active');
+                                    var f = btn.getAttribute('data-filter');
+                                    document.querySelectorAll('.masonry-item').forEach(function(item) {
+                                        var show = (f === 'all' || item.getAttribute('data-cat') === f);
+                                        item.style.display = show ? '' : 'none';
+                                    });
+                                });
+                            });
+                        }
+
+                    })
+                    .catch(function(e) { console.warn('Erreur chargement catégories:', e); });
+            }
+
+            loadCategories();
+
+            // ============================================================
+            // 7bis. LOAD HERO BANNER FROM API (titre, sous-titre, slides)
+            // ============================================================
+            function loadHero() {
+                fetch('/api/parametres/hero')
+                    .then(function(r) { return r.json(); })
+                    .then(function(res) {
+                        if (!res.success || !res.data) return;
+                        var d = res.data;
+
+                        if (d.subtitle) {
+                            var descEl = document.getElementById('heroDescription');
+                            if (descEl) descEl.textContent = d.subtitle;
+                        }
+
+                        var ctaLink = document.querySelector('.hero-actions a.btn-gold');
+                        if (ctaLink) {
+                            if (d.cta) ctaLink.childNodes[0].nodeValue = d.cta + ' ';
+                            if (d.ctaLink) ctaLink.setAttribute('href', d.ctaLink);
+                        }
+
+                        var slides = Array.isArray(d.slides) && d.slides.length ? d.slides : (d.mainImage ? [{ image: d.mainImage }] : []);
+                        var heroBg = document.getElementById('heroBg');
+                        if (heroBg && slides.length) {
+                            heroBg.innerHTML = slides.map(function(s, i) {
+                                return '<img src="' + s.image + '" alt="' + (s.title || 'Dar Chakaf') + '" ' +
+                                    'style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:' + (i === 0 ? '1' : '0') + ';transition:opacity 1.2s ease;" data-hero-slide="' + i + '" />';
+                            }).join('');
+
+                            if (slides.length > 1) {
+                                var current = 0;
+                                setInterval(function() {
+                                    var imgs = heroBg.querySelectorAll('[data-hero-slide]');
+                                    imgs[current].style.opacity = '0';
+                                    current = (current + 1) % imgs.length;
+                                    imgs[current].style.opacity = '1';
+                                }, 6000);
+                            }
+                        }
+                    })
+                    .catch(function(e) { console.warn('Erreur chargement bannière hero:', e); });
+            }
+
+            loadHero();
+
+            // ============================================================
+            // 8. GALLERY FILTER (fallback)
+            // ============================================================
+            var filters = document.querySelectorAll('.gfilter');
+            var items = document.querySelectorAll('.masonry-item');
+
+            filters.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    filters.forEach(function(b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    var f = btn.getAttribute('data-filter');
+                    items.forEach(function(item) {
+                        var show = (f === 'all' || item.getAttribute('data-cat') === f);
+                        item.style.display = show ? '' : 'none';
+                    });
+                });
+            });
+
+            // ============================================================
+            // 9. LIGHTBOX (simplifié)
+            // ============================================================
+            var lightbox = document.getElementById('lightbox');
+            var lightboxImg = document.getElementById('lightboxImg');
+            var galleryItems = document.querySelectorAll('.masonry-item');
+            var galleryImgs = [];
+
+            galleryItems.forEach(function(item) {
+                var img = item.querySelector('img');
+                if (img && img.src) {
+                    galleryImgs.push(img.src);
+                    item.addEventListener('click', function() {
+                        openLightbox(img.src);
+                    });
+                }
+            });
+
+            function openLightbox(src) {
+                lightboxImg.src = src;
+                lightbox.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            // ============================================================
+            // 10. TESTIMONIALS CAROUSEL
+            // ============================================================
+            var track = document.getElementById('testiTrack');
+            var cards = track ? track.children : [];
+            var dotsWrap = document.getElementById('testiDots');
+            var perView = window.innerWidth <= 900 ? 1 : 3;
+            var slideIndex = 0;
+            var totalSlides = Math.max(1, cards.length - perView + 1);
+
+            function buildDots() {
+                if (!dotsWrap) return;
+                dotsWrap.innerHTML = '';
+                for (var i = 0; i < totalSlides; i++) {
+                    var d = document.createElement('button');
+                    d.className = 'testi-dot' + (i === 0 ? ' active' : '');
+                    d.addEventListener('click', (function(idx) {
+                        return function() { goToSlide(idx); };
+                    })(i));
+                    dotsWrap.appendChild(d);
+                }
+            }
+
+            function goToSlide(i) {
+                slideIndex = i;
+                if (!track || !cards.length) return;
+                var cardWidth = cards[0].getBoundingClientRect().width + 24;
+                track.style.transform = 'translateX(-' + (cardWidth * i) + 'px)';
+                if (dotsWrap) {
+                    Array.prototype.forEach.call(dotsWrap.children, function(d, idx) {
+                        d.classList.toggle('active', idx === i);
+                    });
+                }
+            }
+
+            buildDots();
+
+            var autoTesti = setInterval(function() {
+                slideIndex = (slideIndex + 1) % totalSlides;
+                goToSlide(slideIndex);
+            }, 5000);
+
+            window.addEventListener('resize', function() {
+                perView = window.innerWidth <= 900 ? 1 : 3;
+                goToSlide(0);
+            });
+
+            // ============================================================
+            // 11. CONTACT FORM
+            // ============================================================
+            var contactForm = document.getElementById('contactForm');
+            var formSuccess = document.getElementById('formSuccess');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var submitBtn = contactForm.querySelector('button[type="submit"]');
+                    var originalHtml = submitBtn.innerHTML;
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Envoi en cours...';
+
+                    var payload = {
+                        nom: document.getElementById('fname').value,
+                        telephone: document.getElementById('fphone').value,
+                        email: document.getElementById('femail').value,
+                        sujet: document.getElementById('fsubject').value,
+                        message: document.getElementById('fmessage').value
+                    };
+
+                    fetch('/api/messages', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        })
+                        .then(function(r) { return r.json(); })
+                        .then(function(res) {
+                            if (!res.success) throw new Error(res.message || 'Erreur');
+                            formSuccess.classList.add('show');
+                            contactForm.reset();
+                        })
+                        .catch(function() {
+                            formSuccess.classList.add('show');
+                            contactForm.reset();
+                        })
+                        .finally(function() {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = originalHtml;
+                            setTimeout(function() {
+                                formSuccess.classList.remove('show');
+                            }, 6000);
+                        });
+                });
+            }
+
+            // ============================================================
+            // 12. NEWSLETTER
+            // ============================================================
+            var newsletterForm = document.getElementById('newsletterForm');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var btn = newsletterForm.querySelector('button');
+                    var original = btn.innerHTML;
+                    btn.innerHTML = 'Merci ! <i class="fa-solid fa-check"></i>';
+                    newsletterForm.reset();
+                    setTimeout(function() {
+                        btn.innerHTML = original;
+                    }, 3000);
+                });
+            }
+
+            console.log('🚀 Dar Chakaf — Index chargé !');
+            console.log('📸 Les cadres d\'images sont vides — ajoutez vos photos dans /assets/images/');
+
+        });
+    </script>
+
+</body>
+</html>

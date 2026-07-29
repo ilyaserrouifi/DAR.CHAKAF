@@ -1,0 +1,2310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>À propos — Dar Chakaf</title>
+    <meta name="description" content="Dar Chakaf, fabricant marocain de mobilier haut de gamme. Artisanat, tradition, sur mesure — depuis 2009." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ================================================================
+           DESIGN SYSTEM — DAR CHAKAF
+           ================================================================ */
+        :root {
+            --bg-void: #0a0908;
+            --bg-base: #0e0c0a;
+            --bg-panel: #15120e;
+            --bg-panel-2: #1c1712;
+            --bg-panel-raised: #221b14;
+            --border-soft: rgba(201, 169, 97, 0.14);
+            --border-strong: rgba(201, 169, 97, 0.32);
+            --gold: #c9a961;
+            --gold-bright: #e6c988;
+            --gold-dim: #8f7440;
+            --bronze: #8b6f47;
+            --copper: #a8703f;
+            --ink: #f2ead9;
+            --ink-soft: #cdc3ae;
+            --ink-mute: #8e8471;
+            --ink-faint: #5c5546;
+            --success: #7a9b6e;
+            --danger: #b9634a;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+            --fs-h1: clamp(2.8rem, 5.2vw, 4.4rem);
+            --fs-h2: clamp(2rem, 3.4vw, 2.8rem);
+            --fs-h3: clamp(1.4rem, 2.2vw, 1.8rem);
+            --fs-h4: clamp(1.1rem, 1.6vw, 1.3rem);
+            --gap-xs: 0.5rem;
+            --gap-sm: 1rem;
+            --gap-md: 2rem;
+            --gap-lg: 4rem;
+            --gap-xl: 7rem;
+            --radius-sm: 4px;
+            --radius-md: 10px;
+            --radius-lg: 18px;
+            --shadow-soft: 0 20px 60px -20px rgba(0, 0, 0, 0.65);
+            --shadow-gold: 0 10px 40px -12px rgba(201, 169, 97, 0.35);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --transition: 0.45s var(--ease);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: var(--bg-base);
+            color: var(--ink);
+            font-family: var(--font-body);
+            font-weight: 300;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition), border-color var(--transition);
+        }
+        ul {
+            list-style: none;
+        }
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: inherit;
+        }
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+        :focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 3px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.001ms !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-void);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-dim);
+            border-radius: 10px;
+            border: 2px solid var(--bg-void);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold);
+        }
+
+        /* ================================================================
+           UTILITIES
+           ================================================================ */
+        .container {
+            width: 100%;
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 clamp(1.25rem, 4vw, 3rem);
+        }
+        .eyebrow {
+            font-size: 0.78rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.1rem;
+        }
+        .eyebrow::before {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: var(--gold);
+        }
+        .eyebrow.centered {
+            justify-content: center;
+        }
+        .eyebrow.centered::before,
+        .eyebrow.centered::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--border-soft);
+            flex-shrink: 0;
+        }
+        .eyebrow.centered::after {
+            content: '';
+            display: block;
+        }
+
+        /* ================================================================
+           BOUTONS
+           ================================================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.95rem 2.1rem;
+            font-size: 0.86rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            white-space: nowrap;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold-bright), var(--gold) 60%, var(--gold-dim));
+            color: #14110b;
+            box-shadow: var(--shadow-gold);
+        }
+        .btn-gold:hover {
+            filter: brightness(1.08);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 44px -12px rgba(201, 169, 97, 0.5);
+        }
+        .btn-ghost {
+            border: 1px solid var(--border-strong);
+            color: var(--ink);
+            background: transparent;
+        }
+        .btn-ghost:hover {
+            background: rgba(201, 169, 97, 0.08);
+            border-color: var(--gold);
+            color: var(--gold-bright);
+        }
+        .btn-sm {
+            padding: 0.6rem 1.3rem;
+            font-size: 0.72rem;
+        }
+
+        /* ================================================================
+           REVEAL ANIMATION
+           ================================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+        }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+        .reveal-delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        /* ================================================================
+           MIST BG
+           ================================================================ */
+        .mist-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+            background: var(--bg-void, #0a0908);
+        }
+        .mist-bg::before,
+        .mist-bg::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.35;
+            animation: mistDrift 22s ease-in-out infinite alternate;
+        }
+        .mist-bg::before {
+            width: 46vw;
+            height: 46vw;
+            top: -12vw;
+            left: -10vw;
+            background: radial-gradient(circle, rgba(201, 169, 97, 0.35), transparent 70%);
+        }
+        .mist-bg::after {
+            width: 40vw;
+            height: 40vw;
+            bottom: -14vw;
+            right: -8vw;
+            background: radial-gradient(circle, rgba(140, 110, 60, 0.28), transparent 70%);
+            animation-delay: -9s;
+        }
+        @keyframes mistDrift {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(3vw, 2vw) scale(1.12);
+            }
+        }
+
+        /* ================================================================
+           HEADER
+           ================================================================ */
+        #site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 900;
+            padding: 1.5rem 0;
+            transition: var(--transition);
+            background: linear-gradient(to bottom, rgba(10, 9, 8, 0.9), rgba(10, 9, 8, 0.75));
+            border-bottom: 1px solid var(--border-soft);
+        }
+        #site-header.scrolled {
+            padding: 0.9rem 0;
+            background: rgba(10, 9, 8, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+        .nav-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--gap-md);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: 0.04em;
+            color: var(--ink);
+        }
+        .logo-mark {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.4s ease;
+        }
+        .logo-mark svg {
+            width: 22px;
+            height: 22px;
+        }
+        .logo:hover .logo-mark {
+            transform: rotate(90deg);
+        }
+        .logo-text strong {
+            color: var(--gold-bright);
+            font-weight: 600;
+        }
+        .logo-text span {
+            display: block;
+            font-size: 0.6rem;
+            letter-spacing: 0.32em;
+            color: var(--ink-mute);
+            text-transform: uppercase;
+            margin-top: -2px;
+        }
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 2.4rem;
+        }
+        .main-nav a {
+            font-size: 0.82rem;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            position: relative;
+            padding: 0.4rem 0;
+            transition: color 0.3s;
+        }
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 1.5px;
+            width: 0;
+            background: var(--gold);
+            transition: width 0.35s var(--ease);
+        }
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--gold-bright);
+        }
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            width: 100%;
+        }
+        .nav-dropdown {
+            position: relative;
+        }
+        .nav-dropdown-panel {
+            position: absolute;
+            top: calc(100% + 1.4rem);
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            width: 620px;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            padding: 1.6rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-soft);
+            pointer-events: none;
+        }
+        .nav-dropdown:hover .nav-dropdown-panel {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+        .nav-dropdown-panel a {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.65rem 0.8rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            text-transform: none;
+            letter-spacing: 0.01em;
+            color: var(--ink-soft);
+        }
+        .nav-dropdown-panel a i {
+            color: var(--gold);
+            width: 16px;
+            font-size: 0.85rem;
+        }
+        .nav-dropdown-panel a:hover {
+            background: rgba(201, 169, 97, 0.08);
+            color: var(--gold-bright);
+        }
+        .nav-dropdown-panel a::after {
+            display: none;
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+        }
+        .nav-icon-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-soft);
+            transition: var(--transition);
+        }
+        .nav-icon-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold-bright);
+        }
+        .burger {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-soft);
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 4px;
+            background: transparent;
+            transition: border-color var(--transition);
+        }
+        .burger:hover {
+            border-color: var(--gold);
+        }
+        .burger span {
+            width: 16px;
+            height: 1px;
+            background: var(--ink);
+            transition: var(--transition);
+        }
+        .burger.open span:nth-child(1) {
+            transform: translateY(5px) rotate(45deg);
+        }
+        .burger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .burger.open span:nth-child(3) {
+            transform: translateY(-5px) rotate(-45deg);
+        }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: min(360px, 86vw);
+            height: 100vh;
+            background: var(--bg-panel);
+            border-left: 1px solid var(--border-soft);
+            z-index: 950;
+            padding: 6.5rem 2rem 2rem;
+            transition: right 0.5s var(--ease);
+            overflow-y: auto;
+        }
+        .mobile-drawer.open {
+            right: 0;
+        }
+        .mobile-drawer a {
+            display: block;
+            padding: 0.95rem 0;
+            border-bottom: 1px solid var(--border-soft);
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+        }
+        .mobile-drawer .sub-link {
+            padding-left: 1rem;
+            font-size: 0.8rem;
+            color: var(--ink-mute);
+            border-bottom: none;
+            text-transform: none;
+        }
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 940;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        .drawer-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        @media (max-width: 900px) {
+            .main-nav,
+            .nav-actions .btn-ghost {
+                display: none;
+            }
+            .burger {
+                display: flex;
+            }
+        }
+
+        /* ================================================================
+           EMPTY FRAME — CADRE VIDE POUR IMAGES
+           ================================================================ */
+        .empty-frame {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-faint);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: var(--bg-panel-2);
+            min-height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .empty-frame .icon {
+            font-size: 3rem;
+            opacity: 0.15;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .empty-frame .label {
+            background: rgba(10, 9, 8, 0.7);
+            padding: 0.2rem 0.8rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.55rem;
+            color: var(--ink-mute);
+            border: 1px solid var(--border-soft);
+        }
+        .empty-frame.tall .icon {
+            font-size: 4rem;
+        }
+        .empty-frame.tall .label {
+            font-size: 0.6rem;
+        }
+        .empty-frame.small .icon {
+            font-size: 2rem;
+        }
+
+        /* ================================================================
+           PAGE HERO — CADRE VIDE
+           ================================================================ */
+        .page-hero {
+            position: relative;
+            padding: 9.5rem 0 4rem;
+            overflow: hidden;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+        }
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: var(--bg-panel-2);
+        }
+        .page-hero-bg .empty-frame {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+        }
+        .page-hero-bg .empty-frame .icon {
+            font-size: 4.5rem;
+            opacity: 0.12;
+        }
+        .page-hero-bg .empty-frame .label {
+            font-size: 0.65rem;
+        }
+        .page-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10, 9, 8, 0.4) 0%, rgba(10, 9, 8, 0.96) 100%);
+        }
+        .page-hero-inner {
+            position: relative;
+            z-index: 1;
+        }
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.78rem;
+            color: var(--ink-mute);
+            margin-bottom: 1.4rem;
+            letter-spacing: 0.03em;
+        }
+        .breadcrumb a {
+            color: var(--ink-mute);
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover {
+            color: var(--gold-bright);
+        }
+        .breadcrumb i {
+            font-size: 0.6rem;
+            color: var(--ink-faint);
+        }
+        .breadcrumb .current {
+            color: var(--gold-bright);
+        }
+        .page-hero h1 {
+            font-size: var(--fs-h1);
+            color: var(--ink);
+            max-width: 16ch;
+        }
+        .page-hero p {
+            margin-top: 1.2rem;
+            color: var(--ink-soft);
+            max-width: 56ch;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* ================================================================
+           ABOUT SECTION
+           ================================================================ */
+        .about-section {
+            padding: var(--gap-xl) 0;
+        }
+
+        /* STORY LAYOUT */
+        .story-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--gap-lg);
+            align-items: center;
+        }
+        .story-visual {
+            position: relative;
+        }
+        .story-frame {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            border: 1px solid var(--border-soft);
+            background: var(--bg-panel-2);
+        }
+        .story-frame .empty-frame {
+            aspect-ratio: 4/5;
+            min-height: 300px;
+        }
+        .story-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        .story-frame img.loaded {
+            display: block;
+        }
+        .story-frame img.loaded ~ .empty-frame {
+            display: none;
+        }
+        .story-badge {
+            position: absolute;
+            bottom: -1.5rem;
+            left: -1.5rem;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-md);
+            padding: 1.2rem 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: var(--shadow-soft);
+        }
+        .story-badge .num {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            color: var(--gold-bright);
+            line-height: 1;
+        }
+        .story-badge .txt {
+            font-size: 0.72rem;
+            color: var(--ink-mute);
+            line-height: 1.5;
+            max-width: 12ch;
+        }
+        .story-motif {
+            position: absolute;
+            top: -1.2rem;
+            right: -1.2rem;
+            width: 80px;
+            height: 80px;
+            opacity: 0.4;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23c9a961' stroke-width='1'%3E%3Crect x='10' y='10' width='80' height='80' transform='rotate(45 50 50)'/%3E%3Crect x='25' y='25' width='50' height='50' transform='rotate(45 50 50)'/%3E%3Ccircle cx='50' cy='50' r='34'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .story-content .lede {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--ink-soft);
+            line-height: 1.6;
+            margin: 1.2rem 0 1.6rem;
+        }
+        .story-content p {
+            color: var(--ink-mute);
+            font-size: 0.95rem;
+            line-height: 1.85;
+            margin-bottom: 1.2rem;
+        }
+
+        /* VALUES GRID */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--gap-md);
+            margin-top: var(--gap-lg);
+            padding-top: var(--gap-lg);
+            border-top: 1px solid var(--border-soft);
+        }
+        .value-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .value-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card);
+        }
+        .value-card .icon {
+            font-size: 2.2rem;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 1rem;
+        }
+        .value-card h4 {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.6rem;
+        }
+        .value-card p {
+            font-size: 0.84rem;
+            color: var(--ink-mute);
+            line-height: 1.7;
+        }
+
+        /* STATS ABOUT */
+        .stats-about {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--gap-md);
+            padding: var(--gap-lg) 0;
+            border-top: 1px solid var(--border-soft);
+            border-bottom: 1px solid var(--border-soft);
+            margin: var(--gap-lg) 0;
+        }
+        .stats-about .stat-item {
+            text-align: center;
+        }
+        .stats-about .stat-item .number {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            color: var(--gold-bright);
+            display: block;
+            line-height: 1.1;
+        }
+        .stats-about .stat-item .label {
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-mute);
+            margin-top: 0.3rem;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            margin-top: var(--gap-lg);
+            position: relative;
+            padding-left: 3rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-soft);
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.4rem;
+            padding-left: 1.5rem;
+        }
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        .timeline-item .dot {
+            position: absolute;
+            left: -2.8rem;
+            top: 4px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--gold);
+            border: 2px solid var(--bg-base);
+            box-shadow: 0 0 0 3px var(--gold-dim);
+        }
+        .timeline-item .year {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--gold-bright);
+            font-weight: 600;
+        }
+        .timeline-item h4 {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin: 0.2rem 0 0.4rem;
+        }
+        .timeline-item p {
+            font-size: 0.88rem;
+            color: var(--ink-mute);
+            line-height: 1.7;
+        }
+
+        /* TEAM GRID */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--gap-md);
+            margin-top: var(--gap-lg);
+        }
+        .team-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: var(--transition);
+            text-align: center;
+        }
+        .team-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card);
+        }
+        .team-card .avatar {
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background: var(--bg-panel-2);
+        }
+        .team-card .avatar .empty-frame {
+            aspect-ratio: 1/1;
+            min-height: 150px;
+        }
+        .team-card .avatar .empty-frame .icon {
+            font-size: 2.5rem;
+        }
+        .team-card .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        .team-card .avatar img.loaded {
+            display: block;
+        }
+        .team-card .avatar img.loaded ~ .empty-frame {
+            display: none;
+        }
+        .team-card .info {
+            padding: 1.2rem 1.5rem 1.6rem;
+        }
+        .team-card .info h4 {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .team-card .info .role {
+            font-size: 0.78rem;
+            color: var(--gold-dim);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-top: 0.2rem;
+        }
+        .team-card .info p {
+            font-size: 0.82rem;
+            color: var(--ink-mute);
+            margin-top: 0.6rem;
+            line-height: 1.6;
+        }
+
+        /* ================================================================
+           PHILOSOPHIE
+           ================================================================ */
+        .philosophy-section {
+            padding: var(--gap-lg) 0;
+            border-top: 1px solid var(--border-soft);
+            border-bottom: 1px solid var(--border-soft);
+            margin: var(--gap-lg) 0;
+        }
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--gap-lg);
+        }
+        .philosophy-block h3 {
+            font-size: var(--fs-h3);
+            color: var(--gold-bright);
+            margin-bottom: 1rem;
+        }
+        .philosophy-block p {
+            color: var(--ink-mute);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+
+        /* ================================================================
+           MATIÈRES
+           ================================================================ */
+        .materials-section {
+            padding: var(--gap-lg) 0;
+        }
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--gap-md);
+            margin-top: var(--gap-md);
+        }
+        .material-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .material-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+        .material-card .icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+        .material-card h4 {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .material-card p {
+            font-size: 0.82rem;
+            color: var(--ink-mute);
+            margin-top: 0.4rem;
+            line-height: 1.6;
+        }
+
+        /* ================================================================
+           PROCESSUS
+           ================================================================ */
+        .process-section {
+            padding: var(--gap-lg) 0;
+            border-top: 1px solid var(--border-soft);
+            border-bottom: 1px solid var(--border-soft);
+            margin: var(--gap-lg) 0;
+        }
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: var(--gap-sm);
+            margin-top: var(--gap-md);
+        }
+        .process-step {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+        }
+        .process-step:hover {
+            border-color: var(--gold);
+        }
+        .process-step .num {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--gold-bright);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .process-step h4 {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .process-step p {
+            font-size: 0.78rem;
+            color: var(--ink-mute);
+            margin-top: 0.3rem;
+            line-height: 1.5;
+        }
+
+        /* ================================================================
+           ENGAGEMENTS           ================================================================ */
+        .engagement-section {
+            padding: var(--gap-lg) 0;
+        }
+        .engagement-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--gap-md);
+        }
+        .engagement-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .engagement-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+        .engagement-card .icon {
+            font-size: 2rem;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+        .engagement-card h4 {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .engagement-card p {
+            font-size: 0.82rem;
+            color: var(--ink-mute);
+            margin-top: 0.4rem;
+            line-height: 1.6;
+        }
+
+        /* ================================================================
+           FAQ
+           ================================================================ */
+        .faq-section {
+            padding: var(--gap-lg) 0;
+            border-top: 1px solid var(--border-soft);
+            border-bottom: 1px solid var(--border-soft);
+            margin: var(--gap-lg) 0;
+        }
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--gap-md);
+            margin-top: var(--gap-md);
+        }
+        .faq-item {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            transition: var(--transition);
+        }
+        .faq-item:hover {
+            border-color: var(--gold);
+        }
+        .faq-item h4 {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--gold-bright);
+            margin-bottom: 0.5rem;
+        }
+        .faq-item p {
+            font-size: 0.85rem;
+            color: var(--ink-mute);
+            line-height: 1.7;
+        }
+
+        /* ================================================================
+           CTA BANNER — CADRE VIDE
+           ================================================================ */
+        #cta-banner {
+            position: relative;
+            padding: var(--gap-xl) 0;
+            text-align: center;
+            overflow: hidden;
+        }
+        .cta-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: var(--bg-panel-2);
+        }
+        .cta-bg .empty-frame {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+        }
+        .cta-bg .empty-frame .icon {
+            font-size: 4.5rem;
+            opacity: 0.12;
+        }
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .cta-content h2 {
+            font-size: var(--fs-h1);
+            color: var(--ink);
+            margin-bottom: 1.4rem;
+        }
+        .cta-content p {
+            color: var(--ink-soft);
+            font-size: 1.05rem;
+            margin-bottom: 2.4rem;
+        }
+        .cta-actions {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ================================================================
+           FOOTER
+           ================================================================ */
+        footer {
+            background: var(--bg-void);
+            border-top: 1px solid var(--border-soft);
+            padding-top: var(--gap-xl);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+            gap: var(--gap-lg);
+            padding-bottom: var(--gap-lg);
+        }
+        .footer-brand p {
+            color: var(--ink-mute);
+            font-size: 0.88rem;
+            line-height: 1.8;
+            margin: 1.4rem 0 1.6rem;
+            max-width: 32ch;
+        }
+        .footer-col h5 {
+            font-size: 0.76rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            margin-bottom: 1.4rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+        .footer-col ul li {
+            margin-bottom: 0.85rem;
+        }
+        .footer-col ul li a {
+            font-size: 0.86rem;
+            color: var(--ink-mute);
+            transition: var(--transition);
+        }
+        .footer-col ul li a:hover {
+            color: var(--gold-bright);
+            padding-left: 4px;
+        }
+        .footer-hours li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.84rem;
+            color: var(--ink-mute);
+            margin-bottom: 0.7rem;
+        }
+        .footer-hours li span:last-child {
+            color: var(--ink-soft);
+        }
+        .footer-bottom {
+            border-top: 1px solid var(--border-soft);
+            padding: 1.6rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .footer-bottom p {
+            font-size: 0.78rem;
+            color: var(--ink-faint);
+        }
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.6rem;
+        }
+        .footer-bottom-links a {
+            font-size: 0.78rem;
+            color: var(--ink-faint);
+            transition: color var(--transition);
+        }
+        .footer-bottom-links a:hover {
+            color: var(--gold-bright);
+        }
+        .contact-socials {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.8rem;
+        }
+        .contact-socials a {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--ink-mute);
+        }
+        .contact-socials a:hover {
+            border-color: var(--gold);
+            color: var(--gold-bright);
+            transform: translateY(-3px);
+        }
+
+        /* ================================================================
+           FLOATING ACTIONS
+           ================================================================ */
+        .floating-actions {
+            position: fixed;
+            right: 1.6rem;
+            bottom: 1.6rem;
+            z-index: 500;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .fab {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+        .fab-whatsapp {
+            background: #25d366;
+            color: #0c2b17;
+        }
+        .fab-whatsapp:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 28px rgba(37, 211, 102, 0.4);
+        }
+        .fab-top {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-strong);
+            color: var(--gold);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+        .fab-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .fab-top:hover {
+            background: var(--gold);
+            color: #14110b;
+            border-color: var(--gold);
+        }
+
+        /* ================================================================
+           RESPONSIVE
+           ================================================================ */
+        @media (max-width: 1100px) {
+            .story-layout {
+                grid-template-columns: 1fr;
+            }
+            .story-visual {
+                max-width: 480px;
+                margin: 0 auto;
+            }
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stats-about {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--gap-md);
+            }
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+            }
+            .materials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .process-steps {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .engagement-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 900px) {
+            .main-nav,
+            .nav-actions .btn-ghost {
+                display: none;
+            }
+            .burger {
+                display: flex;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 600px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-about {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--gap-sm);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2.4rem;
+            }
+            .page-hero h1 {
+                max-width: 100%;
+            }
+            .page-hero p {
+                font-size: 0.95rem;
+            }
+            .story-badge {
+                position: static;
+                margin-top: 1rem;
+            }
+            .story-motif {
+                display: none;
+            }
+            .timeline {
+                padding-left: 2rem;
+            }
+            .timeline-item .dot {
+                left: -1.8rem;
+                width: 12px;
+                height: 12px;
+            }
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .engagement-grid {
+                grid-template-columns: 1fr;
+            }
+            .floating-actions {
+                right: 1rem;
+                bottom: 1rem;
+            }
+            .fab {
+                width: 48px;
+                height: 48px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (min-width: 1600px) {
+            html {
+                font-size: 19px;
+            }
+            .container,
+            .wrap,
+            main {
+                max-width: 1680px;
+            }
+        }
+        @media (min-width: 2200px) {
+            html {
+                font-size: 23px;
+            }
+            .container,
+            .wrap,
+            main {
+                max-width: 2100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mist-bg" aria-hidden="true"></div>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header id="site-header">
+        <div class="container nav-wrap">
+            <a href="index.html" class="logo">
+                <span class="logo-mark">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#c9a961" stroke-width="1.2">
+                        <path d="M4 20 V10 L12 4 L20 10 V20" />
+                        <path d="M9 20 V13 H15 V20" />
+                    </svg>
+                </span>
+                <span class="logo-text"><strong>Dar Chakaf</strong><span>Ameublement &amp; Décoration</span></span>
+            </a>
+
+            <nav class="main-nav">
+                <a href="index.html">Accueil</a>
+                <div class="nav-dropdown">
+                    <a href="#">Produits <i class="fa-solid fa-chevron-down" style="font-size:0.6rem;margin-left:4px;"></i></a>
+                    <div class="nav-dropdown-panel">
+                        <a href="produits/salons-modernes.html"><i class="fa-solid fa-couch"></i> Salons modernes</a>
+                        <a href="produits/salons-traditionnels.html"><i class="fa-solid fa-mosque"></i> Salons traditionnels</a>
+                        <a href="produits/tables.html"><i class="fa-solid fa-table"></i> Tables</a>
+                        <a href="produits/decorations.html"><i class="fa-solid fa-vector-square"></i> Décorations</a>
+                        <a href="produits/meubles-tv.html"><i class="fa-solid fa-tv"></i> Meubles TV</a>
+                        <a href="produits/couloirs.html"><i class="fa-solid fa-door-open"></i> Couloirs &amp; Entrées</a>
+                        <a href="produits/tissus.html"><i class="fa-solid fa-scroll"></i> Tissus &amp; Rideaux</a>
+                        <a href="galerie.html"><i class="fa-solid fa-images"></i> Toute la collection</a>
+                    </div>
+                </div>
+                <a href="galerie.html">Galerie</a>
+                <a href="a-propos.html" class="active">À propos</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="admin/login.html" class="nav-icon-btn" title="Espace administration"><i class="fa-solid fa-user"></i></a>
+                <a href="contact.html" class="btn btn-ghost btn-sm">Demander un devis</a>
+                <button class="burger" id="burgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <nav class="mobile-drawer" id="mobileDrawer">
+        <a href="index.html">Accueil</a>
+        <a href="produits/salons-modernes.html" class="sub-link">— Salons modernes</a>
+        <a href="produits/salons-traditionnels.html" class="sub-link">— Salons traditionnels</a>
+        <a href="produits/tables.html" class="sub-link">— Tables</a>
+        <a href="produits/decorations.html" class="sub-link">— Décorations</a>
+        <a href="produits/meubles-tv.html" class="sub-link">— Meubles TV</a>
+        <a href="produits/couloirs.html" class="sub-link">— Couloirs &amp; Entrées</a>
+        <a href="produits/tissus.html" class="sub-link">— Tissus &amp; Rideaux</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="contact.html">Contact</a>
+        <a href="admin/login.html">Espace Admin</a>
+    </nav>
+
+    <!-- ============================================================
+    PAGE HERO — CADRE VIDE
+    ============================================================ -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="empty-frame">
+                <span class="icon">🏛️</span>
+                <span>Image de présentation</span>
+                <span class="label">Placeholder — Ajoutez votre image</span>
+            </div>
+        </div>
+        <div class="container page-hero-inner">
+            <div class="breadcrumb">
+                <a href="index.html">Accueil</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span class="current">À propos</span>
+            </div>
+            <h1 id="aboutTitle">L'histoire de Dar Chakaf</h1>
+            <p id="aboutDescription">Depuis 2009, nous créons des meubles qui racontent une histoire — celle du savoir-faire marocain, de la passion du bois et de l'élégance intemporelle.</p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 1 — NOTRE HISTOIRE
+    ============================================================ -->
+    <section class="about-section">
+        <div class="container">
+
+            <div class="story-layout">
+                <div class="story-visual reveal">
+                    <div class="story-frame">
+                        <div class="empty-frame tall">
+                            <span class="icon">🔨</span>
+                            <span>Atelier</span>
+                            <span class="label">Image à venir</span>
+                        </div>
+                    </div>
+                    <div class="story-motif"></div>
+                    <div class="story-badge">
+                        <span class="num" id="badgeYears">15</span>
+                        <span class="txt">Ans de savoir-faire artisanal</span>
+                    </div>
+                </div>
+
+                <div class="story-content reveal reveal-delay-1">
+                    <div class="eyebrow">Notre histoire</div>
+                    <h2 style="font-size: var(--fs-h1);" id="storyTitle">Chaque pièce raconte<br>un savoir-faire transmis</h2>
+                    <p class="lede" id="storyLede">« Chakaf » désigne la structure, l'ossature d'un meuble bien construit — c'est le nom que nous avons choisi pour notre maison.</p>
+                    <p id="storyP1">Fondée en 2009 au cœur de Casablanca, Dar Chakaf est née d'une passion pour l'artisanat marocain et le design contemporain. Notre mission est de créer des meubles qui transcendent les époques, alliant tradition et modernité.</p>
+                    <p id="storyP2">Chaque pièce est conçue avec soin par nos artisans, dans le respect des techniques ancestrales et des matériaux nobles. Nous croyons que le mobilier n'est pas seulement fonctionnel, mais qu'il raconte une histoire et apporte une âme à chaque intérieur.</p>
+
+                    <div style="display:flex;gap:1rem;margin-top:1.6rem;flex-wrap:wrap;">
+                        <a href="contact.html" class="btn btn-gold">Visiter l'atelier</a>
+                        <a href="galerie.html" class="btn btn-ghost">Voir nos réalisations</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 2 — STATS
+    ============================================================ -->
+    <section class="about-section" style="padding-top:0;">
+        <div class="container">
+            <div class="stats-about reveal">
+                <div class="stat-item">
+                    <span class="number" data-count="15">0</span>
+                    <span class="label">Années d'expérience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number" data-count="2400">0</span>
+                    <span class="label">Projets réalisés</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number" data-count="7">0</span>
+                    <span class="label">Collections</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number" data-count="100">0</span>
+                    <span class="label">% Artisanal</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 3 — NOS VALEURS
+    ============================================================ -->
+    <section class="about-section" style="padding-top:0;">
+        <div class="container">
+            <div class="reveal">
+                <div class="eyebrow centered" style="justify-content:center;">Nos valeurs</div>
+                <h2 style="font-size: var(--fs-h2); text-align:center; margin-bottom:0.5rem;">Ce qui nous anime</h2>
+                <p style="text-align:center; color:var(--ink-mute); max-width:50ch; margin:0 auto 1rem;">Quatre piliers qui guident notre travail au quotidien.</p>
+            </div>
+
+            <div class="values-grid reveal">
+                <div class="value-card">
+                    <span class="icon">🪚</span>
+                    <h4>Artisanat d'exception</h4>
+                    <p>Chaque meuble est fabriqué à la main, du bois brut à la finition finale, par nos maîtres artisans.</p>
+                </div>
+                <div class="value-card">
+                    <span class="icon">🌍</span>
+                    <h4>Matières durables</h4>
+                    <p>Nous sélectionnons nos bois et matériaux auprès de fournisseurs responsables, pour un mobilier qui dure.</p>
+                </div>
+                <div class="value-card">
+                    <span class="icon">✏️</span>
+                    <h4>Design sur mesure</h4>
+                    <p>Nous créons des pièces uniques adaptées à votre espace, vos goûts et vos besoins.</p>
+                </div>
+                <div class="value-card">
+                    <span class="icon">❤️</span>
+                    <h4>Passion & transmission</h4>
+                    <p>Nous formons de jeunes artisans pour perpétuer ce savoir-faire d'exception.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 4 — PHILOSOPHIE
+    ============================================================ -->
+    <section class="philosophy-section">
+        <div class="container">
+            <div class="reveal">
+                <div class="eyebrow centered" style="justify-content:center;">Notre philosophie</div>
+                <h2 style="font-size: var(--fs-h2); text-align:center; margin-bottom:0.5rem;">L'art de vivre à la marocaine</h2>
+                <p style="text-align:center; color:var(--ink-mute); max-width:50ch; margin:0 auto 2rem;">Une vision qui guide chacune de nos créations.</p>
+            </div>
+
+            <div class="philosophy-grid reveal">
+                <div class="philosophy-block">
+                    <h3>L'authenticité comme signature</h3>
+                    <p>Dar Chakaf incarne une vision du mobilier où l'authenticité marocaine se mêle aux lignes épurées du design contemporain. Nos pièces ne sont pas de simples meubles — ce sont des témoins d'un savoir-faire qui traverse les générations.</p>
+                    <p>Chaque courbe, chaque assemblage, chaque finition porte la marque de notre engagement envers l'excellence artisanale. Le bois que nous sculptons a été choisi pour sa noblesse et sa durabilité, dans le respect des forêts et des écosystèmes.</p>
+                </div>
+                <div class="philosophy-block">
+                    <h3>Le sur-mesure comme évidence</h3>
+                    <p>Nous croyons que chaque intérieur est unique et mérite des pièces conçues sur mesure. C'est pourquoi nous accompagnons nos clients dans la création de meubles qui s'intègrent parfaitement à leur espace et reflètent leur personnalité.</p>
+                    <p>Du premier croquis à la livraison finale, nous restons à vos côtés pour vous offrir une expérience sur mesure, où chaque détail est pensé pour vous.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 5 — MATIÈRES
+    ============================================================ -->
+    <section class="materials-section">
+        <div class="container">
+            <div class="reveal">
+                <div class="eyebrow centered" style="justify-content:center;">Les matières</div>
+                <h2 style="font-size: var(--fs-h2); text-align:center; margin-bottom:0.5rem;">Des matériaux nobles pour des pièces d'exception</h2>
+                <p style="text-align:center; color:var(--ink-mute); max-width:50ch; margin:0 auto 1rem;">Nous sélectionnons avec soin chaque matière qui compose nos créations.</p>
+            </div>
+
+            <div class="materials-grid reveal">
+                <div class="material-card">
+                    <span class="icon">🌳</span>
+                    <h4>Bois massif</h4>
+                    <p>Chêne, noyer, olivier — des essences nobles sélectionnées pour leur beauté et leur durabilité.</p>
+                </div>
+                <div class="material-card">
+                    <span class="icon">👜</span>
+                    <h4>Cuir pleine fleur</h4>
+                    <p>Cuirs italiens et marocains, sélectionnés pour leur souplesse et leur élégance naturelle.</p>
+                </div>
+                <div class="material-card">
+                    <span class="icon">🧵</span>
+                    <h4>Tissus d'exception</h4>
+                    <p>Velours, lin, soie — des matières textiles qui apportent confort et raffinement à vos intérieurs.</p>
+                </div>
+                <div class="material-card">
+                    <span class="icon">✨</span>
+                    <h4>Laiton et métaux</h4>
+                    <p>Des finitions en laiton brossé, cuivre et métal pour apporter une touche de lumière et d'élégance.</p>
+                </div>
+                <div class="material-card">
+                    <span class="icon">🪨</span>
+                    <h4>Marbre et pierre</h4>
+                    <p>Des plateaux en marbre naturel, pour des tables et consoles d'exception.</p>
+                </div>
+                <div class="material-card">
+                    <span class="icon">🎨</span>
+                    <h4>Finitions artisanales</h4>
+                    <p>Vernis, cires, patines — chaque finition est réalisée à la main pour révéler la beauté du bois.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 6 — PROCESSUS
+    ============================================================ -->
+    <section class="process-section">
+        <div class="container">
+            <div class="reveal">
+                <div class="eyebrow centered" style="justify-content:center;">Notre processus</div>
+                <h2 style="font-size: var(--fs-h2); text-align:center; margin-bottom:0.5rem;">De l'idée à la livraison</h2>
+                <p style="text-align:center; color:var(--ink-mute); max-width:50ch; margin:0 auto 1rem;">Un accompagnement personnalisé à chaque étape de votre projet.</p>
+            </div>
+
+            <div class="process-steps reveal">
+                <div class="process-step">
+                    <span class="num">01</span>
+                    <h4>Consultation</h4>
+                    <p>Échange avec notre conseiller pour définir style, budget et dimensions.</p>
+                </div>
+                <div class="process-step">
+                    <span class="num">02</span>
+                    <h4>Conception</h4>
+                    <p>Choix des bois, tissus et finitions, avec visuels avant fabrication.</p>
+                </div>
+                <div class="process-step">
+                    <span class="num">03</span>
+                    <h4>Validation</h4>
+                    <p>Présentation du projet final pour validation avant le début de la fabrication.</p>
+                </div>
+                <div class="process-step">
+                    <span class="num">04</span>
+                    <h4>Fabrication</h4>
+                    <p>Réalisation en atelier par nos artisans, sous contrôle qualité rigoureux.</p>
+                </div>
+                <div class="process-step">
+                    <span class="num">05</span>
+                    <h4>Livraison</h4>
+                    <p>Livraison et installation soignée directement chez vous.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 7 — ENGAGEMENTS
+    ============================================================ -->
+    <section class="engagement-section">
+        <div class="container">
+            <div class="reveal">
+                <div class="eyebrow centered" style="justify-content:center;">Nos engagements</div>
+                <h2 style="font-size: var(--fs-h2); text-align:center; margin-bottom:0.5rem;">Qualité, durabilité, éthique</h2>
+                <p style="text-align:center; color:var(--ink-mute); max-width:50ch; margin:0 auto 1rem;">Des valeurs qui guident chacune de nos décisions.</p>
+            </div>
+
+            <div class="engagement-grid reveal">
+                <div class="engagement-card">
+                    <span class="icon">✅</span>
+                    <h4>Qualité premium</h4>
+                    <p>Chaque meuble est soumis à un contrôle qualité rigoureux à chaque étape de sa fabrication.</p>
+                </div>
+                <div class="engagement-card">
+                    <span class="icon">♻️</span>
+                    <h4>Durabilité responsable</h4>
+                    <p>Nous privilégions les matériaux durables et les circuits courts pour minimiser notre impact environnemental.</p>
+                </div>
+                <div class="engagement-card">
+                    <span class="icon">🤝</span>
+                    <h4>Transparence totale</h4>
+                    <p>Des devis clairs, des délais tenus, une communication transparente à chaque étape de votre projet.</p>
+                </div>
+                <div class="engagement-card">
+                    <span class="icon">⏱️</span>
+                    <h4>Délais respectés</h4>
+                    <p>Nous nous engageons à respecter les délais convenus, avec une livraison soignée et ponctuelle.</p>
+                </div>
+                <div class="engagement-card">
+                    <span class="icon">🔧</span>
+                    <h4>Garantie 5 ans</h4>
+                    <p>Nos meubles sont garantis 5 ans contre tout défaut de fabrication.</p>
+                </div>
+                <div class="engagement-card">
+                    <span class="icon">📞</span>
+                    <h4>Service après-vente</h4>
+                    <p>Une équipe dédiée pour vous accompagner après la livraison et répondre à vos questions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 8 — TIMELINE
+    ============================================================ -->
+    <section class="about-section" style="padding-top:0;">
+        <div class="container">
+            <div class="reveal">
+                <div class="eyebrow centered" style="justify-content:center;">Notre parcours</div>
+                <h2 style="font-size: var(--fs-h2); text-align:center; margin-bottom:1.5rem;">Une histoire qui s'écrit depuis 2009</h2>
+            </div>
+
+            <div class="timeline reveal">
+                <div class="timeline-item">
+                    <span class="dot"></span>
+                    <span class="year">2009</span>
+                    <h4>Fondation de Dar Chakaf</h4>
+                    <p>Création de l'atelier à Casablanca avec une équipe de 5 artisans passionnés.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="dot"></span>
+                    <span class="year">2010</span>
+                    <h4>Premières commandes</h4>
+                    <p>Réalisation des premiers salons sur mesure pour des clients privés à Casablanca.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="dot"></span>
+                    <span class="year">2012</span>
+                    <h4>Première collection</h4>
+                    <p>Lancement de la première collection de salons traditionnels marocains.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="dot"></span>
+                    <span class="year">2014</span>
+                    <h4>Agrandissement de l'atelier</h4>
+                    <p>Doublement de la surface de production pour répondre à la demande croissante.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="dot"></span>
+                    <span class="year">2015</span>
+                    <h4>Ouverture du showroom</h4>
+                    <p>Inauguration de notre espace d'exposition à Casablanca.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="dot"></span>
+                    <span class="year">2016</span>
+                    <h4>Premier client international</h4>
+                    <p>Livraison d'une commande pour un client basé en Europe.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="dot"></span>
+                    <span class="year">2018</span>
+                    <h4>Collection contemporaine</h4>
+                    <p>Lancement des salons modernes et meubles design.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="dot"></span>
+                    <span class="year">2019</span>
+                    <h4>10 ans d'excellence</h4>
+                    <p>Célébration de la première décennie de Dar Chakaf.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="dot"></span>
+                    <span class="year">2020</span>
+                    <h4>Collection décorations</h4>
+                    <p>Lancement de la ligne de décorations et accessoires.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="dot"></span>
+                    <span class="year">2021</span>
+                    <h4>Expansion des collections</h4>
+                    <p>Ajout des meubles TV, couloirs et tissus.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="dot"></span>
+                    <span class="year">2022</span>
+                    <h4>Expansion nationale</h4>
+                    <p>Livraisons dans tout le Maroc et développement de l'équipe.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="dot"></span>
+                    <span class="year">2023</span>
+                    <h4>Nouvel atelier</h4>
+                    <p>Transfert vers un atelier moderne de 500m².</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="dot"></span>
+                    <span class="year">2024</span>
+                    <h4>Collection capsule</h4>
+                    <p>Lancement d'une collection capsule en édition limitée.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="dot"></span>
+                    <span class="year">2025</span>
+                    <h4>Internationalisation</h4>
+                    <p>Développement des exportations vers l'Europe et l'Afrique.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="dot"></span>
+                    <span class="year">2026</span>
+                    <h4>Nouvelle ère digitale</h4>
+                    <p>Lancement de la plateforme en ligne pour un service 360°.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 9 — ÉQUIPE — CADRES VIDES
+    ============================================================ -->
+    <section class="about-section" style="padding-top:0;">
+        <div class="container">
+            <div class="reveal">
+                <div class="eyebrow centered" style="justify-content:center;">Notre équipe</div>
+                <h2 style="font-size: var(--fs-h2); text-align:center; margin-bottom:0.5rem;">Les artisans derrière l'œuvre</h2>
+                <p style="text-align:center; color:var(--ink-mute); max-width:50ch; margin:0 auto 1.5rem;">Une équipe passionnée, dévouée à l'excellence artisanale.</p>
+            </div>
+
+            <div class="team-grid reveal">
+                <div class="team-card">
+                    <div class="avatar">
+                        <div class="empty-frame">
+                            <span class="icon">👤</span>
+                            <span class="label">Photo à venir</span>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h4>Mohamed El Alaoui</h4>
+                        <span class="role">Maître artisan — Bois</span>
+                        <p>25 ans d'expérience dans la sculpture et l'ébénisterie traditionnelle. Spécialiste du bois d'olivier.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="avatar">
+                        <div class="empty-frame">
+                            <span class="icon">👤</span>
+                            <span class="label">Photo à venir</span>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h4>Fatima Zahra Bennani</h4>
+                        <span class="role">Cheffe de projet</span>
+                        <p>Spécialiste en design d'intérieur et coordination des collections. 12 ans d'expérience.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="avatar">
+                        <div class="empty-frame">
+                            <span class="icon">👤</span>
+                            <span class="label">Photo à venir</span>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h4>Hassan Tazi</h4>
+                        <span class="role">Maître artisan — Sellerie</span>
+                        <p>Expert en finitions cuir et tissus d'ameublement haut de gamme.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="avatar">
+                        <div class="empty-frame">
+                            <span class="icon">👤</span>
+                            <span class="label">Photo à venir</span>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h4>Nadia Fassi</h4>
+                        <span class="role">Designer produit</span>
+                        <p>Architecte d'intérieur et designer produit. Créatrice des collections contemporaines.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="avatar">
+                        <div class="empty-frame">
+                            <span class="icon">👤</span>
+                            <span class="label">Photo à venir</span>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h4>Youssef Berrada</h4>
+                        <span class="role">Responsable atelier</span>
+                        <p>Coordination de la production et contrôle qualité.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="avatar">
+                        <div class="empty-frame">
+                            <span class="icon">👤</span>
+                            <span class="label">Photo à venir</span>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h4>Salma Charaf</h4>
+                        <span class="role">Conseillère client</span>
+                        <p>Accompagnement personnalisé des clients du premier contact à la livraison.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTION 10 — FAQ
+    ============================================================ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="reveal">
+                <div class="eyebrow centered" style="justify-content:center;">Questions fréquentes</div>
+                <h2 style="font-size: var(--fs-h2); text-align:center; margin-bottom:0.5rem;">Tout ce que vous devez savoir</h2>
+                <p style="text-align:center; color:var(--ink-mute); max-width:50ch; margin:0 auto 1rem;">Des réponses à vos questions les plus courantes.</p>
+            </div>
+
+            <div class="faq-grid reveal">
+                <div class="faq-item">
+                    <h4>Quels types de bois utilisez-vous ?</h4>
+                    <p>Nous utilisons principalement du chêne, du noyer, du bois d'olivier et du hêtre. Chaque essence est sélectionnée pour ses qualités esthétiques et sa durabilité.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Proposez-vous des meubles sur mesure ?</h4>
+                    <p>Oui, 100% de nos meubles sont fabriqués sur mesure. Nous adaptons dimensions, tissus, finitions et coloris à vos besoins et à votre intérieur.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Quel est le délai de fabrication ?</h4>
+                    <p>Le délai moyen est de 4 à 6 semaines selon la complexité de la pièce. Nous vous tenons informé à chaque étape de la fabrication.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Livrez-vous dans tout le Maroc ?</h4>
+                    <p>Oui, nous livrons dans tout le Maroc. Nous assurons également la livraison internationale sur devis.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Quelle est votre garantie ?</h4>
+                    <p>Nos meubles sont garantis 5 ans contre tout défaut de fabrication. La garantie couvre la structure, la sellerie et les finitions.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Puis-je visiter l'atelier ?</h4>
+                    <p>Oui, nous accueillons les visiteurs sur rendez-vous. Vous pourrez découvrir notre atelier et voir les artisans à l'œuvre.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Quels modes de paiement acceptez-vous ?</h4>
+                    <p>Nous acceptons les virements bancaires, les chèques et les paiements en espèces. Un devis détaillé vous est fourni avant la commande.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Puis-je personnaliser les tissus ?</h4>
+                    <p>Oui, nous proposons une large gamme de tissus : velours, lin, soie, coton, jacquard. Vous pouvez choisir parmi nos échantillons en showroom.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CTA BANNER — CADRE VIDE
+    ============================================================ -->
+    <section id="cta-banner">
+        <div class="cta-bg">
+            <div class="empty-frame">
+                <span class="icon">🏠</span>
+                <span>Image CTA</span>
+                <span class="label">Placeholder</span>
+            </div>
+        </div>
+        <div class="container cta-content">
+            <div class="eyebrow centered" style="justify-content:center;">Prêt à commencer</div>
+            <h2>Donnons vie à votre intérieur idéal</h2>
+            <p>Un conseiller vous accompagne gratuitement pour transformer votre espace, du croquis à la livraison.</p>
+            <div class="cta-actions">
+                <a href="contact.html" class="btn btn-gold">Demander un devis gratuit</a>
+                <a href="https://wa.me/212600000000" class="btn btn-ghost"><i class="fa-brands fa-whatsapp"></i> WhatsApp direct</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-mark">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#c9a961" stroke-width="1.2">
+                                <path d="M4 20 V10 L12 4 L20 10 V20" />
+                                <path d="M9 20 V13 H15 V20" />
+                            </svg>
+                        </span>
+                        <span class="logo-text"><strong>Dar Chakaf</strong><span>Ameublement &amp; Décoration</span></span>
+                    </a>
+                    <p id="footerDescription">Fabricant marocain de mobilier haut de gamme, sur mesure, alliant tradition et modernité depuis 2009.</p>
+                    <div class="contact-socials" id="footerSocials">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://wa.me/212600000000"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Produits</h5>
+                    <ul>
+                        <li><a href="produits/salons-modernes.html">Salons modernes</a></li>
+                        <li><a href="produits/salons-traditionnels.html">Salons traditionnels</a></li>
+                        <li><a href="produits/tables.html">Tables</a></li>
+                        <li><a href="produits/decorations.html">Décorations</a></li>
+                        <li><a href="produits/meubles-tv.html">Meubles TV</a></li>
+                        <li><a href="produits/couloirs.html">Couloirs &amp; Entrées</a></li>
+                        <li><a href="produits/tissus.html">Tissus &amp; Rideaux</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Entreprise</h5>
+                    <ul>
+                        <li><a href="a-propos.html">À propos</a></li>
+                        <li><a href="galerie.html">Galerie</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="admin/login.html">Espace admin</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Horaires</h5>
+                    <ul class="footer-hours">
+                        <li><span>Lun – Ven</span><span id="footerHoraire1">9h00 – 19h00</span></li>
+                        <li><span>Samedi</span><span id="footerHoraire2">10h00 – 18h00</span></li>
+                        <li><span>Dimanche</span><span id="footerHoraire3">Fermé</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 Dar Chakaf. Tous droits réservés.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Mentions légales</a>
+                    <a href="#">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    FLOATING ACTIONS
+    ============================================================ -->
+    <div class="floating-actions">
+        <a href="https://wa.me/212600000000" class="fab fab-whatsapp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <button class="fab fab-top" id="backToTop" title="Retour en haut"><i class="fa-solid fa-arrow-up"></i></button>
+    </div>
+
+    <!-- ============================================================
+    SCRIPTS — 100% API-READY
+    ============================================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            'use strict';
+
+            // ============================================================
+            // 1. HEADER & SCROLL
+            // ============================================================
+            var header = document.getElementById('site-header');
+            var backToTop = document.getElementById('backToTop');
+
+            function onScroll() {
+                var y = window.scrollY;
+                header.classList.toggle('scrolled', y > 60);
+                backToTop.classList.toggle('show', y > 700);
+            }
+            document.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ============================================================
+            // 2. MOBILE NAV
+            // ============================================================
+            var burger = document.getElementById('burgerBtn');
+            var drawer = document.getElementById('mobileDrawer');
+            var overlay = document.getElementById('drawerOverlay');
+
+            function toggleDrawer(force) {
+                var open = typeof force === 'boolean' ? force : !drawer.classList.contains('open');
+                drawer.classList.toggle('open', open);
+                overlay.classList.toggle('open', open);
+                burger.classList.toggle('open', open);
+                document.body.style.overflow = open ? 'hidden' : '';
+            }
+
+            burger.addEventListener('click', function() { toggleDrawer(); });
+            overlay.addEventListener('click', function() { toggleDrawer(false); });
+            drawer.querySelectorAll('a').forEach(function(a) {
+                a.addEventListener('click', function() { toggleDrawer(false); });
+            });
+
+            // ============================================================
+            // 3. REVEAL ON SCROLL
+            // ============================================================
+            var revealEls = document.querySelectorAll('.reveal');
+            var revealObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+            revealEls.forEach(function(el) { revealObserver.observe(el); });
+
+            // ============================================================
+            // 4. COUNTER ANIMATION
+            // ============================================================
+            var counters = document.querySelectorAll('.stats-about .number');
+            var counterObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        var target = parseInt(entry.target.dataset.count);
+                        var current = 0;
+                        var increment = Math.ceil(target / 40);
+                        var interval = setInterval(function() {
+                            current += increment;
+                            if (current >= target) {
+                                current = target;
+                                clearInterval(interval);
+                            }
+                            entry.target.textContent = current + (target === 100 ? '%' : '+');
+                        }, 30);
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            counters.forEach(function(c) { counterObserver.observe(c); });
+
+            // ============================================================
+            // 5. LOAD SITE SETTINGS FROM API
+            // ============================================================
+            function loadSiteSettings() {
+                fetch('/api/parametres')
+                    .then(function(r) { return r.json(); })
+                    .then(function(res) {
+                        if (!res.success || !res.data) return;
+                        var data = res.data;
+
+                        // Description
+                        if (data.description) {
+                            document.getElementById('footerDescription').textContent = data.description;
+                            document.getElementById('aboutDescription').textContent = data.description;
+                        }
+
+                        // Horaires
+                        if (data.horaires) {
+                            var horaires = data.horaires;
+                            var lines = horaires.split('\n');
+                            if (lines.length >= 3) {
+                                var h1 = lines[0].replace(/^[^:]*:\s*/, '').trim();
+                                var h2 = lines[1].replace(/^[^:]*:\s*/, '').trim();
+                                var h3 = lines[2].replace(/^[^:]*:\s*/, '').trim();
+                                if (h1) document.getElementById('footerHoraire1').textContent = h1;
+                                if (h2) document.getElementById('footerHoraire2').textContent = h2;
+                                if (h3) document.getElementById('footerHoraire3').textContent = h3;
+                            }
+                        }
+
+                        // Réseaux sociaux
+                        var footerSocials = document.getElementById('footerSocials');
+                        var socialHtml = '';
+                        var socialData = [
+                            { key: 'facebook', icon: 'fa-facebook-f' },
+                            { key: 'instagram', icon: 'fa-instagram' },
+                            { key: 'tiktok', icon: 'fa-tiktok' },
+                            { key: 'whatsapp', icon: 'fa-whatsapp' }
+                        ];
+                        socialData.forEach(function(s) {
+                            var url = data[s.key];
+                            if (url) {
+                                var waClean = s.key === 'whatsapp' ? url.replace(/[^0-9]/g, '') : '';
+                                var href = s.key === 'whatsapp' ? 'https://wa.me/' + waClean : url;
+                                socialHtml += '<a href="' + href + '" title="' + s.key.charAt(0).toUpperCase() +
+                                    s.key.slice(1) + '"><i class="fa-brands ' + s.icon + '"></i></a>';
+                            }
+                        });
+                        if (socialHtml) {
+                            footerSocials.innerHTML = socialHtml;
+                        }
+
+                        console.log('✅ Paramètres chargés depuis /api/parametres');
+                    })
+                    .catch(function(e) {
+                        console.warn('Erreur chargement paramètres:', e);
+                    });
+            }
+
+            loadSiteSettings();
+
+            // ============================================================
+            // 6. NAV ACTIVE
+            // ============================================================
+            var currentPath = window.location.pathname;
+            document.querySelectorAll('.main-nav a, .mobile-drawer a').forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href && href !== '#' && currentPath.includes(href)) {
+                    link.classList.add('active');
+                }
+            });
+
+            console.log('🚀 Dar Chakaf — À propos 100% API-ready, zéro fake, cadres vides');
+
+        });
+    </script>
+
+</body>
+</html>

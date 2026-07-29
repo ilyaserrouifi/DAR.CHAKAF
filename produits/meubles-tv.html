@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Meubles TV — Dar Chakaf</title>
+    <meta name="description" content="Découvrez notre collection de meubles TV : design contemporain, rangements intégrés, bois massif." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ===== MÊME CSS QUE DÉCORATIONS ===== */
+        /* (copier le même CSS) */
+        :root {
+            --bg-void: #0a0908;
+            --bg-base: #0e0c0a;
+            --bg-panel: #15120e;
+            --bg-panel-2: #1c1712;
+            --border-soft: rgba(201, 169, 97, 0.14);
+            --border-strong: rgba(201, 169, 97, 0.32);
+            --gold: #c9a961;
+            --gold-bright: #e6c988;
+            --gold-dim: #8f7440;
+            --ink: #f2ead9;
+            --ink-soft: #cdc3ae;
+            --ink-mute: #8e8471;
+            --ink-faint: #5c5546;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+            --fs-h1: clamp(2.6rem, 4.8vw, 4rem);
+            --shadow-soft: 0 20px 60px -20px rgba(0, 0, 0, 0.65);
+            --shadow-gold: 0 10px 40px -12px rgba(201, 169, 97, 0.35);
+            --radius-sm: 4px;
+            --radius-md: 10px;
+            --radius-lg: 18px;
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --transition: 0.45s var(--ease);
+            --gap-lg: 4rem;
+            --gap-xl: 7rem;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: var(--bg-base);
+            color: var(--ink);
+            font-family: var(--font-body);
+            font-weight: 300;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition), border-color var(--transition);
+        }
+        ul {
+            list-style: none;
+        }
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: inherit;
+        }
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+        .container {
+            width: 100%;
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 clamp(1.25rem, 4vw, 3rem);
+        }
+        .eyebrow {
+            font-size: 0.78rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.1rem;
+        }
+        .eyebrow::before {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: var(--gold);
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.95rem 2.1rem;
+            font-size: 0.86rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold-bright), var(--gold) 60%, var(--gold-dim));
+            color: #14110b;
+            box-shadow: var(--shadow-gold);
+        }
+        .btn-gold:hover {
+            filter: brightness(1.08);
+            transform: translateY(-2px);
+        }
+        .btn-ghost {
+            border: 1px solid var(--border-strong);
+            color: var(--ink);
+            background: transparent;
+        }
+        .btn-ghost:hover {
+            background: rgba(201, 169, 97, 0.08);
+            border-color: var(--gold);
+            color: var(--gold-bright);
+        }
+        .btn-sm {
+            padding: 0.6rem 1.3rem;
+            font-size: 0.72rem;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+        }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        /* HEADER (copier le même que les autres pages) */
+        #site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 900;
+            padding: 1.5rem 0;
+            transition: var(--transition);
+            background: linear-gradient(to bottom, rgba(10, 9, 8, 0.9), rgba(10, 9, 8, 0.75));
+            border-bottom: 1px solid var(--border-soft);
+        }
+        #site-header.scrolled {
+            padding: 0.9rem 0;
+            background: rgba(10, 9, 8, 0.94);
+            backdrop-filter: blur(14px);
+        }
+        .nav-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: 0.04em;
+            color: var(--ink);
+        }
+        .logo-mark {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .logo-mark svg {
+            width: 22px;
+            height: 22px;
+        }
+        .logo-text strong {
+            color: var(--gold-bright);
+            font-weight: 600;
+        }
+        .logo-text span {
+            display: block;
+            font-size: 0.6rem;
+            letter-spacing: 0.32em;
+            color: var(--ink-mute);
+            text-transform: uppercase;
+            margin-top: -2px;
+        }
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 2.4rem;
+        }
+        .main-nav a {
+            font-size: 0.82rem;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            position: relative;
+            padding: 0.4rem 0;
+            transition: color 0.3s;
+        }
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 1.5px;
+            width: 0;
+            background: var(--gold);
+            transition: width 0.35s var(--ease);
+        }
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--gold-bright);
+        }
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            width: 100%;
+        }
+        .nav-dropdown {
+            position: relative;
+        }
+        .nav-dropdown-panel {
+            position: absolute;
+            top: calc(100% + 1.4rem);
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            width: 620px;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            padding: 1.6rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-soft);
+            pointer-events: none;
+        }
+        .nav-dropdown:hover .nav-dropdown-panel {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+        .nav-dropdown-panel a {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.65rem 0.8rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            text-transform: none;
+            letter-spacing: 0.01em;
+            color: var(--ink-soft);
+        }
+        .nav-dropdown-panel a i {
+            color: var(--gold);
+            width: 16px;
+            font-size: 0.85rem;
+        }
+        .nav-dropdown-panel a:hover {
+            background: rgba(201, 169, 97, 0.08);
+            color: var(--gold-bright);
+        }
+        .nav-dropdown-panel a::after {
+            display: none;
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+        }
+        .nav-icon-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-soft);
+            transition: var(--transition);
+        }
+        .nav-icon-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold-bright);
+        }
+        .burger {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-soft);
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 4px;
+            background: transparent;
+        }
+        .burger span {
+            width: 16px;
+            height: 1px;
+            background: var(--ink);
+            transition: var(--transition);
+        }
+        .burger.open span:nth-child(1) {
+            transform: translateY(5px) rotate(45deg);
+        }
+        .burger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .burger.open span:nth-child(3) {
+            transform: translateY(-5px) rotate(-45deg);
+        }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: min(360px, 86vw);
+            height: 100vh;
+            background: var(--bg-panel);
+            border-left: 1px solid var(--border-soft);
+            z-index: 950;
+            padding: 6.5rem 2rem 2rem;
+            transition: right 0.5s var(--ease);
+            overflow-y: auto;
+        }
+        .mobile-drawer.open {
+            right: 0;
+        }
+        .mobile-drawer a {
+            display: block;
+            padding: 0.95rem 0;
+            border-bottom: 1px solid var(--border-soft);
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+        }
+        .mobile-drawer .sub-link {
+            padding-left: 1rem;
+            font-size: 0.8rem;
+            color: var(--ink-mute);
+            border-bottom: none;
+            text-transform: none;
+        }
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 940;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        .drawer-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        @media (max-width: 900px) {
+            .main-nav,
+            .nav-actions .btn-ghost {
+                display: none;
+            }
+            .burger {
+                display: flex;
+            }
+        }
+
+        .page-hero {
+            position: relative;
+            padding: 9.5rem 0 4rem;
+            overflow: hidden;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+        }
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .page-hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(0.85) brightness(0.4);
+        }
+        .page-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10, 9, 8, 0.4) 0%, rgba(10, 9, 8, 0.96) 100%);
+        }
+        .page-hero-inner {
+            position: relative;
+            z-index: 1;
+        }
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.78rem;
+            color: var(--ink-mute);
+            margin-bottom: 1.4rem;
+            letter-spacing: 0.03em;
+        }
+        .breadcrumb a {
+            color: var(--ink-mute);
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover {
+            color: var(--gold-bright);
+        }
+        .breadcrumb i {
+            font-size: 0.6rem;
+            color: var(--ink-faint);
+        }
+        .breadcrumb .current {
+            color: var(--gold-bright);
+        }
+        .page-hero h1 {
+            font-size: var(--fs-h1);
+            color: var(--ink);
+            max-width: 16ch;
+        }
+        .page-hero p {
+            margin-top: 1.2rem;
+            color: var(--ink-soft);
+            max-width: 56ch;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .catalog-section {
+            padding: 0 0 var(--gap-xl);
+        }
+        .catalog-layout {
+            display: grid;
+            grid-template-columns: 270px 1fr;
+            gap: var(--gap-lg);
+            align-items: flex-start;
+        }
+        .cat-sidebar {
+            position: sticky;
+            top: 110px;
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            background: var(--bg-panel);
+            overflow: hidden;
+        }
+        .cat-sidebar-head {
+            padding: 1.4rem 1.5rem;
+            border-bottom: 1px solid var(--border-soft);
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            color: var(--gold-bright);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .cat-sidebar ul {
+            padding: 0.6rem 0;
+        }
+        .cat-sidebar li a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+            padding: 0.85rem 1.5rem;
+            font-size: 0.86rem;
+            color: var(--ink-soft);
+            border-left: 2px solid transparent;
+            transition: var(--transition);
+        }
+        .cat-sidebar li a .cat-name {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .cat-sidebar li a i.cat-ic {
+            color: var(--gold-dim);
+            width: 16px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .cat-sidebar li a .count {
+            font-size: 0.68rem;
+            color: var(--ink-faint);
+            border: 1px solid var(--border-soft);
+            border-radius: 10px;
+            padding: 0.1rem 0.5rem;
+        }
+        .cat-sidebar li a:hover,
+        .cat-sidebar li a.active {
+            background: rgba(201, 169, 97, 0.07);
+            border-left-color: var(--gold);
+            color: var(--gold-bright);
+        }
+        .cat-sidebar li a:hover i.cat-ic,
+        .cat-sidebar li a.active i.cat-ic {
+            color: var(--gold);
+        }
+
+        .cat-sidebar-filters {
+            padding: 1.4rem 1.5rem;
+            border-top: 1px solid var(--border-soft);
+        }
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+        .filter-group h5 {
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ink-mute);
+            margin-bottom: 0.9rem;
+        }
+        .filter-chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .filter-chip {
+            padding: 0.4rem 0.9rem;
+            border: 1px solid var(--border-soft);
+            border-radius: 20px;
+            font-size: 0.72rem;
+            color: var(--ink-mute);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .filter-chip:hover,
+        .filter-chip.active {
+            border-color: var(--gold);
+            color: var(--gold-bright);
+            background: rgba(201, 169, 97, 0.06);
+        }
+
+        .catalog-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .catalog-count {
+            font-size: 0.85rem;
+            color: var(--ink-mute);
+        }
+        .catalog-count b {
+            color: var(--gold-bright);
+            font-weight: 500;
+        }
+        .catalog-sort {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.78rem;
+            color: var(--ink-mute);
+        }
+        .catalog-sort select {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-sm);
+            padding: 0.55rem 0.9rem;
+            color: var(--ink);
+            font-size: 0.8rem;
+            font-family: var(--font-body);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.6rem;
+        }
+        .product-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .product-card:hover {
+            border-color: var(--border-strong);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-soft);
+        }
+        .product-thumb {
+            position: relative;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: var(--bg-panel-2);
+        }
+        .product-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--ease);
+        }
+        .product-card:hover .product-thumb img {
+            transform: scale(1.07);
+        }
+        .product-badge {
+            position: absolute;
+            top: 0.9rem;
+            left: 0.9rem;
+            background: var(--gold);
+            color: #14110b;
+            font-size: 0.64rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.7rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            z-index: 2;
+        }
+        .product-quick {
+            position: absolute;
+            top: 0.9rem;
+            right: 0.9rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(10, 9, 8, 0.6);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 2;
+        }
+        .product-card:hover .product-quick {
+            opacity: 1;
+        }
+        .product-quick:hover {
+            background: var(--gold);
+            color: #14110b;
+        }
+        .product-body {
+            padding: 1.4rem 1.5rem 1.6rem;
+        }
+        .product-cat-tag {
+            font-size: 0.66rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold-dim);
+        }
+        .product-body h3 {
+            font-size: 1.1rem;
+            color: var(--ink);
+            margin: 0.5rem 0 0.4rem;
+            font-family: var(--font-display);
+        }
+        .product-body p {
+            font-size: 0.84rem;
+            color: var(--ink-mute);
+            line-height: 1.6;
+            margin-bottom: 0.6rem;
+        }
+        .product-dimensions {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-family: var(--font-body);
+            letter-spacing: 0.04em;
+            margin-bottom: 0.8rem;
+        }
+        .product-dimensions span {
+            background: var(--bg-panel-2);
+            padding: 0.15rem 0.6rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-soft);
+        }
+        .product-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border-soft);
+        }
+        .product-price {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--gold-bright);
+        }
+        .product-price small {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .product-link {
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: var(--transition);
+        }
+        .product-link:hover {
+            color: var(--gold-bright);
+            gap: 0.6rem;
+        }
+
+        .skeleton {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            animation: pulse 1.6s ease-in-out infinite;
+        }
+        .skeleton .thumb {
+            aspect-ratio: 4/3;
+            background: var(--bg-panel-2);
+        }
+        .skeleton .body {
+            padding: 1.4rem 1.5rem 1.6rem;
+        }
+        .skeleton .body .line {
+            height: 10px;
+            background: var(--bg-panel-2);
+            border-radius: var(--radius-sm);
+            margin-bottom: 10px;
+        }
+        .skeleton .body .line.short {
+            width: 50%;
+        }
+        .skeleton .body .line.medium {
+            width: 70%;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+        .no-products {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--ink-mute);
+            grid-column: 1 / -1;
+        }
+        .no-products .icon {
+            font-size: 48px;
+            opacity: 0.3;
+            margin-bottom: 16px;
+        }
+        .no-products h3 {
+            font-family: var(--font-body);
+            font-size: 18px;
+            color: var(--ink-soft);
+            margin-bottom: 8px;
+        }
+
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-top: var(--gap-lg);
+        }
+        .page-btn {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.82rem;
+            color: var(--ink-soft);
+            transition: var(--transition);
+            background: transparent;
+        }
+        .page-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold-bright);
+        }
+        .page-btn.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #14110b;
+            font-weight: 600;
+        }
+        .page-btn.nav-btn {
+            border-radius: var(--radius-sm);
+            width: auto;
+            padding: 0 1.1rem;
+            gap: 0.5rem;
+        }
+
+        #cta-banner {
+            position: relative;
+            padding: var(--gap-xl) 0;
+            text-align: center;
+            overflow: hidden;
+        }
+        .cta-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .cta-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.32) saturate(0.8);
+        }
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .cta-content h2 {
+            font-size: var(--fs-h1);
+            color: var(--ink);
+            margin-bottom: 1.4rem;
+        }
+        .cta-content p {
+            color: var(--ink-soft);
+            font-size: 1.05rem;
+            margin-bottom: 2.4rem;
+        }
+        .cta-actions {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            background: var(--bg-void);
+            border-top: 1px solid var(--border-soft);
+            padding-top: var(--gap-xl);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+            gap: var(--gap-lg);
+            padding-bottom: var(--gap-lg);
+        }
+        .footer-brand p {
+            color: var(--ink-mute);
+            font-size: 0.88rem;
+            line-height: 1.8;
+            margin: 1.4rem 0 1.6rem;
+            max-width: 32ch;
+        }
+        .footer-col h5 {
+            font-size: 0.76rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            margin-bottom: 1.4rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+        .footer-col ul li {
+            margin-bottom: 0.85rem;
+        }
+        .footer-col ul li a {
+            font-size: 0.86rem;
+            color: var(--ink-mute);
+            transition: var(--transition);
+        }
+        .footer-col ul li a:hover {
+            color: var(--gold-bright);
+            padding-left: 4px;
+        }
+        .footer-hours li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.84rem;
+            color: var(--ink-mute);
+            margin-bottom: 0.7rem;
+        }
+        .footer-hours li span:last-child {
+            color: var(--ink-soft);
+        }
+        .footer-bottom {
+            border-top: 1px solid var(--border-soft);
+            padding: 1.6rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .footer-bottom p {
+            font-size: 0.78rem;
+            color: var(--ink-faint);
+        }
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.6rem;
+        }
+        .footer-bottom-links a {
+            font-size: 0.78rem;
+            color: var(--ink-faint);
+            transition: color var(--transition);
+        }
+        .footer-bottom-links a:hover {
+            color: var(--gold-bright);
+        }
+        .contact-socials {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.8rem;
+        }
+        .contact-socials a {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--ink-mute);
+        }
+        .contact-socials a:hover {
+            border-color: var(--gold);
+            color: var(--gold-bright);
+            transform: translateY(-3px);
+        }
+
+        .floating-actions {
+            position: fixed;
+            right: 1.6rem;
+            bottom: 1.6rem;
+            z-index: 500;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .fab {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+        .fab-whatsapp {
+            background: #25d366;
+            color: #0c2b17;
+        }
+        .fab-whatsapp:hover {
+            transform: scale(1.08);
+        }
+        .fab-top {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-strong);
+            color: var(--gold);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+        .fab-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .fab-top:hover {
+            background: var(--gold);
+            color: #14110b;
+            border-color: var(--gold);
+        }
+
+        @media (max-width: 1100px) {
+            .catalog-layout {
+                grid-template-columns: 1fr;
+            }
+            .cat-sidebar {
+                position: static;
+            }
+        }
+        @media (max-width: 900px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 560px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2.4rem;
+            }
+            .page-hero h1 {
+                max-width: 100%;
+            }
+            .pagination {
+                flex-wrap: wrap;
+            }
+        }
+    
+
+/* ============================================================
+   DESIGN SYSTEM — Ambiance "Apple", brume dorée, TV-adaptatif
+   ============================================================ */
+*{ accent-color: var(--gold, #c9a961); }
+
+.mist-bg{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--bg-void, #0a0908);
+}
+.mist-bg::before,
+.mist-bg::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  animation: mistDrift 22s ease-in-out infinite alternate;
+}
+.mist-bg::before{
+  width: 46vw; height: 46vw;
+  top: -12vw; left: -10vw;
+  background: radial-gradient(circle, rgba(201,169,97,0.35), transparent 70%);
+}
+.mist-bg::after{
+  width: 40vw; height: 40vw;
+  bottom: -14vw; right: -8vw;
+  background: radial-gradient(circle, rgba(140,110,60,0.28), transparent 70%);
+  animation-delay: -9s;
+}
+@keyframes mistDrift{
+  0%   { transform: translate(0,0) scale(1); }
+  100% { transform: translate(3vw, 2vw) scale(1.12); }
+}
+
+.glass-panel{
+  background: rgba(21,18,14,0.55);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(201,169,97,0.18);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.45);
+}
+
+/* Bouton flottant "appel" — halo pulsé façon écran d'appel iOS */
+.fab-whatsapp{ position: relative; }
+.fab-whatsapp::before{
+  content:"";
+  position:absolute; inset:-6px;
+  border-radius:50%;
+  background: rgba(37,211,102,0.35);
+  filter: blur(6px);
+  animation: callPulse 2.2s ease-out infinite;
+  z-index:-1;
+}
+@keyframes callPulse{
+  0%   { transform: scale(0.85); opacity: 0.7; }
+  70%  { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Adaptation grands écrans / TV (1600px+, 4K compris) */
+@media (min-width: 1600px){
+  html{ font-size: 19px; }
+  .container, .wrap, main{ max-width: 1680px; }
+}
+@media (min-width: 2200px){
+  html{ font-size: 23px; }
+  .container, .wrap, main{ max-width: 2100px; }
+}
+
+
+/* ============================================================
+   SCROLL REVEAL CINÉMATIQUE — auto-appliqué (voir script en bas)
+   ============================================================ */
+.auto-reveal{
+  opacity: 0;
+  transform: perspective(1200px) translateY(40px) translateZ(-50px) rotateX(6deg);
+  transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1);
+  will-change: opacity, transform;
+}
+.auto-reveal.is-visible{
+  opacity: 1;
+  transform: perspective(1200px) translateY(0) translateZ(0) rotateX(0deg);
+}
+</style>
+</head>
+<body>
+<div class="mist-bg" aria-hidden="true"></div>
+
+
+    <!-- ===== HEADER ===== -->
+    <header id="site-header">
+        <div class="container nav-wrap">
+            <a href="../index.html" class="logo">
+                <span class="logo-mark">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#c9a961" stroke-width="1.2">
+                        <path d="M4 20 V10 L12 4 L20 10 V20" />
+                        <path d="M9 20 V13 H15 V20" />
+                    </svg>
+                </span>
+                <span class="logo-text"><strong>Dar Chakaf</strong><span>Ameublement &amp; Décoration</span></span>
+            </a>
+
+            <nav class="main-nav">
+                <a href="../index.html">Accueil</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="active">Produits <i class="fa-solid fa-chevron-down" style="font-size:0.6rem;margin-left:4px;"></i></a>
+                    <div class="nav-dropdown-panel">
+                        <a href="salons-modernes.html"><i class="fa-solid fa-couch"></i> Salons modernes</a>
+                        <a href="salons-traditionnels.html"><i class="fa-solid fa-mosque"></i> Salons traditionnels</a>
+                        <a href="tables.html"><i class="fa-solid fa-table"></i> Tables</a>
+                        <a href="decorations.html"><i class="fa-solid fa-vector-square"></i> Décorations</a>
+                        <a href="meubles-tv.html" class="active"><i class="fa-solid fa-tv"></i> Meubles TV</a>
+                        <a href="couloirs.html"><i class="fa-solid fa-door-open"></i> Couloirs &amp; Entrées</a>
+                        <a href="tissus.html"><i class="fa-solid fa-scroll"></i> Tissus &amp; Rideaux</a>
+                        <a href="../galerie.html"><i class="fa-solid fa-images"></i> Toute la collection</a>
+                    </div>
+                </div>
+                <a href="../galerie.html">Galerie</a>
+                <a href="../a-propos.html">À propos</a>
+                <a href="../contact.html">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="../admin/login.html" class="nav-icon-btn" title="Espace administration"><i class="fa-solid fa-user"></i></a>
+                <a href="../contact.html" class="btn btn-ghost btn-sm">Demander un devis</a>
+                <button class="burger" id="burgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <nav class="mobile-drawer" id="mobileDrawer">
+        <a href="../index.html">Accueil</a>
+        <a href="salons-modernes.html" class="sub-link">— Salons modernes</a>
+        <a href="salons-traditionnels.html" class="sub-link">— Salons traditionnels</a>
+        <a href="tables.html" class="sub-link">— Tables</a>
+        <a href="decorations.html" class="sub-link">— Décorations</a>
+        <a href="meubles-tv.html" class="sub-link">— Meubles TV</a>
+        <a href="couloirs.html" class="sub-link">— Couloirs &amp; Entrées</a>
+        <a href="tissus.html" class="sub-link">— Tissus &amp; Rideaux</a>
+        <a href="../galerie.html">Galerie</a>
+        <a href="../a-propos.html">À propos</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../admin/login.html">Espace Admin</a>
+    </nav>
+
+    <!-- ===== PAGE HERO ===== -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?q=80&w=1800&auto=format&fit=crop" alt="Meubles TV Dar Chakaf" loading="lazy">
+        </div>
+        <div class="container page-hero-inner">
+            <div class="breadcrumb">
+                <a href="../index.html">Accueil</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="#">Produits</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span class="current">Meubles TV</span>
+            </div>
+            <h1>Meubles TV</h1>
+            <p>Des meubles TV qui allient fonctionnalité et esthétique contemporaine. Rangements intégrés, bois massif, finitions soignées.</p>
+        </div>
+    </section>
+
+    <!-- ===== CATALOGUE ===== -->
+    <section class="catalog-section">
+        <div class="container">
+            <div class="catalog-layout">
+
+                <aside class="cat-sidebar reveal">
+                    <div class="cat-sidebar-head"><i class="fa-solid fa-layer-group"></i> Catégories</div>
+                    <ul>
+                        <li><a href="salons-modernes.html"><span class="cat-name"><i class="fa-solid fa-couch cat-ic"></i> Salons modernes</span><span class="count">32</span></a></li>
+                        <li><a href="salons-traditionnels.html"><span class="cat-name"><i class="fa-solid fa-mosque cat-ic"></i> Salons traditionnels</span><span class="count">28</span></a></li>
+                        <li><a href="tables.html"><span class="cat-name"><i class="fa-solid fa-table cat-ic"></i> Tables</span><span class="count">19</span></a></li>
+                        <li><a href="decorations.html"><span class="cat-name"><i class="fa-solid fa-vector-square cat-ic"></i> Décorations</span><span class="count">41</span></a></li>
+                        <li><a href="meubles-tv.html" class="active"><span class="cat-name"><i class="fa-solid fa-tv cat-ic"></i> Meubles TV</span><span class="count">15</span></a></li>
+                        <li><a href="couloirs.html"><span class="cat-name"><i class="fa-solid fa-door-open cat-ic"></i> Couloirs &amp; Entrées</span><span class="count">12</span></a></li>
+                        <li><a href="tissus.html"><span class="cat-name"><i class="fa-solid fa-scroll cat-ic"></i> Tissus &amp; Rideaux</span><span class="count">23</span></a></li>
+                    </ul>
+
+                    <div class="cat-sidebar-filters">
+                        <div class="filter-group">
+                            <h5>Style</h5>
+                            <div class="filter-chip-row" id="styleFilters">
+                                <span class="filter-chip active" data-filter="all">Tous</span>
+                                <span class="filter-chip" data-filter="modern">Moderne</span>
+                                <span class="filter-chip" data-filter="classic">Classique</span>
+                                <span class="filter-chip" data-filter="floating">Flottant</span>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <h5>Budget (DH)</h5>
+                            <div class="price-range" style="display:flex;align-items:center;gap:0.6rem;font-size:0.78rem;color:var(--ink-mute);">
+                                <span>1k</span>
+                                <input type="range" min="1000" max="15000" value="10000" id="priceRange" style="flex:1;accent-color:var(--gold);height:4px;background:var(--border-soft);border-radius:2px;-webkit-appearance:none;appearance:none;">
+                                <span id="priceValue">10k+</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <div>
+                    <div class="catalog-toolbar reveal">
+                        <div class="catalog-count"><b id="productCount">15</b> modèles dans « Meubles TV »</div>
+                        <div class="catalog-sort">
+                            <label for="sortSelect">Trier par</label>
+                            <select id="sortSelect">
+                                <option value="new">Nouveautés</option>
+                                <option value="price-asc">Prix croissant</option>
+                                <option value="price-desc">Prix décroissant</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="product-grid" id="productGrid">
+                        <!-- Chargé dynamiquement -->
+                    </div>
+
+                    <div class="pagination reveal" id="paginationContainer">
+                        <button class="page-btn nav-btn" id="prevPage"><i class="fa-solid fa-chevron-left"></i> Précédent</button>
+                        <div id="pageNumbers"></div>
+                        <button class="page-btn nav-btn" id="nextPage">Suivant <i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA BANNER ===== -->
+    <section id="cta-banner">
+        <div class="cta-bg"><img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?q=80&w=1800&auto=format&fit=crop" alt="Intérieur Dar Chakaf" loading="lazy"></div>
+        <div class="container cta-content">
+            <div class="eyebrow centered">Sur mesure</div>
+            <h2>Un meuble TV adapté à votre espace ?</h2>
+            <p>Nous concevons des meubles TV aux dimensions et finitions qui correspondent parfaitement à votre salon.</p>
+            <div class="cta-actions">
+                <a href="../contact.html" class="btn btn-gold">Demander une personnalisation</a>
+                <a href="https://wa.me/212600000000" class="btn btn-ghost"><i class="fa-brands fa-whatsapp"></i> WhatsApp direct</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        <span class="logo-mark">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#c9a961" stroke-width="1.2">
+                                <path d="M4 20 V10 L12 4 L20 10 V20" />
+                                <path d="M9 20 V13 H15 V20" />
+                            </svg>
+                        </span>
+                        <span class="logo-text"><strong>Dar Chakaf</strong><span>Ameublement &amp; Décoration</span></span>
+                    </a>
+                    <p>Fabricant marocain de mobilier haut de gamme, sur mesure, alliant tradition et modernité depuis 2009.</p>
+                    <div class="contact-socials">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://wa.me/212600000000"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Produits</h5>
+                    <ul>
+                        <li><a href="salons-modernes.html">Salons modernes</a></li>
+                        <li><a href="salons-traditionnels.html">Salons traditionnels</a></li>
+                        <li><a href="tables.html">Tables</a></li>
+                        <li><a href="decorations.html">Décorations</a></li>
+                        <li><a href="meubles-tv.html">Meubles TV</a></li>
+                        <li><a href="couloirs.html">Couloirs &amp; Entrées</a></li>
+                        <li><a href="tissus.html">Tissus &amp; Rideaux</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Entreprise</h5>
+                    <ul>
+                        <li><a href="../a-propos.html">À propos</a></li>
+                        <li><a href="../galerie.html">Galerie</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="../admin/login.html">Espace admin</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Horaires</h5>
+                    <ul class="footer-hours">
+                        <li><span>Lun – Ven</span><span>9h00 – 19h00</span></li>
+                        <li><span>Samedi</span><span>10h00 – 18h00</span></li>
+                        <li><span>Dimanche</span><span>Fermé</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 Dar Chakaf. Tous droits réservés.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Mentions légales</a>
+                    <a href="#">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== FLOATING ACTIONS ===== -->
+    <div class="floating-actions">
+        <a href="https://wa.me/212600000000" class="fab fab-whatsapp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <button class="fab fab-top" id="backToTop" title="Retour en haut"><i class="fa-solid fa-arrow-up"></i></button>
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const header = document.getElementById('site-header');
+            const backToTop = document.getElementById('backToTop');
+
+            function onScroll() {
+                const y = window.scrollY;
+                header.classList.toggle('scrolled', y > 60);
+                backToTop.classList.toggle('show', y > 700);
+            }
+            document.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            const burger = document.getElementById('burgerBtn');
+            const drawer = document.getElementById('mobileDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+
+            function toggleDrawer(force) {
+                const open = typeof force === 'boolean' ? force : !drawer.classList.contains('open');
+                drawer.classList.toggle('open', open);
+                overlay.classList.toggle('open', open);
+                burger.classList.toggle('open', open);
+                document.body.style.overflow = open ? 'hidden' : '';
+            }
+
+            burger.addEventListener('click', function() { toggleDrawer(); });
+            overlay.addEventListener('click', function() { toggleDrawer(false); });
+            drawer.querySelectorAll('a').forEach(function(a) {
+                a.addEventListener('click', function() { toggleDrawer(false); });
+            });
+
+            document.querySelectorAll('.reveal').forEach(function(el) {
+                new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        el.classList.add('is-visible');
+                        this.disconnect();
+                    }
+                }, { threshold: 0.12 }).observe(el);
+            });
+
+            // ===== PRODUITS — MEUBLES TV =====
+            let productsData = [];
+
+            function mapApiProduct(p) {
+                return {
+                    id: p.id,
+                    titre: p.titre,
+                    description: p.description,
+                    prix: p.prix,
+                    ancien_prix: p.ancien_prix,
+                    unite: p.unite || 'unite',
+                    dimensions: p.dimensions,
+                    image: (p.images && p.images.length && p.images[0]) || p.image_principale,
+                    statut: p.statut,
+                    badge: p.badge,
+                    material: p.materiau,
+                    color: p.coloris,
+                    type: p.type,
+                    style: p.type
+                };
+            }
+
+            const grid = document.getElementById('productGrid');
+            const productCountEl = document.getElementById('productCount');
+            let currentPage = 1;
+            const itemsPerPage = 6;
+            let filteredProducts = [...productsData];
+
+            function renderProducts(products, page) {
+                const start = (page - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                const pageItems = products.slice(start, end);
+
+                if (pageItems.length === 0) {
+                    grid.innerHTML =
+                        `<div class="no-products"><div class="icon">📺</div><h3>Aucun meuble TV disponible</h3><p>Modifiez les filtres pour voir plus de résultats.</p></div>`;
+                    return;
+                }
+
+                let html = '';
+                pageItems.forEach(function(p, index) {
+                    const badgeHtml = p.badge ? `<span class="product-badge">${p.badge}</span>` : '';
+                    const delay = index % 3 === 0 ? '' : index % 3 === 1 ? 'reveal-delay-1' : 'reveal-delay-2';
+
+                    html += `
+                        <div class="product-card reveal ${delay}">
+                            <div class="product-thumb">
+                                ${badgeHtml}
+                                <span class="product-quick"><i class="fa-solid fa-eye"></i></span>
+                                <img src="${p.image}" alt="${p.titre}" loading="lazy" />
+                            </div>
+                            <div class="product-body">
+                                <span class="product-cat-tag">Meubles TV</span>
+                                <h3>${p.titre}</h3>
+                                <p>${p.description}</p>
+                                <div class="product-dimensions"><span>${p.dimensions}</span></div>
+                                <div class="product-foot">
+                                    <div class="product-price">
+                                        <small>Prix</small>
+                                        ${p.prix.toLocaleString()} DH
+                                    </div>
+                                    <a href="../produit-detail.html?ref=${p.id}" class="product-link">Voir <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                grid.innerHTML = html;
+
+                setTimeout(function() {
+                    grid.querySelectorAll('.reveal').forEach(function(el) {
+                        const observer = new IntersectionObserver(function(entries) {
+                            if (entries[0].isIntersecting) {
+                                el.classList.add('is-visible');
+                                observer.disconnect();
+                            }
+                        }, { threshold: 0.12 });
+                        observer.observe(el);
+                    });
+                }, 100);
+
+                productCountEl.textContent = products.length;
+                renderPagination(products.length, page);
+            }
+
+            function renderPagination(total, current) {
+                const totalPages = Math.ceil(total / itemsPerPage);
+                const container = document.getElementById('pageNumbers');
+                if (!container) return;
+                if (totalPages <= 1) { container.innerHTML = ''; return; }
+
+                let html = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    html += `<button class="page-btn ${i === current ? 'active' : ''}" data-page="${i}">${i}</button>`;
+                }
+                container.innerHTML = html;
+
+                container.querySelectorAll('.page-btn').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        currentPage = parseInt(this.dataset.page);
+                        renderProducts(filteredProducts, currentPage);
+                        window.scrollTo({ top: document.querySelector('.catalog-section').offsetTop - 120,
+                            behavior: 'smooth' });
+                    });
+                });
+
+                document.getElementById('prevPage').onclick = function() {
+                    if (currentPage > 1) { currentPage--;
+                        renderProducts(filteredProducts, currentPage);
+                        window.scrollTo({ top: document.querySelector('.catalog-section').offsetTop - 120,
+                            behavior: 'smooth' }); }
+                };
+                document.getElementById('nextPage').onclick = function() {
+                    if (currentPage < totalPages) { currentPage++;
+                        renderProducts(filteredProducts, currentPage);
+                        window.scrollTo({ top: document.querySelector('.catalog-section').offsetTop - 120,
+                            behavior: 'smooth' }); }
+                };
+            }
+
+            let currentStyle = 'all';
+            let currentPriceMax = 10000;
+
+            function applyFilters() {
+                filteredProducts = productsData.filter(function(p) {
+                    const matchStyle = currentStyle === 'all' || p.style === currentStyle;
+                    const matchPrice = p.prix <= currentPriceMax;
+                    return matchStyle && matchPrice;
+                });
+                currentPage = 1;
+                renderProducts(filteredProducts, currentPage);
+            }
+
+            document.querySelectorAll('#styleFilters .filter-chip').forEach(function(chip) {
+                chip.addEventListener('click', function() {
+                    document.querySelectorAll('#styleFilters .filter-chip').forEach(function(c) { c.classList
+                            .remove('active'); });
+                    chip.classList.add('active');
+                    currentStyle = chip.dataset.filter;
+                    applyFilters();
+                });
+            });
+
+            const priceRange = document.getElementById('priceRange');
+            const priceValue = document.getElementById('priceValue');
+            priceRange.addEventListener('input', function() {
+                currentPriceMax = parseInt(this.value);
+                priceValue.textContent = (currentPriceMax / 1000).toFixed(0) + 'k+';
+                applyFilters();
+            });
+
+            document.getElementById('sortSelect').addEventListener('change', function() {
+                const sortValue = this.value;
+                switch (sortValue) {
+                    case 'price-asc':
+                        filteredProducts.sort((a, b) => a.prix - b.prix);
+                        break;
+                    case 'price-desc':
+                        filteredProducts.sort((a, b) => b.prix - a.prix);
+                        break;
+                    default:
+                        filteredProducts.sort((a, b) => (b.badge === 'Nouveau' ? 1 : 0) - (a.badge === 'Nouveau' ?
+                            1 : 0));
+                        break;
+                }
+                currentPage = 1;
+                renderProducts(filteredProducts, currentPage);
+            });
+
+            grid.innerHTML = `
+                <div class="skeleton"><div class="thumb"></div><div class="body"><div class="line full"></div><div class="line medium"></div><div class="line short"></div></div></div>
+                <div class="skeleton"><div class="thumb"></div><div class="body"><div class="line full"></div><div class="line medium"></div><div class="line short"></div></div></div>
+                <div class="skeleton"><div class="thumb"></div><div class="body"><div class="line full"></div><div class="line medium"></div><div class="line short"></div></div></div>
+                <div class="skeleton"><div class="thumb"></div><div class="body"><div class="line full"></div><div class="line medium"></div><div class="line short"></div></div></div>
+                <div class="skeleton"><div class="thumb"></div><div class="body"><div class="line full"></div><div class="line medium"></div><div class="line short"></div></div></div>
+                <div class="skeleton"><div class="thumb"></div><div class="body"><div class="line full"></div><div class="line medium"></div><div class="line short"></div></div></div>
+            `;
+
+            setTimeout(function() {
+                fetch('/api/produits/meubles-tv')
+                    .then(function(r) { return r.json(); })
+                    .then(function(res) {
+                        productsData = (res && res.success && Array.isArray(res.data)) ? res.data.map(mapApiProduct) : [];
+                        filteredProducts = [...productsData];
+                        renderProducts(filteredProducts, 1);
+                    })
+                    .catch(function() {
+                        productsData = [];
+                        filteredProducts = [];
+                        renderProducts(filteredProducts, 1);
+                    });
+            }, 300);
+
+            console.log('🚀 Meubles TV — Version PRO avec ZÉRO FAKE');
+
+        });
+    </script>
+
+
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    var candidates = document.querySelectorAll(
+      'section, .card, .collection-card, .product-card, .produit-card, ' +
+      '.masonry-item, .gallery-item, .team-card, .value-card, .step-card, ' +
+      '.testimonial-card, .stat-block, .contact-card'
+    );
+    var seen = new Set();
+    var delay = 0;
+    candidates.forEach(function(el){
+      if (seen.has(el) || el.closest('.mist-bg')) return;
+      seen.add(el);
+      el.classList.add('auto-reveal');
+      el.style.transitionDelay = (Math.min(delay % 4, 3) * 0.1) + 's';
+      delay++;
+    });
+
+    if (!('IntersectionObserver' in window)){
+      document.querySelectorAll('.auto-reveal').forEach(function(el){ el.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.auto-reveal').forEach(function(el){ io.observe(el); });
+  });
+})();
+</script>
+</body>
+</html>

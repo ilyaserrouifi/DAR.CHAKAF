@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Bannière Hero — Dar Chakaf Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ================================================================
+           ADMIN DESIGN SYSTEM — DAR CHAKAF PREMIUM
+           ================================================================ */
+        :root {
+            --bg-void: #0a0908;
+            --bg-base: #0e0c0a;
+            --bg-panel: #15120e;
+            --bg-panel-2: #1c1712;
+            --bg-panel-raised: #221b14;
+            --border-soft: rgba(201, 169, 97, 0.14);
+            --border-strong: rgba(201, 169, 97, 0.32);
+            --gold: #c9a961;
+            --gold-bright: #e6c988;
+            --gold-dim: #8f7440;
+            --gold-glow: rgba(201, 169, 97, 0.06);
+            --ink: #f2ead9;
+            --ink-soft: #cdc3ae;
+            --ink-mute: #8e8471;
+            --ink-faint: #5c5546;
+            --success: #7a9b6e;
+            --danger: #b9634a;
+            --warning: #d4a04a;
+            --info: #5b8c9e;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+            --fs-h1: clamp(1.8rem, 2.8vw, 2.4rem);
+            --gap-xs: 0.5rem;
+            --gap-sm: 1rem;
+            --gap-md: 2rem;
+            --gap-lg: 4rem;
+            --radius-sm: 4px;
+            --radius-md: 10px;
+            --radius-lg: 18px;
+            --shadow-soft: 0 20px 60px -20px rgba(0, 0, 0, 0.65);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --shadow-gold: 0 10px 40px -12px rgba(201, 169, 97, 0.35);
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --transition: 0.45s var(--ease);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg-base);
+            color: var(--ink);
+            font-family: var(--font-body);
+            font-weight: 300;
+            line-height: 1.7;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        a { color: inherit; text-decoration: none; transition: var(--transition); }
+        ul { list-style: none; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+        input, select, textarea { font-family: inherit; }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-void); }
+        ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 10px; border: 2px solid var(--bg-void); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+        .container { width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 clamp(1.25rem, 3vw, 2.5rem); }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-up { animation: fadeUp 0.6s var(--ease) forwards; opacity: 0; }
+        .fade-up-delay-1 { animation-delay: 0.1s; }
+        .fade-up-delay-2 { animation-delay: 0.2s; }
+        .fade-up-delay-3 { animation-delay: 0.3s; }
+
+        /* ================================================================
+           ADMIN HEADER (identique)
+           ================================================================ */
+        .admin-header {
+            background: var(--bg-panel);
+            border-bottom: 1px solid var(--border-soft);
+            padding: 0.7rem 0;
+            position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            background: rgba(21, 18, 14, 0.94);
+        }
+        .admin-header-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: var(--gap-sm);
+        }
+        .admin-header .logo-text {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--gold-bright);
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .admin-header .logo-text .mark {
+            width: 32px; height: 32px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem; color: var(--gold);
+            transition: var(--transition);
+        }
+        .admin-header .logo-text .mark:hover { transform: rotate(90deg); }
+        .admin-header .logo-text span {
+            font-family: var(--font-body);
+            font-size: 0.55rem; letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ink-mute);
+            display: block; margin-top: -2px;
+        }
+        .admin-header-actions {
+            display: flex; align-items: center; gap: 1.2rem;
+        }
+        .admin-header-actions .user {
+            display: flex; align-items: center; gap: 0.6rem;
+            font-size: 0.82rem; color: var(--ink-mute);
+        }
+        .admin-header-actions .user .avatar {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+            display: flex; align-items: center; justify-content: center;
+            color: #14110b; font-weight: 600; font-size: 0.8rem;
+        }
+        .admin-header-actions .user .name { color: var(--ink-soft); font-weight: 400; }
+        .admin-header-actions .logout-btn {
+            font-size: 0.7rem; letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-mute);
+            padding: 0.35rem 1rem;
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+        .admin-header-actions .logout-btn:hover { border-color: var(--danger); color: var(--danger); }
+
+        /* ================================================================
+           ADMIN SIDEBAR (identique)
+           ================================================================ */
+        .admin-layout {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: var(--gap-lg);
+            padding: var(--gap-md) 0 var(--gap-lg);
+            align-items: start;
+        }
+        .admin-sidebar {
+            position: sticky; top: 80px; align-self: start;
+        }
+        .admin-sidebar .nav-section { margin-bottom: 1.5rem; }
+        .admin-sidebar .nav-section .label {
+            font-size: 0.6rem; letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            padding: 0 0.8rem;
+            margin-bottom: 0.4rem;
+        }
+        .admin-sidebar a {
+            display: flex; align-items: center; gap: 0.7rem;
+            padding: 0.6rem 0.8rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.82rem;
+            color: var(--ink-mute);
+            transition: var(--transition);
+            border-left: 2px solid transparent;
+        }
+        .admin-sidebar a i { width: 18px; text-align: center; font-size: 0.9rem; }
+        .admin-sidebar a:hover, .admin-sidebar a.active {
+            background: var(--gold-glow);
+            color: var(--gold-bright);
+            border-left-color: var(--gold);
+        }
+        .admin-sidebar a .badge {
+            margin-left: auto;
+            background: var(--danger);
+            color: #fff;
+            font-size: 0.55rem;
+            padding: 0.05rem 0.5rem;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+        .admin-sidebar a .badge.success { background: var(--success); }
+
+        /* ================================================================
+           BUTTONS
+           ================================================================ */
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.78rem; letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold-bright), var(--gold) 60%, var(--gold-dim));
+            color: #14110b;
+            box-shadow: var(--shadow-gold);
+        }
+        .btn-gold:hover { filter: brightness(1.08); transform: translateY(-2px); }
+        .btn-ghost { border: 1px solid var(--border-soft); color: var(--ink-mute); background: transparent; }
+        .btn-ghost:hover { border-color: var(--gold); color: var(--gold-bright); }
+        .btn-sm { padding: 0.3rem 0.7rem; font-size: 0.65rem; }
+
+        /* ================================================================
+           MAIN CONTENT
+           ================================================================ */
+        .admin-main { min-width: 0; }
+
+        .page-header {
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: var(--gap-sm);
+            margin-bottom: var(--gap-md);
+        }
+        .page-header h1 { font-size: var(--fs-h1); color: var(--ink); font-weight: 600; }
+        .page-header .sub { font-size: 0.85rem; color: var(--ink-mute); display: block; margin-top: -2px; }
+        .page-header .actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+        /* ================================================================
+           FORM CONTAINER
+           ================================================================ */
+        .form-container {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            max-width: 900px;
+        }
+        .form-container .form-group { margin-bottom: 1.4rem; }
+        .form-container .form-group label {
+            display: block;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-mute);
+            margin-bottom: 0.3rem;
+        }
+        .form-container .form-group .help-text {
+            font-size: 0.68rem;
+            color: var(--ink-faint);
+            margin-top: 0.2rem;
+        }
+        .form-container .form-group input,
+        .form-container .form-group textarea,
+        .form-container .form-group select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            background: var(--bg-panel-2);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-sm);
+            color: var(--ink);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .form-container .form-group input:focus,
+        .form-container .form-group textarea:focus,
+        .form-container .form-group select:focus {
+            border-color: var(--gold);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.06);
+            background: var(--bg-panel-raised);
+        }
+        .form-container .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+        .form-actions { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+
+        /* ================================================================
+           HERO BANNER SPECIFIC
+           ================================================================ */
+        .hero-preview {
+            background: var(--bg-panel-2);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin: 1.5rem 0;
+            position: relative;
+            aspect-ratio: 16/6;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-faint);
+        }
+        .hero-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-preview .overlay-text {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: rgba(10, 9, 8, 0.4);
+            color: var(--ink);
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 1rem;
+        }
+        .hero-preview .overlay-text .sub {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--ink-mute);
+        }
+        .hero-preview .overlay-text .btn-overlay { margin-top: 0.8rem; }
+
+        .banner-slider-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+        .banner-slider-preview .slide-thumb {
+            aspect-ratio: 16/9;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 2px solid var(--border-soft);
+            background: var(--bg-panel-2);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+        .banner-slider-preview .slide-thumb:hover { border-color: var(--gold); }
+        .banner-slider-preview .slide-thumb.active { border-color: var(--gold); }
+        .banner-slider-preview .slide-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .banner-slider-preview .slide-thumb .slide-index {
+            position: absolute;
+            top: 0.3rem;
+            left: 0.3rem;
+            background: rgba(10, 9, 8, 0.7);
+            color: var(--ink);
+            font-size: 0.6rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: var(--radius-sm);
+        }
+        .banner-slider-preview .slide-thumb .remove-slide {
+            position: absolute;
+            top: 0.3rem;
+            right: 0.3rem;
+            background: rgba(185, 99, 74, 0.8);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.6rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            opacity: 0;
+        }
+        .banner-slider-preview .slide-thumb:hover .remove-slide { opacity: 1; }
+        .banner-slider-preview .slide-thumb .remove-slide:hover { background: var(--danger); }
+
+        .add-slide-btn {
+            aspect-ratio: 16/9;
+            border: 2px dashed var(--border-soft);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: var(--ink-faint);
+            font-size: 0.72rem;
+            transition: var(--transition);
+            cursor: pointer;
+            background: var(--bg-panel-2);
+        }
+        .add-slide-btn:hover { border-color: var(--gold); color: var(--gold-bright); }
+        .add-slide-btn i { font-size: 2rem; margin-bottom: 0.3rem; opacity: 0.3; }
+        .add-slide-btn:hover i { opacity: 1; }
+
+        .slide-form {
+            background: var(--bg-panel-2);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            margin-top: 1rem;
+            display: none;
+        }
+        .slide-form.show { display: block; }
+        .slide-form .form-group { margin-bottom: 0.8rem; }
+        .slide-form .form-group label {
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-mute);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+        .slide-form .form-group input,
+        .slide-form .form-group textarea {
+            width: 100%;
+            padding: 0.5rem 0.7rem;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-sm);
+            color: var(--ink);
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .slide-form .form-group input:focus,
+        .slide-form .form-group textarea:focus { border-color: var(--gold); outline: none; }
+        .slide-form .form-group textarea { resize: vertical; min-height: 60px; }
+        .slide-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+
+        /* ================================================================
+           TOAST
+           ================================================================ */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--bg-panel-raised);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-md);
+            color: var(--ink);
+            font-size: 0.85rem;
+            box-shadow: var(--shadow-soft);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 999;
+            display: flex; align-items: center; gap: 0.8rem;
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast.success { border-color: var(--success); }
+        .toast.success i { color: var(--success); }
+        .toast.error { border-color: var(--danger); }
+        .toast.error i { color: var(--danger); }
+
+        /* ================================================================
+           RESPONSIVE
+           ================================================================ */
+        @media (max-width: 1100px) {
+            .admin-layout { grid-template-columns: 1fr; }
+            .admin-sidebar {
+                position: static;
+                display: flex; flex-wrap: wrap; gap: 0.3rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 1px solid var(--border-soft);
+            }
+            .admin-sidebar .nav-section {
+                margin-bottom: 0;
+                display: flex; flex-wrap: wrap; gap: 0.2rem;
+            }
+            .admin-sidebar .nav-section .label { display: none; }
+            .admin-sidebar a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.72rem;
+                border-left: none;
+                border-radius: var(--radius-sm);
+            }
+            .admin-sidebar a i { display: none; }
+            .admin-sidebar a .badge { margin-left: 0.3rem; }
+        }
+        @media (max-width: 900px) {
+            .banner-slider-preview { grid-template-columns: repeat(2, 1fr); }
+            .slide-form .form-row { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .admin-header-inner { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+            .admin-header-actions { flex-wrap: wrap; justify-content: space-between; }
+            .page-header { flex-direction: column; align-items: flex-start; }
+            .page-header .actions { width: 100%; justify-content: stretch; }
+            .page-header .actions .btn { flex: 1; justify-content: center; }
+            .form-container { padding: 1.2rem; }
+            .banner-slider-preview { grid-template-columns: 1fr 1fr; }
+            .hero-preview { aspect-ratio: 16/9; min-height: 150px; }
+            .hero-preview .overlay-text { font-size: 1rem; }
+            .toast { left: 1rem; right: 1rem; bottom: 1rem; }
+        }
+    
+
+/* ============================================================
+   DESIGN SYSTEM — Ambiance "Apple", brume dorée, TV-adaptatif
+   ============================================================ */
+*{ accent-color: var(--gold, #c9a961); }
+
+.mist-bg{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--bg-void, #0a0908);
+}
+.mist-bg::before,
+.mist-bg::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  animation: mistDrift 22s ease-in-out infinite alternate;
+}
+.mist-bg::before{
+  width: 46vw; height: 46vw;
+  top: -12vw; left: -10vw;
+  background: radial-gradient(circle, rgba(201,169,97,0.35), transparent 70%);
+}
+.mist-bg::after{
+  width: 40vw; height: 40vw;
+  bottom: -14vw; right: -8vw;
+  background: radial-gradient(circle, rgba(140,110,60,0.28), transparent 70%);
+  animation-delay: -9s;
+}
+@keyframes mistDrift{
+  0%   { transform: translate(0,0) scale(1); }
+  100% { transform: translate(3vw, 2vw) scale(1.12); }
+}
+
+.glass-panel{
+  background: rgba(21,18,14,0.55);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(201,169,97,0.18);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.45);
+}
+
+/* Bouton flottant "appel" — halo pulsé façon écran d'appel iOS */
+.fab-whatsapp{ position: relative; }
+.fab-whatsapp::before{
+  content:"";
+  position:absolute; inset:-6px;
+  border-radius:50%;
+  background: rgba(37,211,102,0.35);
+  filter: blur(6px);
+  animation: callPulse 2.2s ease-out infinite;
+  z-index:-1;
+}
+@keyframes callPulse{
+  0%   { transform: scale(0.85); opacity: 0.7; }
+  70%  { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Adaptation grands écrans / TV (1600px+, 4K compris) */
+@media (min-width: 1600px){
+  html{ font-size: 19px; }
+  .container, .wrap, main{ max-width: 1680px; }
+}
+@media (min-width: 2200px){
+  html{ font-size: 23px; }
+  .container, .wrap, main{ max-width: 2100px; }
+}
+</style>
+</head>
+<body>
+<div class="mist-bg" aria-hidden="true"></div>
+
+
+    <!-- ============================================================
+    ADMIN HEADER
+    ============================================================ -->
+    <header class="admin-header">
+        <div class="container admin-header-inner">
+            <div class="logo-text">
+                <span class="mark">D</span>
+                <span>Dar Chakaf <span>Administration</span></span>
+            </div>
+            <div class="admin-header-actions">
+                <span class="user">
+                    <span class="avatar">A</span>
+                    <span class="name" id="adminName">Administrateur</span>
+                </span>
+                <a href="../login.html" class="logout-btn" id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    ADMIN LAYOUT
+    ============================================================ -->
+    <div class="container admin-layout">
+
+        <!-- SIDEBAR -->
+        <nav class="admin-sidebar">
+            <div class="nav-section">
+                <span class="label">Navigation</span>
+                <a href="../dashboard.html"><i class="fa-solid fa-gauge-high"></i> Tableau de bord</a>
+                <a href="../categories/liste.html"><i class="fa-solid fa-layer-group"></i> Catégories</a>
+                <a href="../galerie/liste.html"><i class="fa-solid fa-images"></i> Galerie</a>
+                <a href="../messages/liste.html"><i class="fa-solid fa-envelope"></i> Messages <span class="badge">8</span></a>
+                <a href="../utilisateurs/liste.html"><i class="fa-solid fa-users"></i> Utilisateurs</a>
+                <a href="infos-site.html"><i class="fa-solid fa-gear"></i> Paramètres</a>
+                <a href="../logs/activite.html"><i class="fa-solid fa-clock-rotate-left"></i> Logs</a>
+            </div>
+            <div class="nav-section">
+                <span class="label">Paramètres</span>
+                <a href="infos-site.html"><i class="fa-solid fa-info-circle"></i> Informations du site</a>
+                <a href="hero-banner.html" class="active"><i class="fa-solid fa-image"></i> Bannière hero</a>
+            </div>
+            <div class="nav-section">
+                <span class="label">Produits</span>
+                <a href="../produits/salons-modernes.html"><i class="fa-solid fa-couch"></i> Salons modernes <span class="badge success">32</span></a>
+                <a href="../produits/salons-traditionnels.html"><i class="fa-solid fa-mosque"></i> Salons trad. <span class="badge success">28</span></a>
+                <a href="../produits/tables.html"><i class="fa-solid fa-table"></i> Tables <span class="badge success">19</span></a>
+                <a href="../produits/decorations.html"><i class="fa-solid fa-vector-square"></i> Décorations <span class="badge success">41</span></a>
+                <a href="../produits/meubles-tv.html"><i class="fa-solid fa-tv"></i> Meubles TV <span class="badge success">15</span></a>
+                <a href="../produits/couloirs.html"><i class="fa-solid fa-door-open"></i> Couloirs <span class="badge success">12</span></a>
+                <a href="../produits/tissus.html"><i class="fa-solid fa-scroll"></i> Tissus <span class="badge success">23</span></a>
+            </div>
+        </nav>
+
+        <!-- ============================================================
+        MAIN CONTENT
+        ============================================================ -->
+        <main class="admin-main">
+
+            <!-- Page Header -->
+            <div class="page-header fade-up">
+                <div>
+                    <h1><i class="fa-solid fa-image" style="color:var(--gold);"></i> Bannière Hero</h1>
+                    <span class="sub">Gérez les images et le texte de la bannière principale du site.</span>
+                </div>
+                <div class="actions">
+                    <a href="infos-site.html" class="btn btn-ghost"><i class="fa-solid fa-info-circle"></i> Informations du site</a>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="form-container fade-up fade-up-delay-1">
+                <h3 style="font-size:var(--fs-h2); color:var(--ink-soft); margin-bottom:0.5rem;">Aperçu de la bannière</h3>
+                <p style="color:var(--ink-mute); font-size:0.85rem; margin-bottom:1rem;">Voici à quoi ressemble la bannière sur le site actuellement.</p>
+
+                <div class="hero-preview" id="heroPreview">
+                    <img id="heroPreviewImg" src="https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1200&auto=format&fit=crop" alt="Bannière hero" />
+                    <div class="overlay-text">
+                        <div style="font-size:2rem; font-weight:600;">L'élégance <em style="color:var(--gold-bright);">à la marocaine</em></div>
+                        <div class="sub">Découvrez notre collection de mobilier haut de gamme</div>
+                        <div class="btn-overlay"><span class="btn btn-gold btn-sm" style="pointer-events:none;">Découvrir</span></div>
+                    </div>
+                </div>
+
+                <!-- Slider images -->
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:1rem;">
+                    <h4 style="font-family:var(--font-body); font-size:0.85rem; color:var(--ink-mute);">Images du slider (3)</h4>
+                    <button class="btn btn-gold btn-sm" id="addSlideBtn"><i class="fa-solid fa-plus"></i> Ajouter une image</button>
+                </div>
+
+                <div class="banner-slider-preview" id="sliderPreview"></div>
+
+                <!-- Formulaire d'ajout -->
+                <div class="slide-form" id="slideForm">
+                    <h4 style="font-family:var(--font-body); font-size:0.9rem; color:var(--gold-bright); margin-bottom:0.8rem;">Ajouter une image au slider</h4>
+                    <div class="form-group">
+                        <label for="slideImage">URL de l'image <span style="color:var(--danger);">*</span></label>
+                        <input type="text" id="slideImage" placeholder="https://images.unsplash.com/photo-..." />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="slideTitle">Titre</label>
+                            <input type="text" id="slideTitle" placeholder="Titre de la slide" />
+                        </div>
+                        <div class="form-group">
+                            <label for="slideSubtitle">Sous-titre</label>
+                            <input type="text" id="slideSubtitle" placeholder="Sous-titre de la slide" />
+                        </div>
+                    </div>
+                    <div class="form-actions" style="margin-top:0.8rem;">
+                        <button class="btn btn-gold btn-sm" id="saveSlideBtn"><i class="fa-regular fa-floppy-disk"></i> Ajouter</button>
+                        <button class="btn btn-ghost btn-sm" id="cancelSlideBtn">Annuler</button>
+                    </div>
+                </div>
+
+                <!-- Texte de la bannière -->
+                <div style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid var(--border-soft);">
+                    <h4 style="font-family:var(--font-body); font-size:0.85rem; color:var(--ink-mute); margin-bottom:1rem;">Texte de la bannière</h4>
+
+                    <div class="form-group">
+                        <label for="heroTitle">Titre principal</label>
+                        <input type="text" id="heroTitle" placeholder="L'élégance à la marocaine" value="L'élégance à la marocaine" />
+                    </div>
+                    <div class="form-group">
+                        <label for="heroSubtitle">Sous-titre</label>
+                        <input type="text" id="heroSubtitle" placeholder="Découvrez notre collection..." value="Découvrez notre collection de mobilier haut de gamme" />
+                    </div>
+                    <div class="form-group">
+                        <label for="heroCta">Texte du bouton CTA</label>
+                        <input type="text" id="heroCta" placeholder="Découvrir" value="Découvrir" />
+                    </div>
+                    <div class="form-group">
+                        <label for="heroCtaLink">Lien du bouton CTA</label>
+                        <input type="text" id="heroCtaLink" placeholder="/produits/salons-modernes.html" value="/produits/salons-modernes.html" />
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="form-actions" style="margin-top:1.5rem;">
+                    <button class="btn btn-gold" id="saveHeroBtn"><i class="fa-regular fa-floppy-disk"></i> Enregistrer les modifications</button>
+                    <button class="btn btn-ghost" id="resetHeroBtn"><i class="fa-solid fa-rotate"></i> Réinitialiser</button>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ============================================================
+    TOAST
+    ============================================================ -->
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toastMessage">Opération réussie !</span>
+    </div>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            'use strict';
+
+            // ============================================================
+            // 1. USER INFO & SESSION
+            // ============================================================
+            const adminName = localStorage.getItem('adminName') || 'Administrateur';
+            document.getElementById('adminName').textContent = adminName;
+
+            const token = localStorage.getItem('adminToken');
+            if (!token) {
+                window.location.href = '../login.html';
+            }
+
+            // ============================================================
+            // 2. LOGOUT
+            // ============================================================
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                if (confirm('Voulez-vous vraiment vous déconnecter ?')) {
+                    localStorage.clear();
+                    window.location.href = '../login.html';
+                }
+            });
+
+            // ============================================================
+            // 3. SLIDER DATA (chargée depuis l'API — voir INIT plus bas)
+            // ============================================================
+            let slides = [];
+            let nextId = 1;
+
+            async function loadHeroData() {
+                try {
+                    const res = await fetch('/api/parametres/hero');
+                    const json = await res.json();
+                    if (!json.success) throw new Error(json.message || 'Erreur de chargement');
+
+                    document.getElementById('heroTitle').value = json.data.title || '';
+                    document.getElementById('heroSubtitle').value = json.data.subtitle || '';
+                    document.getElementById('heroCta').value = json.data.cta || '';
+                    document.getElementById('heroCtaLink').value = json.data.ctaLink || '';
+                    if (json.data.mainImage) {
+                        document.getElementById('heroPreviewImg').src = json.data.mainImage;
+                    }
+
+                    slides = (json.data.slides || []).map(s => ({
+                        id: s.id, image: s.image, title: s.title, subtitle: s.subtitle
+                    }));
+                    nextId = slides.length ? Math.max(...slides.map(s => s.id)) + 1 : 1;
+                    renderSlides();
+                } catch (error) {
+                    console.error('Erreur chargement bannière hero:', error);
+                    showToast("Impossible de charger la bannière depuis le serveur.", 'error');
+                }
+            }
+
+            // ============================================================
+            // 4. RENDER SLIDER
+            // ============================================================
+            const sliderPreview = document.getElementById('sliderPreview');
+
+            function renderSlides() {
+                if (slides.length === 0) {
+                    sliderPreview.innerHTML = `
+                        <div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--ink-faint);font-size:0.85rem;">
+                            <i class="fa-regular fa-image" style="font-size:2rem;display:block;margin-bottom:0.5rem;opacity:0.3;"></i>
+                            Aucune image dans le slider. Ajoutez-en une !
+                        </div>
+                    `;
+                    return;
+                }
+
+                let html = '';
+                slides.forEach(function(slide, index) {
+                    html += `
+                        <div class="slide-thumb active" data-id="${slide.id}">
+                            <img src="${slide.image}" alt="${slide.title || 'Slide ' + (index+1)}" />
+                            <span class="slide-index">${index + 1}</span>
+                            <button class="remove-slide" onclick="removeSlide(${slide.id})" title="Supprimer"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    `;
+                });
+
+                html += `
+                    <div class="add-slide-btn" id="addSlideBtn2">
+                        <i class="fa-solid fa-plus"></i>
+                        Ajouter
+                    </div>
+                `;
+
+                sliderPreview.innerHTML = html;
+
+                document.getElementById('addSlideBtn2').addEventListener('click', function() {
+                    document.getElementById('slideForm').classList.toggle('show');
+                    if (document.getElementById('slideForm').classList.contains('show')) {
+                        document.getElementById('slideImage').focus();
+                    }
+                });
+            }
+
+            // ============================================================
+            // 5. SUPPRIMER UN SLIDE
+            // ============================================================
+            window.removeSlide = function(id) {
+                if (slides.length <= 1) {
+                    showToast('Il doit rester au moins une image dans le slider.', 'error');
+                    return;
+                }
+                if (confirm('Voulez-vous vraiment supprimer cette image du slider ?')) {
+                    slides = slides.filter(s => s.id !== id);
+                    renderSlides();
+                    showToast('Image supprimée du slider.', 'success');
+                }
+            };
+
+            // ============================================================
+            // 6. AJOUTER UN SLIDE
+            // ============================================================
+            document.getElementById('addSlideBtn').addEventListener('click', function() {
+                document.getElementById('slideForm').classList.toggle('show');
+                if (document.getElementById('slideForm').classList.contains('show')) {
+                    document.getElementById('slideImage').focus();
+                }
+            });
+
+            document.getElementById('cancelSlideBtn').addEventListener('click', function() {
+                document.getElementById('slideForm').classList.remove('show');
+                document.getElementById('slideImage').value = '';
+                document.getElementById('slideTitle').value = '';
+                document.getElementById('slideSubtitle').value = '';
+            });
+
+            document.getElementById('saveSlideBtn').addEventListener('click', function() {
+                const image = document.getElementById('slideImage').value.trim();
+                const title = document.getElementById('slideTitle').value.trim();
+                const subtitle = document.getElementById('slideSubtitle').value.trim();
+
+                if (!image) {
+                    showToast('Veuillez entrer une URL d\'image.', 'error');
+                    return;
+                }
+
+                slides.push({
+                    id: nextId++,
+                    image: image,
+                    title: title || 'Slide ' + slides.length,
+                    subtitle: subtitle || ''
+                });
+
+                renderSlides();
+                document.getElementById('slideForm').classList.remove('show');
+                document.getElementById('slideImage').value = '';
+                document.getElementById('slideTitle').value = '';
+                document.getElementById('slideSubtitle').value = '';
+                showToast('Image ajoutée au slider avec succès !', 'success');
+            });
+
+            // ============================================================
+            // 7. SAVE HERO
+            // ============================================================
+            document.getElementById('saveHeroBtn').addEventListener('click', function() {
+                const btn = this;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enregistrement...';
+                btn.disabled = true;
+
+                const heroData = {
+                    title: document.getElementById('heroTitle').value.trim(),
+                    subtitle: document.getElementById('heroSubtitle').value.trim(),
+                    cta: document.getElementById('heroCta').value.trim(),
+                    ctaLink: document.getElementById('heroCtaLink').value.trim(),
+                    slides: slides,
+                    mainImage: document.getElementById('heroPreviewImg').src
+                };
+
+                fetch('/api/parametres/hero', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: JSON.stringify(heroData)
+                })
+                    .then(res => res.json())
+                    .then(json => {
+                        if (!json.success) throw new Error(json.message || 'Erreur lors de l\'enregistrement');
+                        showToast('✅ Bannière mise à jour avec succès !', 'success');
+                    })
+                    .catch(error => {
+                        console.error('Erreur sauvegarde hero:', error);
+                        showToast(error.message || 'Erreur lors de l\'enregistrement', 'error');
+                    })
+                    .finally(() => {
+                        btn.innerHTML = '<i class="fa-regular fa-floppy-disk"></i> Enregistrer les modifications';
+                        btn.disabled = false;
+                    });
+
+            });
+
+            // ============================================================
+            // 8. RESET HERO
+            // ============================================================
+            document.getElementById('resetHeroBtn').addEventListener('click', function() {
+                if (confirm('Voulez-vous vraiment annuler vos modifications non enregistrées ?')) {
+                    loadHeroData();
+                    showToast('Formulaire réinitialisé avec les données enregistrées.', 'success');
+                }
+            });
+
+            // ============================================================
+            // 9. TOAST
+            // ============================================================
+            function showToast(message, type) {
+                const toast = document.getElementById('toast');
+                const toastMsg = document.getElementById('toastMessage');
+                toastMsg.textContent = message;
+                toast.className = 'toast ' + (type || 'success');
+                toast.classList.add('show');
+
+                setTimeout(function() {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+
+            // ============================================================
+            // 10. INIT
+            // ============================================================
+            loadHeroData();
+
+            console.log('🚀 Paramètres — Bannière Hero (version ultra-pro)');
+
+        });
+    </script>
+
+</body>
+</html>

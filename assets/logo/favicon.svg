@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+    <rect x="2" y="2" width="60" height="60" rx="4" fill="#0e0c0a" stroke="#c9a961" stroke-width="1.5" />
+    <path d="M12 28 L32 14 L52 28" stroke="#c9a961" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M12 28 L32 42 L52 28" stroke="#c9a961" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M22 36 L32 28 L42 36" stroke="#c9a961" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="32" cy="46" r="4" stroke="#c9a961" stroke-width="1.5" />
+    <text x="32" y="56" font-family="'Cormorant Garamond', serif" font-size="10" fill="#c9a961" text-anchor="middle" font-weight="600">D</text>
+</svg>
