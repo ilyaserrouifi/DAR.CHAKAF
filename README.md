@@ -51,6 +51,26 @@ identifiants Neon actuels (à changer après rotation du mot de passe).
 Sur Vercel : Project → Settings → Environment Variables → `DATABASE_URL`
 et `JWT_SECRET`.
 
+
+### Dépannage login admin
+
+Si `admin/login.html` affiche **Erreur interne du serveur**, les causes les
+plus probables sont côté serveur :
+
+1. `DATABASE_URL` manquant ou incorrect sur Vercel : l'API ne peut pas lire la
+   table `admins`.
+2. `JWT_SECRET` manquant sur Vercel : l'API renvoie maintenant une erreur claire
+   `Configuration serveur incomplète: JWT_SECRET est manquant` au lieu d'un 500
+   générique.
+3. Scripts SQL non exécutés ou incomplets : exécutez au minimum
+   `db/schema.sql`, puis les migrations listées ci-dessus.
+4. Compte admin désactivé ou mot de passe modifié : vérifiez la ligne
+   `admin@darchakaf.ma` dans `admins` avec `statut = 'active'`.
+
+La journalisation dans `activity_logs` n'empêche plus la connexion : si cette
+table manque, le login réussit quand même et l'erreur est seulement écrite dans
+les logs serveur.
+
 ## 4. Déployer
 
 ```bash

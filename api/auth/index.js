@@ -1,16 +1,28 @@
 const db = require('../../lib/db');
-const { generateToken, verifyToken } = require('../../lib/middleware-auth');
+const { generateToken, verifyToken, isAuthConfigured } = require('../../lib/middleware-auth');
 const { applyCors } = require('../../lib/cors');
 const bcrypt = require('bcryptjs');
 
 async function login(req, res) {
     try {
-        const { email, password } = req.body;
-        if (!email || !password) {
+        if (!isAuthConfigured()) {
+            console.error('Erreur login: variable JWT_SECRET manquante');
+            return res.status(503).json({
+                success: false,
+                message: 'Configuration serveur incomplète: JWT_SECRET est manquant'
+            });
+        }
+
+        const { email, password } = req.body || {};
+        const normalizedEmail = typeof email === 'string' ? email.trim().toLowerCase() : '';
+        if (!normalizedEmail || !password) {
             return res.status(400).json({ success: false, message: 'Email et mot de passe requis' });
         }
 
-        const result = await db.query('SELECT * FROM admins WHERE email = $1', [email]);
+        const result = await db.query(
+            "SELECT * FROM admins WHERE LOWER(email) = $1 AND statut = 'active'",
+            [normalizedEmail]
+        );
         if (result.rows.length === 0) {
             return res.status(401).json({ success: false, message: 'Email ou mot de passe incorrect' });
         }
@@ -23,10 +35,14 @@ async function login(req, res) {
 
         const token = generateToken({ id: user.id, email: user.email, role: user.role || 'admin' });
 
-        await db.query(
-            'INSERT INTO activity_logs (admin_id, action, date) VALUES ($1, $2, NOW())',
-            [user.id, `Connexion de ${user.email}`]
-        );
+        try {
+            await db.query(
+                'INSERT INTO activity_logs (admin_id, action, date) VALUES ($1, $2, NOW())',
+                [user.id, `Connexion de ${user.email}`]
+            );
+        } catch (logError) {
+            console.error('Erreur journalisation login (connexion conservée):', logError.message);
+        }
 
         return res.status(200).json({
             success: true,
@@ -48,6 +64,10 @@ async function logout(req, res) {
 
 async function verifySession(req, res) {
     try {
+        if (!isAuthConfigured()) {
+            return res.status(503).json({ success: false, message: 'Configuration serveur incomplète: JWT_SECRET est manquant' });
+        }
+
         const authHeader = req.headers.authorization;
         const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.substring(7) : null;
         if (!token) return res.status(401).json({ success: false, message: 'Token requis' });
