@@ -22,18 +22,14 @@ function verifyToken(token) {
 function requireAuth(req) {
     const authHeader = req.headers.authorization;
     const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.substring(7) : null;
-    
+
     if (!token) {
-        const error = new Error('UNAUTHORIZED');
-        error.message = 'Token requis';
-        throw error;
+        throw new Error('UNAUTHORIZED');
     }
 
     const decoded = verifyToken(token);
     if (!decoded) {
-        const error = new Error('UNAUTHORIZED');
-        error.message = 'Token invalide ou expiré';
-        throw error;
+        throw new Error('UNAUTHORIZED');
     }
 
     return decoded;
