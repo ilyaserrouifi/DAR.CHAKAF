@@ -843,7 +843,6 @@
             <div class="modal-body">
                 <div class="preview-box" id="previewBox">Aperçu de l'image</div>
                 <div class="form-group">
-<<<<<<< HEAD
                     <label>Ajouter depuis votre appareil</label>
                     <input type="file" id="imageFileInput" accept="image/*" style="display:none;" />
                     <button type="button" class="btn btn-ghost btn-sm" id="chooseFileBtn" style="width:100%;">
@@ -853,13 +852,8 @@
                 </div>
                 <div class="form-group">
                     <label for="imageUrl">— ou — URL de l'image</label>
-                    <input type="text" id="imageUrl" placeholder="Ex: https://..." />
-                    <div class="hint">Collez le lien direct d'une image déjà en ligne.</div>
-=======
-                    <label for="imageUrl">URL de l'image</label>
-                    <input type="text" id="imageUrl" placeholder="Ex: /uploads/photo.jpg ou https://..." />
-                    <div class="hint">Collez le lien direct de l'image (upload de fichier non disponible pour le moment).</div>
->>>>>>> b8a9a8b27146f63bb5cd8f2e7c5f56d695c04aa9
+                    <input type="text" id="imageUrl" placeholder="Ex: /assets/images/categories/tables.jpg ou https://..." />
+                    <div class="hint">Collez un lien direct ou choisissez une image depuis votre appareil.</div>
                 </div>
                 <div class="form-group">
                     <label for="imageTitre">Titre (optionnel)</label>
@@ -1083,7 +1077,6 @@
             var imageTitreInput = document.getElementById('imageTitre');
             var imageProduitSelect = document.getElementById('imageProduit');
             var previewBox = document.getElementById('previewBox');
-<<<<<<< HEAD
             var imageFileInput = document.getElementById('imageFileInput');
             var chooseFileBtn = document.getElementById('chooseFileBtn');
 
@@ -1117,8 +1110,6 @@
                 };
                 reader.readAsDataURL(file);
             });
-=======
->>>>>>> b8a9a8b27146f63bb5cd8f2e7c5f56d695c04aa9
 
             function loadProduitOptions() {
                 imageProduitSelect.innerHTML = '<option value="">Aucun produit</option>';
@@ -1149,10 +1140,7 @@
                 imageUrlInput.value = '';
                 imageTitreInput.value = '';
                 imageProduitSelect.value = '';
-<<<<<<< HEAD
                 imageFileInput.value = '';
-=======
->>>>>>> b8a9a8b27146f63bb5cd8f2e7c5f56d695c04aa9
                 previewBox.innerHTML = 'Aperçu de l\'image';
                 loadProduitOptions();
 
