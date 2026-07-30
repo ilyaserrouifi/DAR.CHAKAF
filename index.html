@@ -832,12 +832,11 @@
             object-fit: cover;
             transition: transform 0.7s var(--ease), filter 0.7s var(--ease);
             filter: saturate(0.85) brightness(0.7);
-            display: none;
+            display: block;
         }
-        .collection-card .image-frame img.loaded { display: block; }
-        .collection-card .image-frame img.loaded ~ .icon,
-        .collection-card .image-frame img.loaded ~ .placeholder-text { display: none; }
-        .collection-card:hover .image-frame img.loaded {
+        .collection-card .image-frame.has-cover .icon,
+        .collection-card .image-frame.has-cover .placeholder-text { display: none; }
+        .collection-card:hover .image-frame.has-cover img {
             transform: scale(1.08);
             filter: saturate(1) brightness(0.55);
         }
@@ -2312,7 +2311,10 @@
                 'salons-modernes': '/assets/images/categories/salons-modernes.jpg',
                 'salons-traditionnels': '/assets/images/categories/salons-traditionnels.jpg',
                 'tables': '/assets/images/categories/tables.jpg',
-                'decorations': '/assets/images/categories/decorations.jpg'
+                'decorations': '/assets/images/categories/decorations.jpg',
+                'meubles-tv': '/assets/images/categories/decorations.jpg',
+                'couloirs': '/assets/images/categories/salons-traditionnels.jpg',
+                'tissus': '/assets/images/categories/tables.jpg'
             };
 
             var categorySlugs = [];
@@ -2377,14 +2379,15 @@
 
                                     var coverImg = categoryImages[slug];
                                     var imgHtml = coverImg
-                                        ? `<img src="${coverImg}" alt="${cat.nom}" loading="lazy" onload="this.classList.add('loaded')" onerror="this.remove()">`
+                                        ? `<img src="${coverImg}" alt="${cat.nom}" loading="lazy" onerror="this.parentElement.classList.remove('has-cover'); this.remove();">`
                                         : '';
+                                    var frameClass = coverImg ? 'image-frame has-cover' : 'image-frame';
 
                                     var card = document.createElement('a');
                                     card.href = '/produits/' + slug + '.html';
                                     card.className = 'collection-card ' + isWide + ' reveal reveal-delay-' + delay;
                                     card.innerHTML = `
-                                        <div class="image-frame">
+                                        <div class="${frameClass}">
                                             ${imgHtml}
                                             <span class="icon">${icon}</span>
                                             <span class="placeholder-text">Image à venir</span>
