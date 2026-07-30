@@ -28,6 +28,16 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
 app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
 
+// Site pages (frontend HTML) — served explicitly so server-side files
+// like server.js, package.json, db/ and api/ are never exposed publicly.
+app.use('/produits', express.static(path.join(__dirname, 'produits')));
+app.use('/admin', express.static(path.join(__dirname, 'admin')));
+['a-propos.html', 'contact.html', 'galerie.html', 'produit-detail.html'].forEach((page) => {
+    app.get('/' + page, (req, res) => {
+        res.sendFile(path.join(__dirname, page));
+    });
+});
+
 if (process.env.NODE_ENV !== 'production') {
     app.use((req, res, next) => {
         console.log(`📡 ${req.method} ${req.url}`);
@@ -255,8 +265,13 @@ app.get('/api/health', (req, res) => {
     });
 });
 
-// Root
+// Root — serves the actual homepage
 app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// API info (moved off '/' so the homepage can be served there instead)
+app.get('/api', (req, res) => {
     res.status(200).json({
         success: true,
         message: '🚀 Dar Chakaf API Server',
