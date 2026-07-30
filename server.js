@@ -321,9 +321,17 @@ const publicDir = path.join(__dirname, 'public');
 const uploadsDir = path.join(__dirname, 'public', 'uploads');
 const assetsDir = path.join(__dirname, 'public', 'assets');
 
-if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir, { recursive: true });
-if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
-if (!fs.existsSync(assetsDir)) fs.mkdirSync(assetsDir, { recursive: true });
+// On Vercel the filesystem is read-only (except /tmp), so creating these
+// folders at startup would throw and crash every single request. This is
+// only useful for local dev, so it's wrapped in try/catch and skipped
+// silently in production.
+try {
+    if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir, { recursive: true });
+    if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
+    if (!fs.existsSync(assetsDir)) fs.mkdirSync(assetsDir, { recursive: true });
+} catch (err) {
+    console.warn('⚠️  Impossible de créer les dossiers public/ (normal sur Vercel, filesystem read-only):', err.message);
+}
 
 app.listen(PORT, () => {
     console.log('');
