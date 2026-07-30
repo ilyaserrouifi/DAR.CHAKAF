@@ -1494,8 +1494,8 @@
                 var nowTime = new Date();
                 var timeStr = nowTime.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
                 var dateStr = nowTime.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
-                lastLoginEl.textContent = 'Aujourd'hui, ' + dateStr + ' à ' + timeStr;
-                localStorage.setItem('lastLogin', 'Aujourd'hui, ' + dateStr + ' à ' + timeStr);
+               lastLoginEl.textContent = "Aujourd'hui, " + dateStr + ' à ' + timeStr;
+               localStorage.setItem('lastLogin', "Aujourd'hui, " + dateStr + ' à ' + timeStr);
             }
 
             // ============================================================
