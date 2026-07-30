@@ -32,9 +32,37 @@ app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
 // like server.js, package.json, db/ and api/ are never exposed publicly.
 app.use('/produits', express.static(path.join(__dirname, 'produits')));
 app.use('/admin', express.static(path.join(__dirname, 'admin')));
-['a-propos.html', 'contact.html', 'galerie.html', 'produit-detail.html'].forEach((page) => {
-    app.get('/' + page, (req, res) => {
-        res.sendFile(path.join(__dirname, page));
+
+app.get('/a-propos.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'a-propos.html'), (err) => {
+        if (err) {
+            console.error('❌ Erreur sendFile a-propos.html:', err.message);
+            if (!res.headersSent) res.status(500).send('Erreur chargement page: ' + err.message);
+        }
+    });
+});
+app.get('/contact.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'contact.html'), (err) => {
+        if (err) {
+            console.error('❌ Erreur sendFile contact.html:', err.message);
+            if (!res.headersSent) res.status(500).send('Erreur chargement page: ' + err.message);
+        }
+    });
+});
+app.get('/galerie.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'galerie.html'), (err) => {
+        if (err) {
+            console.error('❌ Erreur sendFile galerie.html:', err.message);
+            if (!res.headersSent) res.status(500).send('Erreur chargement page: ' + err.message);
+        }
+    });
+});
+app.get('/produit-detail.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'produit-detail.html'), (err) => {
+        if (err) {
+            console.error('❌ Erreur sendFile produit-detail.html:', err.message);
+            if (!res.headersSent) res.status(500).send('Erreur chargement page: ' + err.message);
+        }
     });
 });
 
@@ -267,7 +295,12 @@ app.get('/api/health', (req, res) => {
 
 // Root — serves the actual homepage
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'), (err) => {
+        if (err) {
+            console.error('❌ Erreur sendFile index.html:', err.message);
+            if (!res.headersSent) res.status(500).send('Erreur chargement page: ' + err.message);
+        }
+    });
 });
 
 // API info (moved off '/' so the homepage can be served there instead)
