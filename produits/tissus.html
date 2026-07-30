@@ -1195,6 +1195,13 @@
 
                 grid.innerHTML = html;
 
+                // Sécurité : certaines images (ex: photo envoyée depuis l'appareil, en base64)
+                // sont déjà chargées au moment de l'insertion dans le DOM et l'événement
+                // "onload" peut être manqué — on les révèle quand même explicitement.
+                grid.querySelectorAll('img').forEach(function(im) {
+                    if (im.complete && im.naturalWidth > 0) im.classList.add('loaded');
+                });
+
                 // Réactiver scroll reveal
                 var newRevealEls = grid.querySelectorAll('.reveal');
                 newRevealEls.forEach(function(el) {
