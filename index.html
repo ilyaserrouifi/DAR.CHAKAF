@@ -249,40 +249,11 @@
             animation: preloaderLogoReveal 5s var(--ease) forwards;
             z-index: 2;
         }
-        .preloader-title {
-            position: absolute;
-            bottom: 34px;
-            font-family: var(--font-display);
-            font-size: clamp(1.5rem, 6vw, 2.8rem);
-            color: var(--gold-bright);
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            opacity: 0;
-            animation: preloaderTextReveal 5s var(--ease) forwards;
-        }
-        .preloader-line {
-            position: absolute;
-            bottom: 91px;
-            width: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
-            animation: preloaderLine 5s var(--ease) forwards;
-        }
         @keyframes preloaderLogoReveal {
             0% { opacity: 0; transform: translateY(46px) scale(0.72) rotate(-8deg); }
             32% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
             74% { opacity: 1; transform: translateY(0) scale(1.04) rotate(0deg); }
             100% { opacity: 0; transform: translateY(-28px) scale(0.92) rotate(3deg); }
-        }
-        @keyframes preloaderTextReveal {
-            0%, 20% { opacity: 0; transform: translateY(18px); letter-spacing: 0.32em; }
-            42%, 82% { opacity: 1; transform: translateY(0); letter-spacing: 0.18em; }
-            100% { opacity: 0; transform: translateY(-12px); letter-spacing: 0.24em; }
-        }
-        @keyframes preloaderLine {
-            0%, 18% { width: 0; opacity: 0; }
-            42%, 82% { width: 260px; opacity: 1; }
-            100% { width: 0; opacity: 0; }
         }
         @keyframes preloaderOrbit {
             0% { opacity: 0; transform: scale(0.65) rotate(0deg); }
@@ -882,15 +853,15 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.7s var(--ease), filter 0.7s var(--ease);
-            filter: saturate(0.85) brightness(0.7);
-            display: none;
+            filter: saturate(0.95) brightness(0.72);
+            display: block;
+            z-index: 0;
         }
-        .collection-card .image-frame img.loaded { display: block; }
-        .collection-card .image-frame img.loaded ~ .icon,
-        .collection-card .image-frame img.loaded ~ .placeholder-text { display: none; }
-        .collection-card:hover .image-frame img.loaded {
+        .collection-card .image-frame.has-image .icon,
+        .collection-card .image-frame.has-image .placeholder-text { display: none; }
+        .collection-card:hover .image-frame img {
             transform: scale(1.08);
-            filter: saturate(1) brightness(0.55);
+            filter: saturate(1.05) brightness(0.58);
         }
 
         .collection-card::after {
@@ -1767,8 +1738,6 @@
     <div id="preloader" aria-label="Chargement Dar Chakaf">
         <div class="preloader-scene">
             <img class="preloader-logo" src="/assets/logo/dar-chakaf-logo.svg" alt="Dar Chakaf Logo" width="260" height="260">
-            <span class="preloader-line" aria-hidden="true"></span>
-            <div class="preloader-title">Dar Chakaf</div>
         </div>
     </div>
 
@@ -1907,7 +1876,7 @@
                 <div class="signature-visual reveal">
                     <div class="signature-frame">
                         <span class="icon">🔨</span>
-                        <span class="placeholder-text">Image à venir</span>
+                        <span class="placeholder-text" aria-hidden="true"></span>
                     </div>
                     <div class="signature-motif"></div>
                     <div class="signature-badge">
@@ -2365,12 +2334,28 @@
             // Images de couverture par catégorie (affichées sur les cartes de la page d'accueil)
             var categoryImages = {
                 'salons-modernes': '/assets/images/categories/salons-modernes.jpg',
+                'salon-moderne': '/assets/images/categories/salons-modernes.jpg',
                 'salons-traditionnels': '/assets/images/categories/salons-traditionnels.jpg',
+                'salon-traditionnel': '/assets/images/categories/salons-traditionnels.jpg',
                 'tables': '/assets/images/categories/tables.jpg',
+                'table': '/assets/images/categories/tables.jpg',
                 'decorations': '/assets/images/categories/decorations.jpg',
+                'decoration': '/assets/images/categories/decorations.jpg',
                 'meubles-tv': '/assets/images/categories/meubles-tv.jpg',
-                'couloirs': '/assets/images/categories/couloirs.jpg'
+                'meuble-tv': '/assets/images/categories/meubles-tv.jpg',
+                'couloirs': '/assets/images/categories/couloirs.jpg',
+                'couloir': '/assets/images/categories/couloirs.jpg'
             };
+
+            function normalizeCategorySlug(cat) {
+                var raw = cat.slug || cat.nom || '';
+                return raw.toString()
+                    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+                    .toLowerCase()
+                    .replace(/&/g, ' et ')
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/^-+|-+$/g, '');
+            }
 
             var categorySlugs = [];
 
@@ -2406,7 +2391,7 @@
                             if (sidebarUl) {
                                 sidebarUl.innerHTML = '';
                                 cats.forEach(function(cat) {
-                                    var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                    var slug = normalizeCategorySlug(cat);
                                     var icon = iconMap[slug] || 'fa-cube';
                                     var li = document.createElement('li');
                                     li.innerHTML = `
@@ -2427,24 +2412,25 @@
                                 grid.innerHTML = '';
                                 var icons = ['🛋️', '🪑', '🍽️', '🖼️', '📺', '🚪', '🧵'];
                                 cats.forEach(function(cat, index) {
-                                    var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                    var slug = normalizeCategorySlug(cat);
                                     var icon = icons[index % icons.length];
                                     var isWide = (index === 0 || index === 5) ? 'wide' : '';
                                     var delay = (index % 3) + 1;
 
                                     var coverImg = categoryImages[slug];
+                                    var hasImageClass = coverImg ? ' has-image' : '';
                                     var imgHtml = coverImg
-                                        ? `<img src="${coverImg}" alt="${cat.nom}" loading="lazy" onload="this.classList.add('loaded')" onerror="this.remove()">`
+                                        ? `<img src="${coverImg}" alt="${cat.nom}" loading="lazy" onerror="this.closest('.image-frame').classList.remove('has-image'); this.remove()">`
                                         : '';
 
                                     var card = document.createElement('a');
                                     card.href = '/produits/' + slug + '.html';
                                     card.className = 'collection-card ' + isWide + ' reveal reveal-delay-' + delay;
                                     card.innerHTML = `
-                                        <div class="image-frame">
+                                        <div class="image-frame${hasImageClass}">
                                             ${imgHtml}
                                             <span class="icon">${icon}</span>
-                                            <span class="placeholder-text">Image à venir</span>
+                                            <span class="placeholder-text" aria-hidden="true"></span>
                                         </div>
                                         <div class="collection-card-body">
                                             <span class="collection-card-tag">${cat.product_count || 0} modèles</span>
@@ -2467,7 +2453,7 @@
                             if (navDropdown) {
                                 navDropdown.innerHTML = '';
                                 cats.forEach(function(cat) {
-                                    var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                    var slug = normalizeCategorySlug(cat);
                                     var icon = iconMap[slug] || 'fa-cube';
                                     var a = document.createElement('a');
                                     a.href = '/produits/' + slug + '.html';
@@ -2485,7 +2471,7 @@
                             if (mobileLinks) {
                                 mobileLinks.innerHTML = '';
                                 cats.forEach(function(cat) {
-                                    var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                    var slug = normalizeCategorySlug(cat);
                                     var a = document.createElement('a');
                                     a.className = 'sub-link';
                                     a.href = '/produits/' + slug + '.html';
@@ -2504,7 +2490,7 @@
                             if (filtersContainer) {
                                 var filterHtml = '<button class="gfilter active" data-filter="all">Tout</button>';
                                 cats.forEach(function(cat) {
-                                    var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                    var slug = normalizeCategorySlug(cat);
                                     filterHtml += '<button class="gfilter" data-filter="' + slug + '">' + cat.nom + '</button>';
                                 });
                                 filtersContainer.innerHTML = filterHtml;
@@ -2527,7 +2513,7 @@
                             if (footerProducts) {
                                 footerProducts.innerHTML = '';
                                 cats.forEach(function(cat) {
-                                    var slug = cat.slug || cat.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                                    var slug = normalizeCategorySlug(cat);
                                     var li = document.createElement('li');
                                     li.innerHTML = '<a href="/produits/' + slug + '.html">' + cat.nom + '</a>';
                                     footerProducts.appendChild(li);
