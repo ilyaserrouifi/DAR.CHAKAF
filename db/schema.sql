@@ -122,7 +122,7 @@ INSERT INTO site_settings (
     logo, adresse, telephone, whatsapp, email,
     facebook, instagram, tiktok, horaires, description
 ) VALUES (
-    '/assets/logo/logo.png',
+    '/assets/logo/dar-chakaf-logo.svg',
     'Zone Industrielle Sidi Maârouf, Casablanca, Maroc',
     '+212 6 00 00 00 00',
     '+212 6 00 00 00 00',

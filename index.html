@@ -6,8 +6,8 @@
     <title>Dar Chakaf — L'Art de l'Ameublement Marocain</title>
     <meta name="description" content="Dar Chakaf — Fabricant et distributeur de mobilier haut de gamme : salons modernes, salons traditionnels, tables, décorations et plus. Savoir-faire marocain, finition sur mesure." />
 
-    <link rel="icon" href="/assets/logo/favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="/assets/logo/favicon.png">
+    <link rel="icon" href="/assets/logo/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/assets/logo/dar-chakaf-logo.svg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -208,36 +208,87 @@
         #preloader {
             position: fixed;
             inset: 0;
-            background: var(--bg-void);
+            background:
+                radial-gradient(circle at 50% 42%, rgba(6, 86, 173, 0.2), transparent 28%),
+                radial-gradient(circle at 50% 58%, rgba(201, 169, 97, 0.16), transparent 36%),
+                var(--bg-void);
             z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.7s var(--ease), visibility 0.7s var(--ease);
+            transition: opacity 0.9s var(--ease), visibility 0.9s var(--ease);
         }
         #preloader.hidden { opacity: 0; visibility: hidden; }
-        .preloader-mark {
-            font-family: var(--font-display);
-            font-size: 2.4rem;
-            color: var(--gold);
-            letter-spacing: 0.2em;
+        .preloader-scene {
             position: relative;
+            width: min(440px, 82vw);
+            min-height: 360px;
+            display: grid;
+            place-items: center;
+            isolation: isolate;
         }
-        .preloader-mark::after {
+        .preloader-scene::before,
+        .preloader-scene::after {
             content: '';
             position: absolute;
-            left: 50%;
-            bottom: -14px;
+            border: 1px solid rgba(201, 169, 97, 0.28);
+            inset: 38px;
+            border-radius: 50%;
+            animation: preloaderOrbit 5s var(--ease) forwards;
+        }
+        .preloader-scene::after {
+            inset: 70px;
+            border-color: rgba(6, 86, 173, 0.42);
+            animation-direction: reverse;
+        }
+        .preloader-logo {
+            width: min(260px, 58vw);
+            filter: drop-shadow(0 28px 44px rgba(0, 0, 0, 0.55));
+            opacity: 0;
+            transform: translateY(36px) scale(0.72) rotate(-6deg);
+            animation: preloaderLogoReveal 5s var(--ease) forwards;
+            z-index: 2;
+        }
+        .preloader-title {
+            position: absolute;
+            bottom: 34px;
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 6vw, 2.8rem);
+            color: var(--gold-bright);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: preloaderTextReveal 5s var(--ease) forwards;
+        }
+        .preloader-line {
+            position: absolute;
+            bottom: 91px;
             width: 0;
             height: 1px;
-            background: var(--gold);
-            transform: translateX(-50%);
-            animation: preloadLine 1.4s var(--ease) infinite;
+            background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+            animation: preloaderLine 5s var(--ease) forwards;
         }
-        @keyframes preloadLine {
-            0% { width: 0; opacity: 0; }
-            50% { width: 120px; opacity: 1; }
+        @keyframes preloaderLogoReveal {
+            0% { opacity: 0; transform: translateY(46px) scale(0.72) rotate(-8deg); }
+            32% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+            74% { opacity: 1; transform: translateY(0) scale(1.04) rotate(0deg); }
+            100% { opacity: 0; transform: translateY(-28px) scale(0.92) rotate(3deg); }
+        }
+        @keyframes preloaderTextReveal {
+            0%, 20% { opacity: 0; transform: translateY(18px); letter-spacing: 0.32em; }
+            42%, 82% { opacity: 1; transform: translateY(0); letter-spacing: 0.18em; }
+            100% { opacity: 0; transform: translateY(-12px); letter-spacing: 0.24em; }
+        }
+        @keyframes preloaderLine {
+            0%, 18% { width: 0; opacity: 0; }
+            42%, 82% { width: 260px; opacity: 1; }
             100% { width: 0; opacity: 0; }
+        }
+        @keyframes preloaderOrbit {
+            0% { opacity: 0; transform: scale(0.65) rotate(0deg); }
+            28% { opacity: 1; }
+            82% { opacity: 0.75; }
+            100% { opacity: 0; transform: scale(1.2) rotate(180deg); }
         }
 
         /* ============================================================
@@ -1713,8 +1764,12 @@
     <div class="mist-bg" aria-hidden="true"></div>
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <div id="preloader">
-        <div class="preloader-mark">DAR CHAKAF</div>
+    <div id="preloader" aria-label="Chargement Dar Chakaf">
+        <div class="preloader-scene">
+            <img class="preloader-logo" src="/assets/logo/dar-chakaf-logo.svg" alt="Dar Chakaf Logo" width="260" height="260">
+            <span class="preloader-line" aria-hidden="true"></span>
+            <div class="preloader-title">Dar Chakaf</div>
+        </div>
     </div>
 
     <!-- ============================================================
@@ -2213,7 +2268,7 @@
             // ============================================================
             window.addEventListener('load', function() {
                 var pre = document.getElementById('preloader');
-                setTimeout(function() { pre.classList.add('hidden'); }, 500);
+                setTimeout(function() { pre.classList.add('hidden'); }, 5000);
             });
 
             // ============================================================
