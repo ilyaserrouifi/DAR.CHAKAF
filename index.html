@@ -2307,6 +2307,14 @@
                 'tissus': 'fa-scroll'
             };
 
+            // Images de couverture par catégorie (affichées sur les cartes de la page d'accueil)
+            var categoryImages = {
+                'salons-modernes': '/assets/images/categories/salons-modernes.jpg',
+                'salons-traditionnels': '/assets/images/categories/salons-traditionnels.jpg',
+                'tables': '/assets/images/categories/tables.jpg',
+                'decorations': '/assets/images/categories/decorations.jpg'
+            };
+
             var categorySlugs = [];
 
             // ============================================================
@@ -2367,11 +2375,17 @@
                                     var isWide = (index === 0 || index === 5) ? 'wide' : '';
                                     var delay = (index % 3) + 1;
 
+                                    var coverImg = categoryImages[slug];
+                                    var imgHtml = coverImg
+                                        ? `<img src="${coverImg}" alt="${cat.nom}" loading="lazy" onload="this.classList.add('loaded')" onerror="this.remove()">`
+                                        : '';
+
                                     var card = document.createElement('a');
                                     card.href = '/produits/' + slug + '.html';
                                     card.className = 'collection-card ' + isWide + ' reveal reveal-delay-' + delay;
                                     card.innerHTML = `
                                         <div class="image-frame">
+                                            ${imgHtml}
                                             <span class="icon">${icon}</span>
                                             <span class="placeholder-text">Image à venir</span>
                                         </div>
