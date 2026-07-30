@@ -27,6 +27,7 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
 app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Site pages (frontend HTML) — served explicitly so server-side files
 // like server.js, package.json, db/ and api/ are never exposed publicly.

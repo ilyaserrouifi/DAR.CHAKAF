@@ -1858,10 +1858,56 @@
                 </aside>
 
                 <div class="collections-grid" id="collectionsGrid">
-                    <div class="loading-spinner" style="grid-column:1/-1;">
-                        <div class="spinner"></div>
-                        <p>Chargement des collections...</p>
-                    </div>
+                    <a href="/produits/salons-modernes.html" class="collection-card wide reveal reveal-delay-1">
+                        <div class="image-frame has-image">
+                            <img src="/public/assets/images/categories/salons-modernes.jpg" alt="Salons modernes" loading="eager" onerror="this.onerror=null; this.src='/assets/images/categories/salons-modernes.jpg';">
+                        </div>
+                        <div class="collection-card-body">
+                            <span class="collection-card-tag">0 modèles</span>
+                            <h3>Salons modernes</h3>
+                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                    <a href="/produits/salons-traditionnels.html" class="collection-card reveal reveal-delay-2">
+                        <div class="image-frame has-image">
+                            <img src="/public/assets/images/categories/salons-traditionnels.jpg" alt="Salons traditionnels" loading="eager" onerror="this.onerror=null; this.src='/assets/images/categories/salons-traditionnels.jpg';">
+                        </div>
+                        <div class="collection-card-body">
+                            <span class="collection-card-tag">0 modèles</span>
+                            <h3>Salons traditionnels</h3>
+                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                    <a href="/produits/tables.html" class="collection-card reveal reveal-delay-3">
+                        <div class="image-frame has-image">
+                            <img src="/public/assets/images/categories/tables.jpg" alt="Tables" loading="lazy" onerror="this.onerror=null; this.src='/assets/images/categories/tables.jpg';">
+                        </div>
+                        <div class="collection-card-body">
+                            <span class="collection-card-tag">0 modèles</span>
+                            <h3>Tables</h3>
+                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                    <a href="/produits/decorations.html" class="collection-card reveal reveal-delay-1">
+                        <div class="image-frame has-image">
+                            <img src="/public/assets/images/categories/decorations.jpg" alt="Décorations" loading="lazy" onerror="this.onerror=null; this.src='/assets/images/categories/decorations.jpg';">
+                        </div>
+                        <div class="collection-card-body">
+                            <span class="collection-card-tag">0 modèles</span>
+                            <h3>Décorations</h3>
+                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                    <a href="/produits/meubles-tv.html" class="collection-card reveal reveal-delay-2">
+                        <div class="image-frame has-image">
+                            <img src="/public/assets/images/categories/meubles-tv.jpg" alt="Meubles TV" loading="lazy" onerror="this.onerror=null; this.src='/assets/images/categories/meubles-tv.jpg';">
+                        </div>
+                        <div class="collection-card-body">
+                            <span class="collection-card-tag">0 modèles</span>
+                            <h3>Meubles TV</h3>
+                            <span class="go">Voir la collection <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -2333,18 +2379,18 @@
 
             // Images de couverture par catégorie (affichées sur les cartes de la page d'accueil)
             var categoryImages = {
-                'salons-modernes': '/assets/images/categories/salons-modernes.jpg',
-                'salon-moderne': '/assets/images/categories/salons-modernes.jpg',
-                'salons-traditionnels': '/assets/images/categories/salons-traditionnels.jpg',
-                'salon-traditionnel': '/assets/images/categories/salons-traditionnels.jpg',
-                'tables': '/assets/images/categories/tables.jpg',
-                'table': '/assets/images/categories/tables.jpg',
-                'decorations': '/assets/images/categories/decorations.jpg',
-                'decoration': '/assets/images/categories/decorations.jpg',
-                'meubles-tv': '/assets/images/categories/meubles-tv.jpg',
-                'meuble-tv': '/assets/images/categories/meubles-tv.jpg',
-                'couloirs': '/assets/images/categories/couloirs.jpg',
-                'couloir': '/assets/images/categories/couloirs.jpg'
+                'salons-modernes': '/public/assets/images/categories/salons-modernes.jpg',
+                'salon-moderne': '/public/assets/images/categories/salons-modernes.jpg',
+                'salons-traditionnels': '/public/assets/images/categories/salons-traditionnels.jpg',
+                'salon-traditionnel': '/public/assets/images/categories/salons-traditionnels.jpg',
+                'tables': '/public/assets/images/categories/tables.jpg',
+                'table': '/public/assets/images/categories/tables.jpg',
+                'decorations': '/public/assets/images/categories/decorations.jpg',
+                'decoration': '/public/assets/images/categories/decorations.jpg',
+                'meubles-tv': '/public/assets/images/categories/meubles-tv.jpg',
+                'meuble-tv': '/public/assets/images/categories/meubles-tv.jpg',
+                'couloirs': '/public/assets/images/categories/couloirs.jpg',
+                'couloir': '/public/assets/images/categories/couloirs.jpg'
             };
 
             function normalizeCategorySlug(cat) {
@@ -2420,7 +2466,7 @@
                                     var coverImg = categoryImages[slug];
                                     var hasImageClass = coverImg ? ' has-image' : '';
                                     var imgHtml = coverImg
-                                        ? `<img src="${coverImg}" alt="${cat.nom}" loading="lazy" onerror="this.closest('.image-frame').classList.remove('has-image'); this.remove()">`
+                                        ? `<img src="${coverImg}" alt="${cat.nom}" loading="lazy" onerror="this.onerror=null; var fallback=this.src.replace('/public/assets/', '/assets/'); if (fallback !== this.src) { this.src=fallback; } else { this.closest('.image-frame').classList.remove('has-image'); this.remove(); }">`
                                         : '';
 
                                     var card = document.createElement('a');
@@ -2526,13 +2572,7 @@
                     })
                     .catch(function(err) {
                         console.error('Erreur chargement catégories:', err);
-                        document.getElementById('collectionsGrid').innerHTML = `
-                            <div class="api-error" style="grid-column:1/-1;">
-                                <i class="fa-solid fa-triangle-exclamation"></i>
-                                <p>Erreur de chargement des collections</p>
-                                <p style="font-size:0.8rem;color:var(--ink-faint);">Vérifiez que le serveur est en marche</p>
-                            </div>
-                        `;
+                        // Garder les cartes statiques avec images déjà présentes dans le HTML.
                     });
 
                 // Charger les paramètres du site
