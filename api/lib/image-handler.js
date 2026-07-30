@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Sur Vercel le filesystem est en lecture seule (sauf /tmp, qui n'est pas
 // persistant entre les invocations). On ne peut donc PAS écrire des fichiers
 // sur disque de façon durable. Solution simple et sans dépendance externe :
@@ -40,9 +41,46 @@ async function deleteImage(url) {
     // soit c'est une data URI stockée directement dans la ligne DB (elle sera
     // supprimée avec la ligne elle-même via DELETE FROM images).
     return true;
+=======
+const fs = require('fs');
+const path = require('path');
+const { v4: uuidv4 } = require('uuid');
+
+const UPLOAD_DIR = path.join(process.cwd(), 'public', 'uploads');
+
+if (!fs.existsSync(UPLOAD_DIR)) {
+    fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+}
+
+async function uploadImage(imageUrl, type = 'gallery') {
+    const filename = `${type}_${uuidv4()}.jpg`;
+    const filepath = path.join(UPLOAD_DIR, filename);
+    
+    return {
+        url: `/uploads/${filename}`,
+        filename: filename,
+        path: filepath
+    };
+}
+
+async function deleteImage(url) {
+    const filename = url.split('/').pop();
+    const filepath = path.join(UPLOAD_DIR, filename);
+    
+    if (fs.existsSync(filepath)) {
+        fs.unlinkSync(filepath);
+        return true;
+    }
+    return false;
+>>>>>>> b8a9a8b27146f63bb5cd8f2e7c5f56d695c04aa9
 }
 
 module.exports = {
     uploadImage,
+<<<<<<< HEAD
     deleteImage
+=======
+    deleteImage,
+    UPLOAD_DIR
+>>>>>>> b8a9a8b27146f63bb5cd8f2e7c5f56d695c04aa9
 };

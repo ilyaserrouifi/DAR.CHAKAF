@@ -49,14 +49,21 @@ async function upload(req, res) {
 
         await db.query(
             'INSERT INTO activity_logs (admin_id, action, date) VALUES ($1, $2, NOW())',
+<<<<<<< HEAD
             [user.id, `Upload de l'image "${titre || 'sans titre'}"`]
+=======
+            [user.id, `Upload de l'image "${titre || imageUrl}"`]
+>>>>>>> b8a9a8b27146f63bb5cd8f2e7c5f56d695c04aa9
         );
 
         return res.status(201).json({ success: true, message: 'Image uploadée avec succès', data: result.rows[0] });
     } catch (error) {
         if (error.message === 'UNAUTHORIZED') return res.status(401).json({ success: false, message: 'Non autorisé' });
+<<<<<<< HEAD
         if (error.message === 'IMAGE_TOO_LARGE') return res.status(400).json({ success: false, message: 'Image trop volumineuse (max ~5 Mo).' });
         if (error.message === 'INVALID_IMAGE') return res.status(400).json({ success: false, message: "Format d'image invalide. Utilisez un fichier image ou un lien https://..." });
+=======
+>>>>>>> b8a9a8b27146f63bb5cd8f2e7c5f56d695c04aa9
         console.error('Erreur upload image:', error);
         return res.status(500).json({ success: false, message: 'Erreur interne du serveur' });
     }
